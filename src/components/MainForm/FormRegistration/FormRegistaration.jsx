@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
 const initialValues = {
   email: '',
@@ -32,8 +33,40 @@ const RegistrationForm = () => {
     setStep(step - 1);
   };
 
-  const handleNext = () => {
+  const handleNext = (values) => {
+    let error = null;
+
+    switch (step) {
+      case 1:
+        error = validateSchema(values, 'email');
+        if (!error) {
+          error = validateSchema(values, 'password');
+        }
+        if (!error) {
+          error = validateSchema(values, 'confirmPassword');
+        }
+        break;
+      default:
+        break;
+    }
+
+    if (error) {
+      toast.error(error);
+      return;
+    }
+
     setStep(step + 1);
+  };
+
+  const validateSchema = (values, fieldName) => {
+    const fieldSchema = validationSchema.fields[fieldName];
+
+    try {
+      fieldSchema.validateSync(values[fieldName]);
+    } catch (error) {
+      return fieldSchema.message || `${fieldName} is invalid`;
+    }
+    return null;
   };
 
   return (
@@ -42,7 +75,7 @@ const RegistrationForm = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, isValid }) => (
+      {({ values }) => (
         <Form>
           {step === 1 && (
             <>
@@ -65,7 +98,7 @@ const RegistrationForm = () => {
               </div>
 
               <div>
-                <button type="button" onClick={handleNext} disabled={isValid}>
+                <button type="button" onClick={() => handleNext(values)}>
                   Next
                 </button>
               </div>
@@ -93,9 +126,7 @@ const RegistrationForm = () => {
               </div>
 
               <div>
-                <button type="submit" disabled={isSubmitting}>
-                  Register
-                </button>
+                <button type="submit">Register</button>
                 <button type="button" onClick={handleBack}>
                   Back
                 </button>
