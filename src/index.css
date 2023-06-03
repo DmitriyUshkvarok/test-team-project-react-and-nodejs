@@ -14,13 +14,13 @@ body {
 
 :root {
   /* color */
-  --gradientAccentColor: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
-  --accentColor: #F59256;
-  --fonColor: #FDF7F2;
+  --gradientAccentColor: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+  --accentColor: #f59256;
+  --fonColor: #fdf7f2;
   --blackColor: #111111;
   --grayColor: rgba(17, 17, 17, 0.6);
-  --skyColor: #3091EB;
-  --whiteColor: #FFFFFF;
+  --skyColor: #3091eb;
+  --whiteColor: #ffffff;
   --transition: 0.4s;
   --box-shadow-color: 0px 2px 8px rgba(0, 0, 0, 0.2);
   /* fontFamily */
