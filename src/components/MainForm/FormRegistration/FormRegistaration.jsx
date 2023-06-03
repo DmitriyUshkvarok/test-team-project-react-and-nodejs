@@ -10,7 +10,7 @@ import {
   StyleFieldRegistr,
   BtnNextRegistration,
   StyleLinkOnLogin,
-  // StyleLink,
+  StyleLink,
   StyleBtnRegister,
   StyleBtnBack,
 } from './FormRegistration.styled';
@@ -101,7 +101,7 @@ const RegistrationForm = () => {
                       name="email"
                       placeholder="Email"
                     />
-                    <ErrorMessage name="email" />
+                    <ErrorMessage name="email" component="div" />
                   </StyleRegistrFormGroup>
 
                   <StyleRegistrFormGroup>
@@ -110,7 +110,7 @@ const RegistrationForm = () => {
                       name="password"
                       placeholder="Password"
                     />
-                    <ErrorMessage name="password" />
+                    <ErrorMessage name="password" component="div" />
                   </StyleRegistrFormGroup>
 
                   <StyleRegistrFormGroup>
@@ -119,7 +119,7 @@ const RegistrationForm = () => {
                       name="confirmPassword"
                       placeholder="Confirm Password"
                     />
-                    <ErrorMessage name="confirmPassword" />
+                    <ErrorMessage name="confirmPassword" component="div" />
                   </StyleRegistrFormGroup>
 
                   <BtnNextRegistration
@@ -130,7 +130,7 @@ const RegistrationForm = () => {
                   </BtnNextRegistration>
                   <StyleLinkOnLogin>
                     Already have an account?
-                    {/* <StyleLink>Login</StyleLink> */}
+                    <StyleLink to="/login">Login</StyleLink>
                   </StyleLinkOnLogin>
                 </>
               )}
@@ -169,7 +169,7 @@ const RegistrationForm = () => {
                   </StyleBtnBack>
                   <StyleLinkOnLogin>
                     Already have an account?
-                    {/* <StyleLink>Login</StyleLink> */}
+                    <StyleLink to="/login">Login</StyleLink>
                   </StyleLinkOnLogin>
                 </>
               )}

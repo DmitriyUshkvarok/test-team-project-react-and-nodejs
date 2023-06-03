@@ -8,8 +8,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100%;
 }
 
 :root {
@@ -30,10 +29,16 @@ body {
   --poppinsFont: 'Poppins';
 
   --borderRadiusInput: 40px;
+
+  --boxShadowFormRegistr: 7px 4px 14px rgba(0, 0, 0, 0.11);
+
+
   --fontSize12: 12px;
+  --fontSize14: 14px;
+  --fontSize18: 18px;
   --fontSize20: 20px;
   --fontSize24: 24px;
-  --fontSize14: 14px;
+  --fontSize36: 36px;
   --fontWeight700: 700;
   --fontWeight500: 500;
 }

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import backgroundImageMobile from './background-mobile.png';
-import backgroundImageTablet from './background-tablet.png';
-import backgroundImageDesktop from './background-desktop.png';
+import backgroundImageMobile from './img/background-mobile.png';
+import backgroundImageTablet from './img/background-tablet.png';
+import backgroundImageDesktop from './img/background-desktop.png';
 import { Field, Form } from 'formik';
 import { Link } from 'react-router-dom';
 
-export const StyleSectionFormRegistration = styled.section`
+export const StyleSectionFormLogin = styled.section`
   @media screen and (min-width: 320px) {
     width: 100vw;
     min-height: 100vh;
@@ -25,7 +25,7 @@ export const StyleSectionFormRegistration = styled.section`
   }
 `;
 
-export const StyleFormRegistration = styled(Form)`
+export const StyleFormLogin = styled(Form)`
   @media screen and (min-width: 320px) {
     max-width: 280px;
     margin-left: auto;
@@ -129,45 +129,6 @@ export const StyleFieldRegistr = styled(Field)`
   }
 `;
 
-export const BtnNextRegistration = styled.button`
-  @media screen and (min-width: 320px) {
-    width: 280px;
-    height: 44px;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--manropeFont);
-    font-weight: var(--fontWeight500);
-    font-size: var(--fontSize20);
-    line-height: 1.35;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.04em;
-    border-radius: var(--borderRadiusInput);
-    border: none;
-    background-color: var(--accentColor);
-    color: var(--whiteColor);
-    cursor: pointer;
-    transition: var(--transition);
-
-    &:hover {
-      background-color: rgba(245, 146, 86, 0.8);
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 448px;
-    height: 52px;
-    font-size: var(--fontSize20);
-    line-height: 1.38;
-  }
-`;
-
 export const StyleLinkOnLogin = styled.p`
   @media screen and (min-width: 320px) {
     margin-top: 40px;
@@ -216,44 +177,6 @@ export const StyleBtnRegister = styled.button`
 
     &:hover {
       background-color: rgba(245, 146, 86, 0.8);
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 448px;
-    height: 52px;
-    font-size: var(--fontSize20);
-    line-height: 1.38;
-  }
-`;
-
-export const StyleBtnBack = styled.button`
-  @media screen and (min-width: 320px) {
-    width: 280px;
-    height: 44px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--manropeFont);
-    font-weight: var(--fontWeight500);
-    font-size: var(--fontSize20);
-    line-height: 1.35;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.04em;
-    border-radius: var(--borderRadiusInput);
-    border: 2px solid var(--accentColor);
-    background-color: transparent;
-    color: var(--blackColor);
-    cursor: pointer;
-    transition: var(--transition);
-
-    &:hover {
-      background-color: rgba(245, 146, 86, 0.4);
     }
   }
 

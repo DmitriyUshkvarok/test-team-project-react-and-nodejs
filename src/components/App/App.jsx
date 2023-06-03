@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import RegistrationForm from '../MainForm/FormRegistration/FormRegistaration';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SharedLayout from '../SharedLayout/SharedLayout';
@@ -31,7 +30,6 @@ function App() {
         </Routes>
       </Suspense>
       <ToastContainer />
-      <RegistrationForm />
     </>
   );
 }
