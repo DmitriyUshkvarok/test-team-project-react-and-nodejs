@@ -28,6 +28,14 @@ body {
   --manropeFont: 'Manrope';
   --montserratFont: 'Montserrat';
   --poppinsFont: 'Poppins';
+
+  --borderRadiusInput: 40px;
+  --fontSize12: 12px;
+  --fontSize20: 20px;
+  --fontSize24: 24px;
+  --fontSize14: 14px;
+  --fontWeight700: 700;
+  --fontWeight500: 500;
 }
 
 h1,

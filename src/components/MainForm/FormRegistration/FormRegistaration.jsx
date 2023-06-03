@@ -1,7 +1,20 @@
 import { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
+import {
+  StyleSectionFormRegistration,
+  StyleFormRegistration,
+  StyleRegistrTitle,
+  StyleRegistrFormGroup,
+  StyleFieldRegistr,
+  BtnNextRegistration,
+  StyleLinkOnLogin,
+  // StyleLink,
+  StyleBtnRegister,
+  StyleBtnBack,
+} from './FormRegistration.styled';
+import Container from '../../Container/Container';
 
 const initialValues = {
   email: '',
@@ -70,72 +83,101 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ values }) => (
-        <Form>
-          {step === 1 && (
-            <>
-              <div>
-                <label>Email</label>
-                <Field type="email" name="email" />
-                <ErrorMessage name="email" />
-              </div>
+    <StyleSectionFormRegistration>
+      <Container>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ values }) => (
+            <StyleFormRegistration>
+              <StyleRegistrTitle>Registration</StyleRegistrTitle>
+              {step === 1 && (
+                <>
+                  <StyleRegistrFormGroup>
+                    <StyleFieldRegistr
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                    />
+                    <ErrorMessage name="email" />
+                  </StyleRegistrFormGroup>
 
-              <div>
-                <label>Password</label>
-                <Field type="password" name="password" />
-                <ErrorMessage name="password" />
-              </div>
+                  <StyleRegistrFormGroup>
+                    <StyleFieldRegistr
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                    />
+                    <ErrorMessage name="password" />
+                  </StyleRegistrFormGroup>
 
-              <div>
-                <label>Confirm Password</label>
-                <Field type="password" name="confirmPassword" />
-                <ErrorMessage name="confirmPassword" />
-              </div>
+                  <StyleRegistrFormGroup>
+                    <StyleFieldRegistr
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                    />
+                    <ErrorMessage name="confirmPassword" />
+                  </StyleRegistrFormGroup>
 
-              <div>
-                <button type="button" onClick={() => handleNext(values)}>
-                  Next
-                </button>
-              </div>
-            </>
+                  <BtnNextRegistration
+                    type="button"
+                    onClick={() => handleNext(values)}
+                  >
+                    Next
+                  </BtnNextRegistration>
+                  <StyleLinkOnLogin>
+                    Already have an account?
+                    {/* <StyleLink>Login</StyleLink> */}
+                  </StyleLinkOnLogin>
+                </>
+              )}
+
+              {step === 2 && (
+                <>
+                  <StyleRegistrFormGroup>
+                    <StyleFieldRegistr
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                    />
+                    <ErrorMessage name="name" component="div" />
+                  </StyleRegistrFormGroup>
+
+                  <StyleRegistrFormGroup>
+                    <StyleFieldRegistr
+                      type="text"
+                      name="city"
+                      placeholder="City, region"
+                    />
+                    <ErrorMessage name="city" component="div" />
+                  </StyleRegistrFormGroup>
+
+                  <StyleRegistrFormGroup>
+                    <StyleFieldRegistr
+                      type="text"
+                      name="phoneNumber"
+                      placeholder="Mobile phone"
+                    />
+                    <ErrorMessage name="phoneNumber" component="div" />
+                  </StyleRegistrFormGroup>
+                  <StyleBtnRegister type="submit">Register</StyleBtnRegister>
+                  <StyleBtnBack type="button" onClick={handleBack}>
+                    Back
+                  </StyleBtnBack>
+                  <StyleLinkOnLogin>
+                    Already have an account?
+                    {/* <StyleLink>Login</StyleLink> */}
+                  </StyleLinkOnLogin>
+                </>
+              )}
+            </StyleFormRegistration>
           )}
-
-          {step === 2 && (
-            <>
-              <div>
-                <label>Name</label>
-                <Field type="text" name="name" />
-                <ErrorMessage name="name" component="div" />
-              </div>
-
-              <div>
-                <label>City</label>
-                <Field type="text" name="city" />
-                <ErrorMessage name="city" component="div" />
-              </div>
-
-              <div>
-                <label>Phone Number</label>
-                <Field type="text" name="phoneNumber" />
-                <ErrorMessage name="phoneNumber" component="div" />
-              </div>
-
-              <div>
-                <button type="submit">Register</button>
-                <button type="button" onClick={handleBack}>
-                  Back
-                </button>
-              </div>
-            </>
-          )}
-        </Form>
-      )}
-    </Formik>
+        </Formik>
+      </Container>
+    </StyleSectionFormRegistration>
   );
 };
 
