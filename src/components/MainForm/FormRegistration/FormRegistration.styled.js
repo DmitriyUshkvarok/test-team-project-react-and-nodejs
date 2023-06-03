@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import backgroundImageMobile from './background-mobile.png';
 import backgroundImageTablet from './background-tablet.png';
 import backgroundImageDesktop from './background-desktop.png';
-import { Field, Form } from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 
 export const StyleSectionFormRegistration = styled.section`
@@ -73,6 +73,7 @@ export const StyleRegistrTitle = styled.h2`
 
 export const StyleRegistrFormGroup = styled.div`
   @media screen and (min-width: 320px) {
+    position: relative;
     margin-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
@@ -127,6 +128,31 @@ export const StyleFieldRegistr = styled(Field)`
   @media screen and (min-width: 1280px) {
     width: 458px;
   }
+`;
+
+export const StyleErrorMessage = styled(ErrorMessage)``;
+
+export const Error = styled.div`
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  color: red;
+  font-size: 15px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-align: center;
+`;
+
+export const ToggleShowPasword = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translate(-50%, -5px);
+  -webkit-transform: translate(-50%, -10px);
+  -moz-transform: translate(-50%, -10px);
+  -ms-transform: translate(-50%, -10px);
+  -o-transform: translate(-50%, -10px);
+  cursor: pointer;
 `;
 
 export const BtnNextRegistration = styled.button`

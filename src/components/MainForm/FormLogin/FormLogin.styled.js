@@ -4,6 +4,7 @@ import backgroundImageTablet from './img/background-tablet.png';
 import backgroundImageDesktop from './img/background-desktop.png';
 import { Field, Form } from 'formik';
 import { Link } from 'react-router-dom';
+import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 
 export const StyleSectionFormLogin = styled.section`
   @media screen and (min-width: 320px) {
@@ -73,6 +74,7 @@ export const StyleRegistrTitle = styled.h2`
 
 export const StyleRegistrFormGroup = styled.div`
   @media screen and (min-width: 320px) {
+    position: relative;
     margin-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
@@ -127,6 +129,62 @@ export const StyleFieldRegistr = styled(Field)`
   @media screen and (min-width: 1280px) {
     width: 458px;
   }
+
+  &.error {
+    border: 2px solid var(--errorColor);
+  }
+
+  &.success {
+    border: 2px solid var(--successColor);
+  }
+`;
+
+export const ToggleShowPasword = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translate(-50%, -5px);
+  -webkit-transform: translate(-50%, -10px);
+  -moz-transform: translate(-50%, -10px);
+  -ms-transform: translate(-50%, -10px);
+  -o-transform: translate(-50%, -10px);
+  cursor: pointer;
+`;
+
+export const TextError = styled.div`
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  font-family: var(--manropeFont);
+  font-size: var(--fontSize14);
+  line-height: 19px;
+  color: var(--errorColor);
+`;
+
+export const TextSuccess = styled.div`
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  font-family: var(--manropeFont);
+  font-size: var(--fontSize14);
+  line-height: 19px;
+  color: var(--successColor);
+`;
+
+export const StyleAiOutlineCheckCircle = styled(AiOutlineCheckCircle)`
+  position: absolute;
+  top: 50%;
+  transform: translate(-16px, -50%);
+  right: 16px;
+  color: var(--successColor);
+`;
+
+export const StyleAiOutlineCloseCircle = styled(AiOutlineCloseCircle)`
+  position: absolute;
+  top: 50%;
+  transform: translate(-16px, -50%);
+  right: 16px;
+  color: var(--errorColor);
 `;
 
 export const StyleLinkOnLogin = styled.p`

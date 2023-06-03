@@ -20,7 +20,11 @@ body {
   --grayColor: rgba(17, 17, 17, 0.6);
   --skyColor: #3091eb;
   --whiteColor: #ffffff;
+  --errorColor: #e2001a;
+  --successColor: #3CBC81;
+
   --transition: 0.4s;
+
   --box-shadow-color: 0px 2px 8px rgba(0, 0, 0, 0.2);
   /* fontFamily */
   --interFont: 'Inter';

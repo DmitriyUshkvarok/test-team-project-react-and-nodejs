@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import {
@@ -13,8 +13,12 @@ import {
   StyleLink,
   StyleBtnRegister,
   StyleBtnBack,
+  ToggleShowPasword,
+  StyleErrorMessage,
+  Error,
 } from './FormRegistration.styled';
 import Container from '../../Container/Container';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 const initialValues = {
   email: '',
@@ -27,15 +31,20 @@ const initialValues = {
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
 
   const validationSchema = yup.object().shape({
-    email: yup.string().required(),
+    email: yup.string().email('Invalid email').required(),
     password: yup.string().min(3).max(20).required(),
     confirmPassword: yup.string().min(3).max(20).required(),
     name: yup.string().min(4).max(20).required(),
     city: yup.string().required(),
     phoneNumber: yup.string().required(),
   });
+
+  const toggleShowPassword = () => {
+    setShowPassword((prewShowPassword) => !prewShowPassword);
+  };
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log(values);
@@ -101,25 +110,37 @@ const RegistrationForm = () => {
                       name="email"
                       placeholder="Email"
                     />
-                    <ErrorMessage name="email" component="div" />
+                    <StyleErrorMessage name="email">
+                      {(msg) => <Error>{msg}</Error>}
+                    </StyleErrorMessage>
                   </StyleRegistrFormGroup>
 
                   <StyleRegistrFormGroup>
                     <StyleFieldRegistr
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       name="password"
                       placeholder="Password"
                     />
-                    <ErrorMessage name="password" component="div" />
+                    <ToggleShowPasword onClick={toggleShowPassword}>
+                      {showPassword ? <BsEyeSlash /> : <BsEye />}
+                    </ToggleShowPasword>
+                    <StyleErrorMessage name="password">
+                      {(msg) => <Error>{msg}</Error>}
+                    </StyleErrorMessage>
                   </StyleRegistrFormGroup>
 
                   <StyleRegistrFormGroup>
                     <StyleFieldRegistr
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       name="confirmPassword"
                       placeholder="Confirm Password"
                     />
-                    <ErrorMessage name="confirmPassword" component="div" />
+                    <ToggleShowPasword onClick={toggleShowPassword}>
+                      {showPassword ? <BsEyeSlash /> : <BsEye />}
+                    </ToggleShowPasword>
+                    <StyleErrorMessage name="confirmPassword">
+                      {(msg) => <Error>{msg}</Error>}
+                    </StyleErrorMessage>
                   </StyleRegistrFormGroup>
 
                   <BtnNextRegistration
@@ -143,7 +164,9 @@ const RegistrationForm = () => {
                       name="name"
                       placeholder="Name"
                     />
-                    <ErrorMessage name="name" component="div" />
+                    <StyleErrorMessage name="name">
+                      {(msg) => <Error>{msg}</Error>}
+                    </StyleErrorMessage>
                   </StyleRegistrFormGroup>
 
                   <StyleRegistrFormGroup>
@@ -152,7 +175,9 @@ const RegistrationForm = () => {
                       name="city"
                       placeholder="City, region"
                     />
-                    <ErrorMessage name="city" component="div" />
+                    <StyleErrorMessage name="city">
+                      {(msg) => <Error>{msg}</Error>}
+                    </StyleErrorMessage>
                   </StyleRegistrFormGroup>
 
                   <StyleRegistrFormGroup>
@@ -161,7 +186,9 @@ const RegistrationForm = () => {
                       name="phoneNumber"
                       placeholder="Mobile phone"
                     />
-                    <ErrorMessage name="phoneNumber" component="div" />
+                    <StyleErrorMessage name="phoneNumber">
+                      {(msg) => <Error>{msg}</Error>}
+                    </StyleErrorMessage>
                   </StyleRegistrFormGroup>
                   <StyleBtnRegister type="submit">Register</StyleBtnRegister>
                   <StyleBtnBack type="button" onClick={handleBack}>
