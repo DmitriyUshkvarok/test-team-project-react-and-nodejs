@@ -3,7 +3,7 @@
 }
 
 body {
-  background-image: var(--gradientAccentColor);
+  background-color: var(--fonColor);
   font-family: var(--manropeFont);
   margin: 0;
   display: flex;
@@ -33,16 +33,20 @@ body {
   --poppinsFont: 'Poppins';
 
   --borderRadiusInput: 40px;
+  --borderRadius20: 20px;
 
   --boxShadowFormRegistr: 7px 4px 14px rgba(0, 0, 0, 0.11);
 
 
   --fontSize12: 12px;
   --fontSize14: 14px;
+  --fontSize16: 16px;
   --fontSize18: 18px;
   --fontSize20: 20px;
   --fontSize24: 24px;
+  --fontSize28: 28px;
   --fontSize36: 36px;
+
   --fontWeight700: 700;
   --fontWeight500: 500;
 }

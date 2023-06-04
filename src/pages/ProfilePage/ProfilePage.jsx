@@ -1,4 +1,6 @@
+import ProfileInformation from '../../components/ProfileInformation/ProfileInformation';
+
 const ProfilePage = () => {
-  return <div>ProfilePage</div>;
+  return <ProfileInformation />;
 };
 export default ProfilePage;
