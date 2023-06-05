@@ -3,12 +3,7 @@ import { MdAddAPhoto } from 'react-icons/md';
 import { HiPencil, HiCheck } from 'react-icons/hi';
 import { TbLogout } from 'react-icons/tb';
 
-export const SectionProfileInfo = styled.section`
-  @media screen and (min-width: 320px) {
-    width: 100vw;
-    min-height: 100vh;
-  }
-`;
+export const SectionProfileInfo = styled.section``;
 
 export const InfoUserTitle = styled.h3`
   @media screen and (min-width: 320px) {
@@ -34,13 +29,9 @@ export const InfoUserTitle = styled.h3`
 export const ProfileUserBox = styled.div`
   @media screen and (min-width: 320px) {
     width: 280px;
-    margin-left: auto;
-    margin-right: auto;
 
     @media screen and (min-width: 768px) {
-      width: 736px;
-      margin-left: 0;
-      margin-right: 0;
+      width: 723px;
     }
   }
 
@@ -86,6 +77,8 @@ export const ProfilePhotoBlock = styled.div`
     height: 233px;
     border-radius: 50%;
     margin-bottom: 70px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media screen and (min-width: 768px) {
