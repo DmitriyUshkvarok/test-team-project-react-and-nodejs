@@ -1,15 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { StyledLink, StyledNav } from './Nav.styled';
 
 const Nav = () => {
   return (
     <>
-      <nav>
-        <NavLink to="/news">News</NavLink>
+      {/* StyledNav */}
+      <StyledNav>
+        <StyledLink to="/news">News</StyledLink>
 
-        <NavLink to="/notices">Notices Page</NavLink>
+        <StyledLink to="/notices">Notices Page</StyledLink>
 
-        <NavLink to="/friends">Our Friends</NavLink>
-      </nav>
+        <StyledLink to="/friends">Our Friends</StyledLink>
+      </StyledNav>
     </>
   );
 };

@@ -1,12 +1,18 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import Header from '../Header/Header';
+import { Outlet } from 'react-router-dom';
+// import Header from '../Header/Header';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
+// import { LogoLink, Chip } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
     <>
       <header>
-        <NavLink to="/">Logo</NavLink>
-        <Header />
+        {/* <LogoLink to="/">
+          pe<Chip>t</Chip>ly
+        </LogoLink> */}
+        {/* <Header /> */}
+
+        <BurgerMenu />
       </header>
       <main>
         <Outlet />
