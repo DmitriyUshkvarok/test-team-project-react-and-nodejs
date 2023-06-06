@@ -37,7 +37,7 @@ export const StyledLink = styled(NavLink)`
     height: 44px;
     font-size: var(--fontSize20);
     line-height: 1.35;
-    padding: 10px 28px;
+
     align-items: center;
   }
   &:nth-child(1) {

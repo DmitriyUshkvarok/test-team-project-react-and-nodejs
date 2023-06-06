@@ -61,6 +61,7 @@ export const Menu = styled.div`
 
   align-items: center;
   flex-flow: row nowrap;
+  margin-top: 5px;
   @media screen and (max-width: 1279px) {
     flex-flow: column nowrap;
     position: absolute;
