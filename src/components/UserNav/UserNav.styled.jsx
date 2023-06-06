@@ -31,6 +31,10 @@ export const UserLink = styled(NavLink)`
     line-height: 1.375;
 
     align-items: center;
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-right: 16px;
   }
 `;
 

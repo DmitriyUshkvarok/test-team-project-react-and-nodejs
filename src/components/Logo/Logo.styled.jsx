@@ -1,19 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledHeader = styled.div`
-  @media screen and (max-width: 1279px) {
-    display: none;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 1248px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    margin: 20px 16px 0 16px;
-  }
-`;
-
 export const LogoLink = styled(NavLink)`
   width: 82px;
   height: 42px;

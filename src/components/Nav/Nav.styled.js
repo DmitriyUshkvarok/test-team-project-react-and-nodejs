@@ -6,7 +6,7 @@ export const StyledNav = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 40px;
 
     margin-top: 60px;
@@ -20,6 +20,7 @@ export const StyledNav = styled.nav`
     margin-top: 0;
     gap: 80px;
     margin-left: 80px;
+    margin-right: auto;
   }
 `;
 
@@ -32,7 +33,7 @@ export const StyledLink = styled(NavLink)`
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 40px;
     letter-spacing: 0.04em;
 

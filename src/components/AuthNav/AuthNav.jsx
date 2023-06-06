@@ -1,11 +1,11 @@
-import { StyledLink } from './AuthNav.styled';
+import { StyledLink, BoxAuth } from './AuthNav.styled';
 
 const AuthNav = () => {
   return (
-    <div>
+    <BoxAuth>
       <StyledLink to="/login">Login</StyledLink>
       <StyledLink to="/register">Registration</StyledLink>
-    </div>
+    </BoxAuth>
   );
 };
 export default AuthNav;

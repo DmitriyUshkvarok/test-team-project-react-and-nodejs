@@ -2,16 +2,15 @@ import Nav from '../Nav/Nav';
 import AuthNav from '../AuthNav/AuthNav';
 import UserNav from '../UserNav/UserNav';
 import {
-  Chip,
-  LogoLink,
   BoxNav,
   StyledHeaderBurger,
   StyledBurger,
-  Box,
+  Menu,
   BoxAuth,
   BoxAuthNav,
 } from './BurgerMenu.styled';
 import { useState } from 'react';
+import Logo from '../Logo/Logo';
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,9 +28,7 @@ const BurgerMenu = () => {
   return (
     <>
       <StyledHeaderBurger>
-        <LogoLink to="/">
-          pe<Chip>t</Chip>ly
-        </LogoLink>
+        <Logo />
         <BoxNav>
           <Nav />
         </BoxNav>
@@ -43,11 +40,11 @@ const BurgerMenu = () => {
           <div />
         </StyledBurger>
       </StyledHeaderBurger>
-      <Box isOpen={isOpen}>
-        <BoxAuth> {login ? <UserNav /> : <AuthNav />}</BoxAuth>
+      <Menu isOpen={isOpen} onClick={toggleMenu}>
+        <BoxAuth>{login ? <UserNav /> : <AuthNav />}</BoxAuth>
 
         <Nav />
-      </Box>
+      </Menu>
     </>
   );
 };

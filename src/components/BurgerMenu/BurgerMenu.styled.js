@@ -1,44 +1,23 @@
 import styled from 'styled-components';
 
-import { NavLink } from 'react-router-dom';
+export const StyledHeaderBurger = styled.div`
+  @media screen and (min-width: 320px) {
+    display: flex;
+    align-items: center;
 
-export const LogoLink = styled(NavLink)`
-  width: 82px;
-  height: 42px;
-
-  font-family: var(--poppinsFont);
-  font-style: normal;
-  font-weight: var(--fontWeight700);
-  font-size: var(--fontSize28);
-  line-height: 1.5;
-
-  letter-spacing: 0.07em;
-  color: var(--blackColor);
-  z-index: 10;
-`;
-export const Chip = styled.span`
-  color: var(--accentColor);
+    margin: 16px 20px 0 20px;
+  }
+  @media screen and (min-width: 768px) {
+    margin: 24px 32px 0 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 `;
 
 export const BoxNav = styled.div`
   @media screen and (max-width: 1279px) {
     display: none;
-  }
-`;
-
-export const StyledHeaderBurger = styled.div`
-  @media screen and (min-width: 320px) {
-    margin-bottom: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin: 16px 20px 0 20px;
-  }
-  @media screen and (min-width: 768px) {
-    margin-bottom: 88px;
-    justify-content: end;
   }
 `;
 
@@ -48,7 +27,6 @@ export const StyledBurger = styled.div`
   }
   width: 2rem;
   height: 2rem;
-  z-index: 20;
 
   display: flex;
   justify-content: space-around;
@@ -78,7 +56,7 @@ export const StyledBurger = styled.div`
   }
 `;
 
-export const Box = styled.div`
+export const Menu = styled.div`
   display: flex;
 
   align-items: center;
@@ -93,6 +71,7 @@ export const Box = styled.div`
 
     background-color: var(--fonColor);
     transition: transform 0.3s ease-in-out;
+    z-index: 10;
   }
   @media screen and (min-width: 1280px) {
     display: none;

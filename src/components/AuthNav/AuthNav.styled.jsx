@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const BoxAuth = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-top: 46px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-right: 16px;
+  }
+`;
+
 export const StyledLink = styled(NavLink)`
   @media screen and (min-width: 320px) {
     background: var(--whiteColor);

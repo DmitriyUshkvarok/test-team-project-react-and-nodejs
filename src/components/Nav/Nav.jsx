@@ -2,16 +2,13 @@ import { StyledLink, StyledNav } from './Nav.styled';
 
 const Nav = () => {
   return (
-    <>
-      {/* StyledNav */}
-      <StyledNav>
-        <StyledLink to="/news">News</StyledLink>
+    <StyledNav>
+      <StyledLink to="/news">News</StyledLink>
 
-        <StyledLink to="/notices">Notices Page</StyledLink>
+      <StyledLink to="/notices">Notices Page</StyledLink>
 
-        <StyledLink to="/friends">Our Friends</StyledLink>
-      </StyledNav>
-    </>
+      <StyledLink to="/friends">Our Friends</StyledLink>
+    </StyledNav>
   );
 };
 
