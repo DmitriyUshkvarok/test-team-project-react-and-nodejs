@@ -9,9 +9,10 @@ import NoticesPage from '../../pages/NoticesPage/NoticesPage';
 import OurFriendsPage from '../../pages/OurFriendsPage/OurFriendsPage';
 import RegisterPage from '../../pages/RegistrationPage/RegistrationPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import Logo from '../Logo/Logo';
+
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import Container from '../Container/Container';
+import NoticesCategoriesList from '../Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 function App() {
   return (
@@ -22,12 +23,18 @@ function App() {
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<HomePage />} />
               <Route path="news" element={<NewsPage />} />
-              <Route path="notices" element={<NoticesPage />} />
+              <Route path="notices" element={<NoticesPage />}>
+                <Route path="sell" element={<NoticesCategoriesList />} />
+                <Route path="lost-found" element={<NoticesCategoriesList />} />
+                <Route path="for-free" element={<NoticesCategoriesList />} />
+                <Route path="favorite" element={<NoticesCategoriesList />} />
+                <Route path="own" element={<NoticesCategoriesList />} />
+              </Route>
               <Route path="friends" element={<OurFriendsPage />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="user" element={<ProfilePage />} />
-              <Route path="*" element={<Logo />} />
+              <Route path="*" element={<HomePage />} />
             </Route>
           </Routes>
         </Container>

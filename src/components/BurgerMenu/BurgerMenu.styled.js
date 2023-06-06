@@ -65,8 +65,8 @@ export const Menu = styled.div`
   @media screen and (max-width: 1279px) {
     flex-flow: column nowrap;
     position: absolute;
-    height: 100vh;
     width: 100%;
+    height: 100vh;
     transform: ${({ isOpen }) =>
       isOpen ? 'translateX(0)' : 'translateX(-200%)'};
 
