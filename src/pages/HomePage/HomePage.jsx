@@ -1,6 +1,6 @@
 // import axios from 'axios';
 
-// const URL = `https://pets-shelter-service.onrender.com`;
+// const URL = `https://pets-shelter-service.onrender.com/api/news`;
 
 const HomePage = () => {
   // function fetchTrending() {

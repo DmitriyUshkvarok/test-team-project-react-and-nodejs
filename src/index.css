@@ -21,6 +21,7 @@ body {
   --whiteColor: #ffffff;
   --errorColor: #e2001a;
   --successColor: #3CBC81;
+  --colorNewsDesc: #111321;
 
   --transition: 0.4s;
 
@@ -46,6 +47,7 @@ body {
   --fontSize24: 24px;
   --fontSize28: 28px;
   --fontSize36: 36px;
+  --fontSize48: 48px;
 
   --fontWeight700: 700;
   --fontWeight500: 500;
