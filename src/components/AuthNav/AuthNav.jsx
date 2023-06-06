@@ -1,12 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { StyledLink, BoxAuth } from './AuthNav.styled';
 
 const AuthNav = () => {
   return (
-    <>
-      <NavLink to="/register">RegisterPage</NavLink>
-
-      <NavLink to="/login">LoginPage</NavLink>
-    </>
+    <BoxAuth>
+      <StyledLink to="/login">Login</StyledLink>
+      <StyledLink to="/register">Registration</StyledLink>
+    </BoxAuth>
   );
 };
 export default AuthNav;

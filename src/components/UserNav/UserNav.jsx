@@ -1,9 +1,15 @@
-import { NavLink } from 'react-router-dom';
+import { UserLink, Chip } from './UserNav.styled';
+import { MdAccountCircle } from 'react-icons/md';
 
 const UserNav = () => {
   return (
     <>
-      <NavLink to="/user">UserPage</NavLink>
+      <UserLink to="/user">
+        <Chip>
+          <MdAccountCircle />
+        </Chip>
+        Account
+      </UserLink>
     </>
   );
 };
