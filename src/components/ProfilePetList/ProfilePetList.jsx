@@ -19,7 +19,7 @@ import {
   Span,
 } from './ProfilePetList.styled';
 
-const ProfilePetList = () => {
+const ProfilePetList = ({ handleClick }) => {
   return (
     <>
       <ProfilePetListWrapper>
@@ -27,7 +27,7 @@ const ProfilePetList = () => {
           <AddPanelTitle>My pets:</AddPanelTitle>
           <AddedTextBtnWrap>
             <AddText>Add pet</AddText>
-            <AddBtn>
+            <AddBtn onClick={() => handleClick()}>
               <StyleBsPlus />
             </AddBtn>
           </AddedTextBtnWrap>
