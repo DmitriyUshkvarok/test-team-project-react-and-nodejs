@@ -20,8 +20,9 @@ body {
   --skyColor: #3091eb;
   --whiteColor: #ffffff;
   --errorColor: #e2001a;
-  --successColor: #3CBC81;
+  --successColor: #3cbc81;
   --colorNewsDesc: #111321;
+  --blackColorHome: #000000;
 
   --transition: 0.4s;
 
@@ -46,8 +47,10 @@ body {
   --fontSize20: 20px;
   --fontSize24: 24px;
   --fontSize28: 28px;
+  --fontSize32: 32px;
   --fontSize36: 36px;
   --fontSize48: 48px;
+  --fontSize68: 68px;
 
   --fontWeight700: 700;
   --fontWeight500: 500;

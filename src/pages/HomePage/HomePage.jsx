@@ -1,14 +1,14 @@
-// import axios from 'axios';
-
-// const URL = `https://pets-shelter-service.onrender.com/api/news`;
+import Container from '../../components/Container/Container';
+import { Title } from './HomePage.styled';
 
 const HomePage = () => {
-  // function fetchTrending() {
-  //   return axios.get(`${URL}`).then((response) => response.data);
-  // }
-  // fetchTrending();
-
-  return <div>HomePage</div>;
+  return (
+    // <StyleSectionHomePage>
+    <Container>
+      <Title>Take good care of your small pets</Title>
+    </Container>
+    // </StyleSectionHomePage>
+  );
 };
 
 export default HomePage;
