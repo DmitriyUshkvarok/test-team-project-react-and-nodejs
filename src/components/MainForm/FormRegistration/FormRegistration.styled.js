@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import backgroundImageMobile from './background-mobile.png';
+import backgroundImageMobileStep from './background-mobile-2.png';
 import backgroundImageTablet from './background-tablet.png';
 import backgroundImageDesktop from './background-desktop.png';
 import { Field, Form, ErrorMessage } from 'formik';
@@ -8,19 +9,31 @@ import { Link } from 'react-router-dom';
 export const StyleSectionFormRegistration = styled.section`
   @media screen and (min-width: 320px) {
     width: 100vw;
-    min-height: 100vh;
-    padding-top: 16px;
+
+    padding-top: 42px;
+
+    padding-bottom: ${(props) => (props.state === 1 ? `87px` : `47px`)};
     background-color: var(--fonColor);
-    background-image: url(${backgroundImageMobile});
+    background-image: ${(props) =>
+      props.state === 1
+        ? `url(${backgroundImageMobile})`
+        : `url(${backgroundImageMobileStep})`};
+
     background-repeat: no-repeat;
     background-position: bottom;
   }
 
   @media screen and (min-width: 768px) {
+    padding-bottom: ${(props) => (props.state === 1 ? '201px' : '159px')};
+
+    padding-top: ${(props) => (props.state === 1 ? ' 168px' : `150px`)};
+
     background-image: url(${backgroundImageTablet});
   }
 
   @media screen and (min-width: 1280px) {
+    padding-top: 44px;
+    padding-bottom: ${(props) => (props.state === 1 ? '69px' : '49px')};
     background-image: url(${backgroundImageDesktop});
   }
 `;
@@ -46,6 +59,7 @@ export const StyleFormRegistration = styled(Form)`
 
   @media screen and (min-width: 1280px) {
     max-width: 618px;
+    padding-bottom: ${(props) => (props.state === 1 ? '60px' : '16px')};
   }
 `;
 
@@ -81,6 +95,10 @@ export const StyleRegistrFormGroup = styled.div`
     &:nth-child(4) {
       margin-bottom: 0;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
   }
 `;
 
@@ -134,13 +152,16 @@ export const StyleErrorMessage = styled(ErrorMessage)``;
 
 export const Error = styled.div`
   position: absolute;
-  bottom: -20px;
+  bottom: -40px;
   left: 20px;
   color: red;
   font-size: 15px;
-  margin-top: 10px;
   text-transform: uppercase;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    bottom: -20px;
+  }
 `;
 
 export const ToggleShowPasword = styled.span`

@@ -9,8 +9,9 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 export const StyleSectionFormLogin = styled.section`
   @media screen and (min-width: 320px) {
     width: 100vw;
-    min-height: 100vh;
-    padding-top: 16px;
+    padding-top: 44px;
+    padding-bottom: 151px;
+
     background-color: var(--fonColor);
     background-image: url(${backgroundImageMobile});
     background-repeat: no-repeat;
@@ -18,10 +19,14 @@ export const StyleSectionFormLogin = styled.section`
   }
 
   @media screen and (min-width: 768px) {
+    padding-top: 200px;
+    padding-bottom: 260px;
     background-image: url(${backgroundImageTablet});
   }
 
   @media screen and (min-width: 1280px) {
+    padding-top: 80px;
+    padding-bottom: 124px;
     background-image: url(${backgroundImageDesktop});
   }
 `;

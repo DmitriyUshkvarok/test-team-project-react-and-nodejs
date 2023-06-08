@@ -92,7 +92,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <StyleSectionFormRegistration>
+    <StyleSectionFormRegistration state={step}>
       <Container>
         <Formik
           initialValues={initialValues}
@@ -100,7 +100,7 @@ const RegistrationForm = () => {
           onSubmit={handleSubmit}
         >
           {({ values }) => (
-            <StyleFormRegistration>
+            <StyleFormRegistration state={step}>
               <StyleRegistrTitle>Registration</StyleRegistrTitle>
               {step === 1 && (
                 <>

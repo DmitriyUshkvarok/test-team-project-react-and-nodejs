@@ -6,6 +6,7 @@ const NoticesCategoriesNav = () => {
     <>
       <BoxCategories>
         <StyledLink to="sell">sell</StyledLink>
+
         <StyledLink to="lost-found">lost/found</StyledLink>
         <StyledLink to="for-free">in good hands</StyledLink>
 
