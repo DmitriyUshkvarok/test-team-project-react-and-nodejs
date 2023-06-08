@@ -33,13 +33,17 @@ export const NewsList = styled.ul`
   }
 
   @media screen and (min-width: 768px) {
+    width: 705px;
     flex-direction: row;
     column-gap: 32px;
     row-gap: 60px;
     align-items: baseline;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media screen and (min-width: 1280px) {
+    width: 1260px;
   }
 `;
 

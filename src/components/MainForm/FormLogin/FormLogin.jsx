@@ -33,7 +33,7 @@ const FormLogin = () => {
   });
 
   const toggleShowPassword = () => {
-    setShowPassword((prewShowPassword) => !prewShowPassword);
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -49,7 +49,7 @@ const FormLogin = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ handleChange, values, errors, touched, isValid }) => (
+          {({ handleChange, values, errors, touched }) => (
             <StyleFormLogin>
               <StyleRegistrTitle>Login</StyleRegistrTitle>
               <StyleRegistrFormGroup>
@@ -57,11 +57,12 @@ const FormLogin = () => {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  autoComplete="off"
                   onChange={handleChange}
                   value={values.email}
                   className={`input-field ${
                     errors.email && touched.email ? 'error' : ''
-                  } ${isValid ? 'success' : ''}`}
+                  }`}
                 />
                 {errors.email && touched.email && (
                   <>
@@ -69,7 +70,7 @@ const FormLogin = () => {
                     <StyleAiOutlineCloseCircle />
                   </>
                 )}
-                {isValid && (
+                {touched.email && !errors.email && (
                   <>
                     <TextSuccess>Valid email</TextSuccess>
                     <StyleAiOutlineCheckCircle />
@@ -82,11 +83,12 @@ const FormLogin = () => {
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
+                  autoComplete="off"
                   onChange={handleChange}
                   value={values.password}
                   className={`input-field ${
                     errors.password && touched.password ? 'error' : ''
-                  } ${isValid ? 'success' : ''}`}
+                  }`}
                 />
                 <ToggleShowPasword onClick={toggleShowPassword}>
                   {showPassword ? <BsEyeSlash /> : <BsEye />}
@@ -97,7 +99,7 @@ const FormLogin = () => {
                     <StyleAiOutlineCloseCircle />
                   </>
                 )}
-                {isValid && (
+                {touched.password && !errors.password && (
                   <>
                     <TextSuccess>Valid password</TextSuccess>
                     <StyleAiOutlineCheckCircle />
