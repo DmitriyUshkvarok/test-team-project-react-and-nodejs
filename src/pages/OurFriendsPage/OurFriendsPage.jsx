@@ -58,99 +58,104 @@ const OurFriendsPage = () => {
           <p>Loading...</p>
         ) : (
           data &&
-          data.map(({ address, email, image, name, phone, _id, time }) => (
-            <FriendsItem
-              key={_id}
-              style={{
-                position: 'relative',
-                zIndex: hovered === _id ? 1 : 'auto',
-              }}
-            >
-              <FriendsName href={name} target="_blank">
-                {name}
-              </FriendsName>
-              <CardInfoContainer>
-                <FriendsImgWrapper>
-                  <FriendsImg
-                    src={`https://pets-shelter-service.onrender.com/${image}`}
-                    alt={name}
-                  />
-                </FriendsImgWrapper>
-                <FriendsInfoWrapper>
-                  <TimeContainer
-                    onMouseEnter={() => setHovered(_id)}
-                    onMouseLeave={() => setHovered(null)}
-                  >
-                    <Span>Time:</Span>
-                    <FriendsTimes>
-                      {time && time.find((item) => item.day === 'Monday') ? (
-                        <>
-                          <SpanFrom>
-                            {
-                              time.find((item) => item.day === 'Monday').time
-                                .from
-                            }
-                            -
-                          </SpanFrom>
-
-                          <SpanTo>
-                            {time.find((item) => item.day === 'Monday').time.to}
-                          </SpanTo>
-                        </>
-                      ) : (
-                        <span>-----------------------------------</span>
-                      )}
-                    </FriendsTimes>
-                  </TimeContainer>
-                  <AddressContainer>
-                    <Span>Address:</Span>
-                    <FriendsAddress>
-                      {address ? (
-                        address
-                      ) : (
-                        <span>-----------------------------------</span>
-                      )}
-                    </FriendsAddress>
-                  </AddressContainer>
-                  <EmailContainer>
-                    <Span>Email:</Span>
-                    <FriendsEmail>
-                      {email ? (
-                        email
-                      ) : (
-                        <span>-----------------------------------</span>
-                      )}
-                    </FriendsEmail>
-                  </EmailContainer>
-                  <PhoneContainer>
-                    <Span>Phone:</Span>
-                    <FriendsPhone>
-                      {' '}
-                      {phone ? (
-                        phone
-                      ) : (
-                        <span>-----------------------------------</span>
-                      )}
-                    </FriendsPhone>
-                  </PhoneContainer>
-                </FriendsInfoWrapper>
-              </CardInfoContainer>
-              <TimeList
+          data.map(
+            ({ address, email, image, name, phone, _id, time, link }) => (
+              <FriendsItem
+                key={_id}
                 style={{
-                  opacity: hovered === _id && time && time.length > 0 ? 1 : 0,
+                  position: 'relative',
+                  zIndex: hovered === _id ? 1 : 'auto',
                 }}
               >
-                {time &&
-                  time.map(({ day, time }) => (
-                    <TimeListItem key={day}>
-                      <TimeListDay>{abbreviateDay(day)}</TimeListDay>
-                      <TimeListFrom>{time.from}-</TimeListFrom>
-                      <TimeListTo>{time.to}</TimeListTo>
-                    </TimeListItem>
-                  ))}
-              </TimeList>
-            </FriendsItem>
-          ))
+                <FriendsName href={link} target="_blank">
+                  {name}
+                </FriendsName>
+                <CardInfoContainer>
+                  <FriendsImgWrapper>
+                    <FriendsImg
+                      src={`https://pets-shelter-service.onrender.com/${image}`}
+                      alt={name}
+                    />
+                  </FriendsImgWrapper>
+                  <FriendsInfoWrapper>
+                    <TimeContainer
+                      onMouseEnter={() => setHovered(_id)}
+                      onMouseLeave={() => setHovered(null)}
+                    >
+                      <Span>Time:</Span>
+                      <FriendsTimes>
+                        {time && time.find((item) => item.day === 'Monday') ? (
+                          <>
+                            <SpanFrom>
+                              {
+                                time.find((item) => item.day === 'Monday').time
+                                  .from
+                              }
+                              -
+                            </SpanFrom>
+
+                            <SpanTo>
+                              {
+                                time.find((item) => item.day === 'Monday').time
+                                  .to
+                              }
+                            </SpanTo>
+                          </>
+                        ) : (
+                          <span>-----------------------------------</span>
+                        )}
+                      </FriendsTimes>
+                    </TimeContainer>
+                    <AddressContainer>
+                      <Span>Address:</Span>
+                      <FriendsAddress>
+                        {address ? (
+                          address
+                        ) : (
+                          <span>-----------------------------------</span>
+                        )}
+                      </FriendsAddress>
+                    </AddressContainer>
+                    <EmailContainer>
+                      <Span>Email:</Span>
+                      <FriendsEmail>
+                        {email ? (
+                          email
+                        ) : (
+                          <span>-----------------------------------</span>
+                        )}
+                      </FriendsEmail>
+                    </EmailContainer>
+                    <PhoneContainer>
+                      <Span>Phone:</Span>
+                      <FriendsPhone>
+                        {' '}
+                        {phone ? (
+                          phone
+                        ) : (
+                          <span>-----------------------------------</span>
+                        )}
+                      </FriendsPhone>
+                    </PhoneContainer>
+                  </FriendsInfoWrapper>
+                </CardInfoContainer>
+                <TimeList
+                  style={{
+                    opacity: hovered === _id && time && time.length > 0 ? 1 : 0,
+                  }}
+                >
+                  {time &&
+                    time.map(({ day, time }) => (
+                      <TimeListItem key={day}>
+                        <TimeListDay>{abbreviateDay(day)}</TimeListDay>
+                        <TimeListFrom>{time.from}-</TimeListFrom>
+                        <TimeListTo>{time.to}</TimeListTo>
+                      </TimeListItem>
+                    ))}
+                </TimeList>
+              </FriendsItem>
+            )
+          )
         )}
       </FriendsList>
     </>

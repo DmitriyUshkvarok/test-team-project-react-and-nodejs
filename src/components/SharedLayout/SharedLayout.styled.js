@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  width: 288px;
+  /* width: 288px;
   height: 42px;
 
   margin: 0 auto;
@@ -17,5 +17,5 @@ export const StyledHeader = styled.header`
     height: 48px;
 
     padding: 20px 16px 0 16px;
-  }
+  } */
 `;

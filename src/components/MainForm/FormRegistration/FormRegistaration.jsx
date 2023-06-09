@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
@@ -19,27 +20,33 @@ import {
 } from './FormRegistration.styled';
 import Container from '../../Container/Container';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import authOperation from '../../../redux/auth/authOperation';
 
 const initialValues = {
   email: '',
   password: '',
-  confirmPassword: '',
+  passwordConfirm: '',
   name: '',
-  city: '',
-  phoneNumber: '',
+  location: '',
+  phone: '',
 };
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required(),
     password: yup.string().min(3).max(20).required(),
-    confirmPassword: yup.string().min(3).max(20).required(),
+    passwordConfirm: yup.string().min(3).max(20).required(),
     name: yup.string().min(4).max(20).required(),
-    city: yup.string().required(),
-    phoneNumber: yup.string().required(),
+    location: yup.string().required(),
+    phone: yup.string().required(),
   });
 
   const toggleShowPassword = () => {
@@ -47,8 +54,9 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
+    dispatch(authOperation.register(values));
     setSubmitting(false);
+    navigate('/');
   };
 
   const handleBack = () => {
@@ -65,7 +73,10 @@ const RegistrationForm = () => {
           error = validateSchema(values, 'password');
         }
         if (!error) {
-          error = validateSchema(values, 'confirmPassword');
+          error = validateSchema(values, 'passwordConfirm');
+        }
+        if (!error && values.password !== values.passwordConfirm) {
+          error = "Passwords don't match";
         }
         break;
       default:
@@ -132,13 +143,13 @@ const RegistrationForm = () => {
                   <StyleRegistrFormGroup>
                     <StyleFieldRegistr
                       type={showPassword ? 'text' : 'password'}
-                      name="confirmPassword"
+                      name="passwordConfirm"
                       placeholder="Confirm Password"
                     />
                     <ToggleShowPasword onClick={toggleShowPassword}>
                       {showPassword ? <BsEyeSlash /> : <BsEye />}
                     </ToggleShowPasword>
-                    <StyleErrorMessage name="confirmPassword">
+                    <StyleErrorMessage name="passwordConfirm">
                       {(msg) => <Error>{msg}</Error>}
                     </StyleErrorMessage>
                   </StyleRegistrFormGroup>
@@ -172,10 +183,10 @@ const RegistrationForm = () => {
                   <StyleRegistrFormGroup>
                     <StyleFieldRegistr
                       type="text"
-                      name="city"
+                      name="location"
                       placeholder="City, region"
                     />
-                    <StyleErrorMessage name="city">
+                    <StyleErrorMessage name="location">
                       {(msg) => <Error>{msg}</Error>}
                     </StyleErrorMessage>
                   </StyleRegistrFormGroup>
@@ -183,10 +194,10 @@ const RegistrationForm = () => {
                   <StyleRegistrFormGroup>
                     <StyleFieldRegistr
                       type="text"
-                      name="phoneNumber"
+                      name="phone"
                       placeholder="Mobile phone"
                     />
-                    <StyleErrorMessage name="phoneNumber">
+                    <StyleErrorMessage name="phone">
                       {(msg) => <Error>{msg}</Error>}
                     </StyleErrorMessage>
                   </StyleRegistrFormGroup>

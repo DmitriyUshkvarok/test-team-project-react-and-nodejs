@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   SectionProfileInfo,
   ProfileUserBox,
@@ -23,6 +24,9 @@ import {
   StyleHiCheck,
   StyleTbLogout,
 } from './ProfileInformation.styled';
+import Notiflix from 'notiflix';
+import { useDispatch } from 'react-redux';
+import authOperation from '../../redux/auth/authOperation';
 
 const ProfileInformation = () => {
   const [editing, setEditing] = useState({
@@ -32,6 +36,24 @@ const ProfileInformation = () => {
     phone: false,
     city: false,
   });
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    Notiflix.Confirm.show(
+      'Confirmation',
+      'Are you sure you want to log out?',
+      'Yes',
+      'No',
+      () => {
+        dispatch(authOperation.logOut());
+        navigate('/login');
+      },
+      () => {}
+    );
+  };
 
   const handleCheckClick = (fieldName) => {
     setEditing((prevState) => ({
@@ -155,7 +177,7 @@ const ProfileInformation = () => {
                 </IconInfoUserContainer>
               </ProfileInfoItem>
             </ProfileInfoList>
-            <LogoutBlock>
+            <LogoutBlock onClick={handleLogOut}>
               <StyleTbLogout />
               <Span>Log Out</Span>
             </LogoutBlock>

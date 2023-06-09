@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import {
   StyleSectionFormLogin,
@@ -18,6 +19,8 @@ import {
 import Container from '../../Container/Container';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperation from '../../../redux/auth/authOperation';
 
 const initialValues = {
   email: '',
@@ -26,6 +29,10 @@ const initialValues = {
 
 const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required(),
@@ -37,7 +44,8 @@ const FormLogin = () => {
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
+    dispatch(authOperation.logIn(values));
+    navigate('/');
     setSubmitting(false);
   };
 

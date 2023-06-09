@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeaderBurger = styled.div`
-  @media screen and (min-width: 320px) {
+  /* @media screen and (min-width: 320px) {
     display: flex;
     align-items: center;
 
@@ -12,19 +12,19 @@ export const StyledHeaderBurger = styled.div`
   }
   @media screen and (min-width: 1280px) {
     display: none;
-  }
+  } */
 `;
 
 export const BoxNav = styled.div`
-  @media screen and (max-width: 1279px) {
+  /* @media screen and (max-width: 1279px) {
     display: none;
-  }
+  } */
 `;
 
 export const StyledBurger = styled.div`
-  @media screen and (min-width: 1280px) {
+  /* @media screen and (min-width: 1280px) {
     display: none;
-  }
+  } */
   width: 2rem;
   height: 2rem;
 
@@ -74,19 +74,19 @@ export const Menu = styled.div`
     transition: transform 0.3s ease-in-out;
     z-index: 10;
   }
-  @media screen and (min-width: 1280px) {
+  /* @media screen and (min-width: 1280px) {
     display: none;
-  }
+  } */
 `;
 
 export const BoxAuthNav = styled.div`
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     display: none;
-  }
+  } */
 `;
 
 export const BoxAuth = styled.div`
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     display: none;
-  }
+  } */
 `;

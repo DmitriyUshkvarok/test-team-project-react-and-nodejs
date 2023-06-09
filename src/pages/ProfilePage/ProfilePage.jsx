@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 const ProfilePage = () => {
   const [visible, setVisible] = useState(false);
+
   const handleClick = () => {
     setVisible((prev) => !prev);
   };
@@ -18,6 +19,7 @@ const ProfilePage = () => {
   const handleClose = () => {
     setVisible((prev) => !prev);
   };
+
   return (
     <Container>
       <ProfileInformationBox>

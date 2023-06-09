@@ -1,4 +1,6 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperation from '../../redux/auth/authOperation';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,6 +17,12 @@ import Container from '../Container/Container';
 import NoticesCategoriesList from '../Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperation.refreshCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <Suspense fallback={<div>Loading subpage ....</div>}>
