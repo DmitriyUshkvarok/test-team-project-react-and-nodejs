@@ -15,23 +15,20 @@ export const StyledLink = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 8px 28px;
     height: 35px;
     background: var(--whiteColor);
-
     border: 2px solid var(--accentColor);
     border-radius: var(--borderRadiusInput);
-
     font-family: var(--manropeFont);
     font-weight: var(--fontWeight500);
     font-size: var(--fontSize14);
     line-height: 1.35;
-
     letter-spacing: 0.04em;
-
     color: var(--blackColor);
+    transition: var(--transition);
   }
+
   @media screen and (min-width: 768px) {
     gap: 10px;
     padding: 10px 28px;

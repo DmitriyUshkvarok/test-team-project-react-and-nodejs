@@ -7,8 +7,8 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    location: null,
-    phone: null,
+    // location: null,
+    // phone: null,
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
@@ -37,7 +37,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(authOperation.logOut.fulfilled, (state) => {
-        state.user = { name: null, email: null, location: null, phone: null };
+        state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
       })

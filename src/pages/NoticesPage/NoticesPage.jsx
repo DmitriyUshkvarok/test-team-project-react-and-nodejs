@@ -1,5 +1,5 @@
 import NoticesCategoriesList from '../../components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import NoticesCategoriesNav from '../../components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
+import NoticesCategoriesNav from '../../components/FilterPanel/FilterPanel';
 import NoticesSearch from '../../components/Notices/NoticesSearch/NoticesSearch';
 
 const NoticesPage = () => {

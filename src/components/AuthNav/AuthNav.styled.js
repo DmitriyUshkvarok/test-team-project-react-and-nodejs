@@ -27,6 +27,7 @@ export const StyledLink = styled(NavLink)`
     border: 2px solid var(--accentColor);
     padding: 8px 28px;
     color: var(--blackColor);
+    transition: var(--transition);
   }
 
   @media screen and (min-width: 768px) {

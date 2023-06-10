@@ -1,5 +1,6 @@
 import { useGetFetchNewsQuery } from '../../redux/newsApi/newsApi';
 import { useState } from 'react';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import {
   NewsTitle,
   NewsList,
@@ -35,9 +36,14 @@ const NewsPage = () => {
     return <p>Error: {error.message}</p>;
   }
 
+  const handleSearch = (searchText) => {
+    console.log('Выполняется поиск:', searchText);
+  };
+
   return (
     <>
       <NewsTitle>News</NewsTitle>
+      <SearchBar onSearch={handleSearch} />
       <NewsList>
         {isLoading ? (
           <p>Loading...</p>

@@ -25,8 +25,9 @@ import {
   StyleTbLogout,
 } from './ProfileInformation.styled';
 import Notiflix from 'notiflix';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authOperation from '../../redux/auth/authOperation';
+import authSelector from '../../redux/auth/authSelectors';
 
 const ProfileInformation = () => {
   const [editing, setEditing] = useState({
@@ -40,6 +41,10 @@ const ProfileInformation = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const nameUser = useSelector(authSelector.getName);
+  // const emailUser = useSelector(authSelector.getEmail);
+  console.log(nameUser);
 
   const handleLogOut = () => {
     Notiflix.Confirm.show(
@@ -93,7 +98,7 @@ const ProfileInformation = () => {
                   {editing.name ? (
                     <InputInfo autoFocus type="text" name="name" />
                   ) : (
-                    <SpanInfoUser>Anna</SpanInfoUser>
+                    <SpanInfoUser>{nameUser}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>

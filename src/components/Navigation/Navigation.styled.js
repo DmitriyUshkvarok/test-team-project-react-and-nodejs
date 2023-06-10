@@ -25,7 +25,10 @@ export const BoxNavigation = styled.div`
   }
 `;
 
-export const LogoWrapper = styled.div``;
+export const LogoWrapper = styled.div`
+  position: relative;
+  z-index: 999;
+`;
 
 export const NavWrapper = styled.div`
   @media screen and (min-width: 320px) {
@@ -58,6 +61,7 @@ export const AuthNavWrapper = styled.div`
 `;
 
 export const BurgerWrapper = styled.div`
+
   @media screen and (min-width: 1280px) {
     display: none;
   }

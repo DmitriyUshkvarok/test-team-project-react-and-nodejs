@@ -5,7 +5,6 @@ export const StyledNav = styled.nav`
   @media screen and (min-width: 1280px) {
     display: flex;
     gap: 80px;
-    /* width: 430px; */
   }
 `;
 
@@ -30,9 +29,7 @@ export const StyledLink = styled(NavLink)`
 
     &.active,
     &:hover {
-      /* font-weight: var(--fontWeight700); */
       text-decoration-line: underline;
-
       color: var(--accentColor);
     }
   }

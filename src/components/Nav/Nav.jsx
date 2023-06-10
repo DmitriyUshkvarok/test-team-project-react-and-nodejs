@@ -5,7 +5,7 @@ const Nav = () => {
     <StyledNav>
       <StyledLink to="/news">News</StyledLink>
 
-      <StyledLink to="/notices">Notices Page</StyledLink>
+      <StyledLink to="/notices">Find pet</StyledLink>
 
       <StyledLink to="/friends">Our Friends</StyledLink>
     </StyledNav>
