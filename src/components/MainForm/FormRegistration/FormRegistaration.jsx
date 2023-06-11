@@ -56,6 +56,9 @@ const RegistrationForm = () => {
   const handleSubmit = (values, { setSubmitting }) => {
     dispatch(authOperation.register(values));
     setSubmitting(false);
+    toast.success(
+      'A registration confirmation email has been sent to your email box! Check the spam section to see if the message is there'
+    );
     // navigate('/');
   };
 
