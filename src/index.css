@@ -20,8 +20,9 @@ body {
   --skyColor: #3091eb;
   --whiteColor: #ffffff;
   --errorColor: #e2001a;
-  --successColor: #3CBC81;
+  --successColor: #3cbc81;
   --colorNewsDesc: #111321;
+  --borderColorInput: rgba(245, 146, 86, 0.5);
 
   --transition: 0.4s;
 

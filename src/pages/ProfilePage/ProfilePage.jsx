@@ -11,8 +11,11 @@ import { useState } from 'react';
 
 const ProfilePage = () => {
   const [visible, setVisible] = useState(false);
+  const [profileModal, setProfileModal] = useState(false);
+
   const handleClick = () => {
     setVisible((prev) => !prev);
+    setProfileModal(true);
   };
 
   const handleClose = () => {
@@ -28,7 +31,11 @@ const ProfilePage = () => {
           <ProfilePetList handleClick={handleClick} />
         </ProfilePetListContainer>
       </ProfileInformationBox>
-      <Backdrop handleClose={handleClose} visible={visible} />
+      <Backdrop
+        profileModal={profileModal}
+        handleClose={handleClose}
+        visible={visible}
+      />
     </Container>
   );
 };
