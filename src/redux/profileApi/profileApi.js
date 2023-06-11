@@ -15,10 +15,10 @@ export const profileApi = createApi({
   tagTypes: ['Profile'],
   endpoints: (build) => ({
     changeProfileAvatar: build.mutation({
-      query: ({ avatar }) => ({
+      query: (formData) => ({
         url: `users/avatar`,
         method: 'PATCH',
-        body: { avatar },
+        body: formData,
       }),
       invalidatesTags: ['Profile'],
     }),

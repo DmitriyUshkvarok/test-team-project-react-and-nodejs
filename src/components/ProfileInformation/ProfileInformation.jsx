@@ -48,14 +48,14 @@ const ProfileInformation = () => {
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
-    // setSelectedAvatar(URL.createObjectURL(file));
     setSelectedAvatar(file);
   };
 
   const handleUpdateAvatar = async () => {
-    console.log(selectedAvatar);
     try {
-      await updateAvatar({ avatarURL: selectedAvatar });
+      const formData = new FormData();
+      formData.append('avatar', selectedAvatar);
+      await updateAvatar(formData);
     } catch (error) {
       // Обработка ошибки
       console.log(error);
@@ -101,7 +101,7 @@ const ProfileInformation = () => {
               <PhotoUser
                 src={
                   selectedAvatar
-                    ? selectedAvatar
+                    ? URL.createObjectURL(selectedAvatar)
                     : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
                 }
                 alt=""
@@ -111,7 +111,7 @@ const ProfileInformation = () => {
                 <SpanEditPhoto>Edit Photo</SpanEditPhoto>
               </LabelEditPhoto>
               <InputEditPhoto
-                name="avatarURL"
+                name="avatar"
                 type="file"
                 accept="image/*"
                 id="inputFile"

@@ -92,6 +92,7 @@ export const PhotoUser = styled.img`
     height: 100%;
     border-radius: 50%;
     filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+    object-fit: cover;
   }
 `;
 
