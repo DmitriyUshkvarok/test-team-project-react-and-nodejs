@@ -12,6 +12,8 @@ const getLocation = (state) => state.auth.location;
 
 const getPhone = (state) => state.auth.phone;
 
+const getid = (state) => state.auth.user.id;
+
 const authSelector = {
   getIsLoggedIn,
   getIsRefreshing,
@@ -20,6 +22,7 @@ const authSelector = {
   getLocation,
   getPhone,
   selectToken,
+  getid,
 };
 
 export default authSelector;

@@ -25,9 +25,9 @@ import {
   StyleTbLogout,
 } from './ProfileInformation.styled';
 import Notiflix from 'notiflix';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authOperation from '../../redux/auth/authOperation';
-import authSelector from '../../redux/auth/authSelectors';
+import { useChangeProfileAvatarMutation } from '../../redux/profileApi/profileApi';
 
 const ProfileInformation = () => {
   const [editing, setEditing] = useState({
@@ -38,13 +38,30 @@ const ProfileInformation = () => {
     city: false,
   });
 
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
+
+  const [updateAvatar] = useChangeProfileAvatarMutation();
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const nameUser = useSelector(authSelector.getName);
-  // const emailUser = useSelector(authSelector.getEmail);
-  console.log(nameUser);
+  const handleAvatarChange = (event) => {
+    const file = event.target.files[0];
+    // setSelectedAvatar(URL.createObjectURL(file));
+    setSelectedAvatar(file);
+  };
+
+  const handleUpdateAvatar = async () => {
+    console.log(selectedAvatar);
+    try {
+      await updateAvatar({ avatarURL: selectedAvatar });
+    } catch (error) {
+      // Обработка ошибки
+      console.log(error);
+    }
+    // }
+  };
 
   const handleLogOut = () => {
     Notiflix.Confirm.show(
@@ -82,14 +99,25 @@ const ProfileInformation = () => {
           <ProfileInfoWrapper>
             <ProfilePhotoBlock>
               <PhotoUser
-                src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+                src={
+                  selectedAvatar
+                    ? selectedAvatar
+                    : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+                }
                 alt=""
               ></PhotoUser>
               <LabelEditPhoto htmlFor="inputFile">
                 <StyleMdAddAPhoto size={30} />
                 <SpanEditPhoto>Edit Photo</SpanEditPhoto>
               </LabelEditPhoto>
-              <InputEditPhoto type="file" accept="image/*" id="inputFile" />
+              <InputEditPhoto
+                name="avatarURL"
+                type="file"
+                accept="image/*"
+                id="inputFile"
+                onChange={handleAvatarChange}
+              />
+              <button onClick={handleUpdateAvatar}>Save</button>
             </ProfilePhotoBlock>
             <ProfileInfoList>
               <ProfileInfoItem>
@@ -98,7 +126,7 @@ const ProfileInformation = () => {
                   {editing.name ? (
                     <InputInfo autoFocus type="text" name="name" />
                   ) : (
-                    <SpanInfoUser>{nameUser}</SpanInfoUser>
+                    <SpanInfoUser>dima</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>
