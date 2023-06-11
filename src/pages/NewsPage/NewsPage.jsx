@@ -1,6 +1,10 @@
-import { useGetFetchNewsQuery } from '../../redux/newsApi/newsApi';
-import { useState } from 'react';
+import {
+  useGetFetchNewsQuery,
+  useGetFetchNewsTitleQuery,
+} from '../../redux/newsApi/newsApi';
+import { useState, useEffect } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { toast } from 'react-toastify';
 import {
   NewsTitle,
   NewsList,
@@ -16,8 +20,24 @@ import {
 const NewsPage = () => {
   const [showLoadMore, setShowLoadMore] = useState({});
   const [hiddenReadMore, setHiddenReadMore] = useState({});
+  const [searchText, setSearchText] = useState('');
+  const [titleNotFound, setTitleNotFound] = useState(false);
 
-  const { data, error, isLoading } = useGetFetchNewsQuery();
+  const { error, isLoading } = useGetFetchNewsQuery({
+    title: searchText,
+  });
+
+  const { data: title, isError } = useGetFetchNewsTitleQuery(searchText);
+
+  useEffect(() => {
+    setTitleNotFound(isError);
+  }, [isError]);
+
+  useEffect(() => {
+    if (titleNotFound) {
+      toast.error('Title not found.');
+    }
+  }, [titleNotFound]);
 
   const MAX_DESC_LENGTH = 184;
 
@@ -37,19 +57,23 @@ const NewsPage = () => {
   }
 
   const handleSearch = (searchText) => {
-    console.log('Выполняется поиск:', searchText);
+    setSearchText(searchText);
+  };
+
+  const handleClear = () => {
+    setSearchText('');
   };
 
   return (
     <>
       <NewsTitle>News</NewsTitle>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} onClear={handleClear} />
       <NewsList>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          data &&
-          data.map(({ data, desc, image, _id, title }) => {
+          title &&
+          title.map(({ data, desc, image, _id, title }) => {
             const dateObj = new Date(data);
             const day = dateObj.getDate();
             const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');

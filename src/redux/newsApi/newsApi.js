@@ -11,7 +11,11 @@ export const newsApi = createApi({
       query: () => '/news',
       providesTags: ['News'],
     }),
+    getFetchNewsTitle: builder.query({
+      query: (title) => `/news/search?title=${title}`,
+      providesTags: (result, error, title) => ['News', { type: 'News', title }],
+    }),
   }),
 });
 
-export const { useGetFetchNewsQuery } = newsApi;
+export const { useGetFetchNewsQuery, useGetFetchNewsTitleQuery } = newsApi;
