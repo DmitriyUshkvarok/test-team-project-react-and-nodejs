@@ -15,6 +15,9 @@ export const userPetsApi = createApi({
   }),
   tagTypes: ['Posts'],
   endpoints: (builder) => ({
+    getUserPets: builder.query({
+      query: () => `api/userPets`,
+    }),
     addUserPets: builder.mutation({
       query: (formData) => ({
         url: `api/userPets`,
@@ -26,4 +29,4 @@ export const userPetsApi = createApi({
   }),
 });
 
-export const { useAddUserPetsMutation } = userPetsApi;
+export const { useGetUserPetsQuery, useAddUserPetsMutation } = userPetsApi;
