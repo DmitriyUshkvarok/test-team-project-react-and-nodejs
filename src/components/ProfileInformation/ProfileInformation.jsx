@@ -10,6 +10,7 @@ import {
   LabelEditPhoto,
   InputEditPhoto,
   StyleMdAddAPhoto,
+  BtnSaveFotoUser,
   SpanEditPhoto,
   ProfileInfoList,
   ProfileInfoItem,
@@ -25,6 +26,7 @@ import {
   StyleTbLogout,
 } from './ProfileInformation.styled';
 import Notiflix from 'notiflix';
+import { GiSave } from 'react-icons/gi';
 import { useDispatch } from 'react-redux';
 import authOperation from '../../redux/auth/authOperation';
 import {
@@ -44,8 +46,10 @@ const ProfileInformation = () => {
 
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [inputValue, setInputValue] = useState('');
+  const [showSaveButton, setShowSaveButton] = useState(false);
 
-  const [updateAvatar] = useChangeProfileAvatarMutation();
+  const [updateAvatar, { isLoading: isAvatarLoading }] =
+    useChangeProfileAvatarMutation();
   const { data: currentUser } = useGetCurrentUserQuery();
   const [updateUser] = useUpdateUserMutation();
 
@@ -56,6 +60,7 @@ const ProfileInformation = () => {
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
     setSelectedAvatar(file);
+    setShowSaveButton(true);
   };
 
   const handleUpdateAvatar = async () => {
@@ -63,6 +68,7 @@ const ProfileInformation = () => {
       const formData = new FormData();
       formData.append('avatar', selectedAvatar);
       await updateAvatar(formData);
+      setShowSaveButton(false);
     } catch (error) {
       console.log(error);
     }
@@ -119,7 +125,8 @@ const ProfileInformation = () => {
                 src={
                   selectedAvatar
                     ? URL.createObjectURL(selectedAvatar)
-                    : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+                    : currentUser?.avatarURL ||
+                      'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
                 }
                 alt=""
               ></PhotoUser>
@@ -134,7 +141,22 @@ const ProfileInformation = () => {
                 id="inputFile"
                 onChange={handleAvatarChange}
               />
-              <button onClick={handleUpdateAvatar}>Save</button>
+              {showSaveButton && (
+                <BtnSaveFotoUser onClick={handleUpdateAvatar}>
+                  {isAvatarLoading ? (
+                    'Loading...'
+                  ) : (
+                    <>
+                      <GiSave
+                        size={20}
+                        color="var(--accentColor)"
+                        style={{ marginRight: '5px' }}
+                      />
+                      Save
+                    </>
+                  )}
+                </BtnSaveFotoUser>
+              )}
             </ProfilePhotoBlock>
             <ProfileInfoList>
               <ProfileInfoItem>

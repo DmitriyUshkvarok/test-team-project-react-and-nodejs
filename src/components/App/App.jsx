@@ -15,6 +15,7 @@ import LoginPage from '../../pages/LoginPage/LoginPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import Container from '../Container/Container';
 import NoticesCategoriesList from '../Notices/NoticesCategoriesList/NoticesCategoriesList';
+import ConfirmEmailPage from '../../pages/ConfirmEmailPage/ConfirmEmailPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
               <Route path="user" element={<ProfilePage />} />
               <Route path="*" element={<HomePage />} />
             </Route>
+            <Route path="confirm-page" element={<ConfirmEmailPage />} />
           </Routes>
         </Container>
       </Suspense>

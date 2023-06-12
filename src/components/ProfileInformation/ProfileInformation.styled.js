@@ -142,6 +142,34 @@ export const StyleMdAddAPhoto = styled(MdAddAPhoto)`
   }
 `;
 
+export const BtnSaveFotoUser = styled.button`
+  @media screen and (min-width: 32px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    bottom: -33px;
+    right: 100px;
+    cursor: pointer;
+    font-family: var(--manropeFont);
+    font-size: var(--fontSize12);
+    line-height: 1.83;
+    letter-spacing: 0.04em;
+    color: var(--blackColor);
+  }
+
+  @media screen and (min-width: 768px) {
+    bottom: -33px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    bottom: -30px;
+    right: -43px;
+  }
+`;
+
 export const ProfileInfoList = styled.ul`
   @media screen and (min-width: 320px) {
     display: flex;

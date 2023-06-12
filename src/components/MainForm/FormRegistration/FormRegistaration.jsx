@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
@@ -36,7 +36,7 @@ const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -59,7 +59,7 @@ const RegistrationForm = () => {
     toast.success(
       'A registration confirmation email has been sent to your email box! Check the spam section to see if the message is there'
     );
-    // navigate('/');
+    navigate('/confirm-page');
   };
 
   const handleBack = () => {
