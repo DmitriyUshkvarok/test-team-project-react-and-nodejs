@@ -22,7 +22,23 @@ export const profileApi = createApi({
       }),
       invalidatesTags: ['Profile'],
     }),
+    getCurrentUser: build.query({
+      query: () => '/users/current',
+      providesTags: ['Profile'],
+    }),
+    updateUser: build.mutation({
+      query: (formData) => ({
+        url: '/users/',
+        method: 'PATCH',
+        body: formData,
+      }),
+      invalidatesTags: ['Profile'],
+    }),
   }),
 });
 
-export const { useChangeProfileAvatarMutation } = profileApi;
+export const {
+  useChangeProfileAvatarMutation,
+  useGetCurrentUserQuery,
+  useUpdateUserMutation,
+} = profileApi;

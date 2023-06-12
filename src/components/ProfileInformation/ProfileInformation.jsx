@@ -27,7 +27,11 @@ import {
 import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
 import authOperation from '../../redux/auth/authOperation';
-import { useChangeProfileAvatarMutation } from '../../redux/profileApi/profileApi';
+import {
+  useChangeProfileAvatarMutation,
+  useGetCurrentUserQuery,
+  useUpdateUserMutation,
+} from '../../redux/profileApi/profileApi';
 
 const ProfileInformation = () => {
   const [editing, setEditing] = useState({
@@ -35,12 +39,15 @@ const ProfileInformation = () => {
     email: false,
     birthday: false,
     phone: false,
-    city: false,
+    location: false,
   });
 
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [inputValue, setInputValue] = useState('');
 
   const [updateAvatar] = useChangeProfileAvatarMutation();
+  const { data: currentUser } = useGetCurrentUserQuery();
+  const [updateUser] = useUpdateUserMutation();
 
   const dispatch = useDispatch();
 
@@ -57,10 +64,27 @@ const ProfileInformation = () => {
       formData.append('avatar', selectedAvatar);
       await updateAvatar(formData);
     } catch (error) {
-      // Обработка ошибки
       console.log(error);
     }
     // }
+  };
+
+  const handleUpdateUser = async (fieldName) => {
+    console.log('fieldName:', fieldName);
+    console.log('inputValue:', inputValue);
+    try {
+      const data = {
+        [fieldName]: inputValue,
+      };
+      await updateUser(data);
+      setEditing((prevState) => ({
+        ...prevState,
+        [fieldName]: false,
+      }));
+    } catch (error) {
+      // Обработка ошибки
+      console.log(error);
+    }
   };
 
   const handleLogOut = () => {
@@ -75,13 +99,6 @@ const ProfileInformation = () => {
       },
       () => {}
     );
-  };
-
-  const handleCheckClick = (fieldName) => {
-    setEditing((prevState) => ({
-      ...prevState,
-      [fieldName]: false,
-    }));
   };
 
   const handleEditClick = (fieldName) => {
@@ -124,14 +141,20 @@ const ProfileInformation = () => {
                 <LabelInfo>Name:</LabelInfo>
                 <IputInfoContainer>
                   {editing.name ? (
-                    <InputInfo autoFocus type="text" name="name" />
+                    <InputInfo
+                      autoFocus
+                      type="text"
+                      name="name"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
                   ) : (
-                    <SpanInfoUser>dima</SpanInfoUser>
+                    <SpanInfoUser>{currentUser?.name}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>
                   {editing.name ? (
-                    <StyleHiCheck onClick={() => handleCheckClick('name')} />
+                    <StyleHiCheck onClick={() => handleUpdateUser('name')} />
                   ) : (
                     <StyleHiPencil onClick={() => handleEditClick('name')} />
                   )}
@@ -141,14 +164,20 @@ const ProfileInformation = () => {
                 <LabelInfo>Email:</LabelInfo>
                 <IputInfoContainer>
                   {editing.email ? (
-                    <InputInfo autoFocus type="text" name="email" />
+                    <InputInfo
+                      autoFocus
+                      type="text"
+                      name="email"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
                   ) : (
-                    <SpanInfoUser>anna00@gmail.com</SpanInfoUser>
+                    <SpanInfoUser>{currentUser?.email}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>
                   {editing.email ? (
-                    <StyleHiCheck onClick={() => handleCheckClick('email')} />
+                    <StyleHiCheck onClick={() => handleUpdateUser('email')} />
                   ) : (
                     <StyleHiPencil onClick={() => handleEditClick('email')} />
                   )}
@@ -158,7 +187,13 @@ const ProfileInformation = () => {
                 <LabelInfo>Birthday:</LabelInfo>
                 <IputInfoContainer>
                   {editing.birthday ? (
-                    <InputInfo autoFocus type="text" name="birthday" />
+                    <InputInfo
+                      autoFocus
+                      type="text"
+                      name="birthday"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
                   ) : (
                     <SpanInfoUser>00.00.0000</SpanInfoUser>
                   )}
@@ -166,7 +201,7 @@ const ProfileInformation = () => {
                 <IconInfoUserContainer>
                   {editing.birthday ? (
                     <StyleHiCheck
-                      onClick={() => handleCheckClick('birthday')}
+                      onClick={() => handleUpdateUser('birthday')}
                     />
                   ) : (
                     <StyleHiPencil
@@ -179,14 +214,20 @@ const ProfileInformation = () => {
                 <LabelInfo>Phone:</LabelInfo>
                 <IputInfoContainer>
                   {editing.phone ? (
-                    <InputInfo autoFocus type="text" name="phone" />
+                    <InputInfo
+                      autoFocus
+                      type="text"
+                      name="phone"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
                   ) : (
-                    <SpanInfoUser>+38000000000</SpanInfoUser>
+                    <SpanInfoUser>{currentUser?.phone}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>
                   {editing.phone ? (
-                    <StyleHiCheck onClick={() => handleCheckClick('phone')} />
+                    <StyleHiCheck onClick={() => handleUpdateUser('phone')} />
                   ) : (
                     <StyleHiPencil onClick={() => handleEditClick('phone')} />
                   )}
@@ -195,17 +236,27 @@ const ProfileInformation = () => {
               <ProfileInfoItem>
                 <LabelInfo>City:</LabelInfo>
                 <IputInfoContainer>
-                  {editing.city ? (
-                    <InputInfo autoFocus type="text" name="city" />
+                  {editing.location ? (
+                    <InputInfo
+                      autoFocus
+                      type="text"
+                      name="location"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
                   ) : (
-                    <SpanInfoUser>Kiev</SpanInfoUser>
+                    <SpanInfoUser>{currentUser?.location}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>
-                  {editing.city ? (
-                    <StyleHiCheck onClick={() => handleCheckClick('city')} />
+                  {editing.location ? (
+                    <StyleHiCheck
+                      onClick={() => handleUpdateUser('location')}
+                    />
                   ) : (
-                    <StyleHiPencil onClick={() => handleEditClick('city')} />
+                    <StyleHiPencil
+                      onClick={() => handleEditClick('location')}
+                    />
                   )}
                 </IconInfoUserContainer>
               </ProfileInfoItem>
