@@ -3,6 +3,7 @@ import { persisteAuthReducer } from './auth/authSlice';
 import { newsApi } from './newsApi/newsApi';
 import { servicesApi } from './serviceApi/serviceApi';
 import { profileApi } from './profileApi/profileApi';
+import { userPetsApi } from './usersPetsApi/usersPetsApi';
 import {
   persistStore,
   FLUSH,
@@ -19,6 +20,7 @@ const store = configureStore({
     [newsApi.reducerPath]: newsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
+    [userPetsApi.reducerPath]: userPetsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -28,7 +30,8 @@ const store = configureStore({
     }).concat(
       newsApi.middleware,
       servicesApi.middleware,
-      profileApi.middleware
+      profileApi.middleware,
+      userPetsApi.middleware
     ),
 });
 
