@@ -1,3 +1,4 @@
+import { useGetUserPetsQuery } from '../../redux/usersPetsApi/usersPetsApi';
 import {
   ProfilePetListWrapper,
   AddPanel,
@@ -20,6 +21,8 @@ import {
 } from './ProfilePetList.styled';
 
 const ProfilePetList = ({ handleClick }) => {
+  const { data, error, isLoading } = useGetUserPetsQuery();
+
   return (
     <>
       <ProfilePetListWrapper>
@@ -32,67 +35,38 @@ const ProfilePetList = ({ handleClick }) => {
             </AddBtn>
           </AddedTextBtnWrap>
         </AddPanel>
-        <ProfileListPet>
-          <ProfilePetItem>
-            <ProfilePetImg
-              src="https://www.petcloud.com.au/img/pet_placeholder.png"
-              alt=""
-            />
-            <PetInfoBox>
-              <ProfilePetName>
-                Name:<Span>Jack</Span>
-                <BtnDletePostPet>
-                  <StyleRiDeleteBin5Fill />
-                </BtnDletePostPet>
-              </ProfilePetName>
-              <ProfilePetbirth>
-                Date of birth:<Span> 22.04.2018</Span>
-              </ProfilePetbirth>
-              <ProfilePetBreed>
-                Breed:<Span> Persian cat</Span>
-              </ProfilePetBreed>
-              <ProfilePetComments>
-                Comments:
-                <Span>
-                  Jack is a gray Persian cat with green eyes. He loves to be
-                  pampered and groomed, and enjoys playing with toys. Although a
-                  bitshy, hes a loyal and affectionate lap cat.
-                </Span>
-              </ProfilePetComments>
-            </PetInfoBox>
-          </ProfilePetItem>
-          <ProfilePetItem>
-            <ProfilePetImg
-              src="https://www.petcloud.com.au/img/pet_placeholder.png"
-              alt=""
-            />
-            <PetInfoBox>
-              <ProfilePetName>
-                Name:<Span>Jack</Span>
-                <BtnDletePostPet>
-                  <StyleRiDeleteBin5Fill />
-                </BtnDletePostPet>
-              </ProfilePetName>
-              <ProfilePetbirth>
-                Date of birth:<Span> 22.04.2018</Span>
-              </ProfilePetbirth>
-              <ProfilePetBreed>
-                Breed:<Span> Basenji</Span>
-              </ProfilePetBreed>
-              <ProfilePetComments>
-                Comments:
-                <Span>
-                  Jack is a handsome Basenji with short, shiny red fur and perky
-                  ears. Hes an active and intelligent dog that loves to explore
-                  and play. Jack is independent and strong-willed, but also
-                  affectionate and loyal to his family. Hes a curious and
-                  energetic companion that brings joy and adventure to his
-                  familys life.
-                </Span>
-              </ProfilePetComments>
-            </PetInfoBox>
-          </ProfilePetItem>
-        </ProfileListPet>
+        {isLoading ? (
+          'Loading...'
+        ) : (
+          <ProfileListPet>
+            {data.map(({ _id, imagePet, name, birthday, breed, comments }) => (
+              <ProfilePetItem key={_id}>
+                <ProfilePetImg
+                  src={`https://pets-shelter-service.onrender.com/${imagePet}`}
+                  alt={name}
+                />
+                <PetInfoBox>
+                  <ProfilePetName>
+                    Name:<Span>{name}</Span>
+                    <BtnDletePostPet>
+                      <StyleRiDeleteBin5Fill />
+                    </BtnDletePostPet>
+                  </ProfilePetName>
+                  <ProfilePetbirth>
+                    Date of birth:<Span>{birthday}</Span>
+                  </ProfilePetbirth>
+                  <ProfilePetBreed>
+                    Breed:<Span>{breed}</Span>
+                  </ProfilePetBreed>
+                  <ProfilePetComments>
+                    Comments:
+                    <Span>{comments}</Span>
+                  </ProfilePetComments>
+                </PetInfoBox>
+              </ProfilePetItem>
+            ))}
+          </ProfileListPet>
+        )}
       </ProfilePetListWrapper>
     </>
   );

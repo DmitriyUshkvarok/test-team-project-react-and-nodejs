@@ -1,15 +1,17 @@
 import { GrClose } from 'react-icons/gr';
 import ProfileModal from '../ContentModal/ProfileModal/ProfileModal';
-import { BtnClose } from './Modal.styled';
-import { ModalContainer } from '../Backdrop/Backdrop.styled';
+import PetsModal from '../ContentModal/PetsModal/PetsModal';
 
-const Modal = ({ handleClose }) => {
+import { ModalContainer, BtnClose } from '../Backdrop/Backdrop.styled';
+
+const Modal = ({ handleClose, profileModal, petsModal }) => {
   return (
     <ModalContainer>
       <BtnClose onClick={handleClose}>
-        <GrClose size={16} />
+        <GrClose size={18} />
       </BtnClose>
-      <ProfileModal />
+      {profileModal && <ProfileModal handleClose={handleClose} />}
+      {petsModal && <PetsModal handleClose={handleClose} />}
     </ModalContainer>
   );
 };

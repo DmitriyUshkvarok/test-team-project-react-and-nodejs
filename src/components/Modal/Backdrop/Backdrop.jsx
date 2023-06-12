@@ -1,10 +1,14 @@
 import Modal from '../Modal/Modal';
 import { BackdropContainer } from './Backdrop.styled';
 
-const Backdrop = ({ visible, handleClose }) => {
+const Backdrop = ({ visible, handleClose, profileModal, petsModal }) => {
   return (
     <BackdropContainer className={visible ? '' : 'is-hidden'}>
-      <Modal handleClose={handleClose} />
+      <Modal
+        petsModal={petsModal}
+        profileModal={profileModal}
+        handleClose={handleClose}
+      />
     </BackdropContainer>
   );
 };
