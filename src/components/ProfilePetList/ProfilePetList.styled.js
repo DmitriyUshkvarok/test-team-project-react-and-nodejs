@@ -265,3 +265,24 @@ export const ProfilePetComments = styled.p`
     font-size: var(--fontSize16);
   }
 `;
+
+export const ErrorContent = styled.div`
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const ErrorDesc = styled.p`
+  @media screen and (min-width: 320px) {
+    font-weight: var(--fontWeight500);
+    font-size: var(--fontSize14);
+    line-height: 1.33;
+    letter-spacing: 0.04em;
+    color: var(--blackColor);
+    text-align: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: var(--fontSize16);
+  }
+`;

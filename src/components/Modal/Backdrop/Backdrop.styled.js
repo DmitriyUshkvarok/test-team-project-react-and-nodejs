@@ -46,9 +46,6 @@ export const ModalContainer = styled.div`
       transform: translate(-50%, -50%);
       padding: 0 80px;
     }
-    @media screen and (min-width: 1200px) {
-      width: 528px;
-    }
   }
 
   ${BackdropContainer}.is-hidden & {
