@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import {
   StyleSectionFormLogin,
@@ -29,8 +29,9 @@ const initialValues = {
 
 const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -43,14 +44,21 @@ const FormLogin = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(authOperation.logIn(values));
-    // navigate('/');
+  const handleSubmit = async (values, { setSubmitting }) => {
+    setIsLoading(true);
+    try {
+      await dispatch(authOperation.logIn(values));
+      navigate('/user');
+    } catch (error) {
+      // Обработка ошибки
+    }
+    setIsLoading(false);
     setSubmitting(false);
   };
 
   return (
     <StyleSectionFormLogin>
+      {isLoading && <div>Loading...</div>}
       <Container>
         <Formik
           initialValues={initialValues}

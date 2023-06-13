@@ -35,6 +35,7 @@ const initialValues = {
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -53,13 +54,19 @@ const RegistrationForm = () => {
     setShowPassword((prewShowPassword) => !prewShowPassword);
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(authOperation.register(values));
-    setSubmitting(false);
-    toast.success(
-      'A registration confirmation email has been sent to your email box! Check the spam section to see if the message is there'
-    );
-    navigate('/confirm-page');
+  const handleSubmit = async (values, { setSubmitting }) => {
+    setIsLoading(true);
+    try {
+      await dispatch(authOperation.register(values));
+      navigate('/confirm-page');
+      setSubmitting(false);
+      toast.success(
+        'A registration confirmation email has been sent to your email box! Check the spam section to see if the message is there'
+      );
+    } catch (error) {
+      // Обработка ошибки
+    }
+    setIsLoading(false);
   };
 
   const handleBack = () => {
@@ -107,6 +114,7 @@ const RegistrationForm = () => {
 
   return (
     <StyleSectionFormRegistration state={step}>
+      {isLoading && <div>Loading...</div>}
       <Container>
         <Formik
           initialValues={initialValues}

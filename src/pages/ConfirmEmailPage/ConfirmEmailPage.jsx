@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
+import { toast } from 'react-toastify';
 import {
   ConfirmPageSection,
   LogoContainer,
@@ -9,8 +10,23 @@ import {
   ResendEmail,
   ResendSpan,
 } from './ConfirmEmailPage.styled';
+import { useVerifyUserMutation } from '../../redux/verifyApi/verifyApi';
+import { useSelector } from 'react-redux';
+import authSelector from '../../redux/auth/authSelectors';
 
 const ConfirmEmailPage = () => {
+  const [verifyUser, { isLoading }] = useVerifyUserMutation();
+  const email = useSelector(authSelector.getEmail);
+
+  const handleResendEmail = async () => {
+    try {
+      await verifyUser(email);
+      toast.success('Verification email resent successfully');
+    } catch (error) {
+      toast.error('Error resending verification email');
+    }
+  };
+
   return (
     <ConfirmPageSection>
       <LogoContainer>
@@ -30,7 +46,9 @@ const ConfirmEmailPage = () => {
       </LoginLink>
       <ResendEmail>
         didnt receive the registration confirmation email?
-        <ResendSpan>Resend it</ResendSpan>
+        <ResendSpan onClick={handleResendEmail}>
+          {isLoading ? 'Loading...' : 'Resend it'}
+        </ResendSpan>
       </ResendEmail>
     </ConfirmPageSection>
   );

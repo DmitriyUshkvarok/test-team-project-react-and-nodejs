@@ -15,7 +15,6 @@ const clearAuth = () => {
 const register = createAsyncThunk('auth/register', async (credentials) => {
   try {
     const { data } = await axios.post('users/register', credentials);
-    setAuth(data.token);
     return data;
   } catch (error) {
     if (error.response && error.response.status === 400) {

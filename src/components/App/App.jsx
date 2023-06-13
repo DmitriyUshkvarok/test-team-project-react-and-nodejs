@@ -3,15 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// import HomePage from '../../pages/HomePage/HomePage';
-// import NewsPage from '../../pages/NewsPage/NewsPage';
-// import NoticesPage from '../../pages/NoticesPage/NoticesPage';
-// import OurFriendsPage from '../../pages/OurFriendsPage/OurFriendsPage';
-// import RegisterPage from '../../pages/RegistrationPage/RegistrationPage';
-// import LoginPage from '../../pages/LoginPage/LoginPage';
-// import ProfilePage from '../../pages/ProfilePage/ProfilePage';
-// import ConfirmEmailPage from '../../pages/ConfirmEmailPage/ConfirmEmailPage';
 import authOperation from '../../redux/auth/authOperation';
 import SharedLayout from '../SharedLayout/SharedLayout';
 import Container from '../Container/Container';
@@ -29,7 +20,9 @@ const RegisterPage = lazy(() =>
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
 const ProfilePage = lazy(() => import('../../pages/ProfilePage/ProfilePage'));
 
-// const ConfirmEmailPage = lazy(() => import('../../pages/ConfirmEmailPage/ConfirmEmailPage'));
+const ConfirmEmailPage = lazy(() =>
+  import('../../pages/ConfirmEmailPage/ConfirmEmailPage')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -59,7 +52,7 @@ function App() {
               <Route path="user" element={<ProfilePage />} />
               <Route path="*" element={<HomePage />} />
             </Route>
-            {/* <Route path="confirm-page" element={<ConfirmEmailPage />} /> */}
+            <Route path="confirm-page" element={<ConfirmEmailPage />} />
           </Routes>
         </Container>
       </Suspense>
