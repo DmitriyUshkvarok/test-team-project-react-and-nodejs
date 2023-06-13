@@ -37,7 +37,8 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
-              <Route index element={<HomePage />} />
+              <Route index element={<SharedLayout />} />
+              <Route path="home" element={<HomePage />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="notices" element={<NoticesPage />}>
                 <Route path="sell" element={<NoticesCategoriesList />} />
@@ -50,9 +51,9 @@ function App() {
               <Route path="register" element={<RegisterPage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="user" element={<ProfilePage />} />
-              <Route path="*" element={<HomePage />} />
-              <Route path="confirm-page" element={<ConfirmEmailPage />} />
+              <Route path="*" element={<SharedLayout />} />
             </Route>
+            <Route path="confirm-page" element={<ConfirmEmailPage />} />
           </Routes>
         </Container>
       </Suspense>
