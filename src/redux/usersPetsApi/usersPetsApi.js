@@ -17,6 +17,7 @@ export const userPetsApi = createApi({
   endpoints: (builder) => ({
     getUserPets: builder.query({
       query: () => `api/userPets`,
+      providesTags: ['Posts'],
     }),
     addUserPets: builder.mutation({
       query: (formData) => ({
@@ -31,6 +32,7 @@ export const userPetsApi = createApi({
         url: `api/userPets/${petId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Posts'],
     }),
   }),
 });

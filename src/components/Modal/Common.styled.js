@@ -129,3 +129,10 @@ export const ErrorMessageStyled = styled(ErrorMessage)`
   color: var(--errorColor);
   font-size: var(--fontSize12);
 `;
+
+export const ErrorMessageStyledRadioBtn = styled(ErrorMessage)`
+  position: absolute;
+  bottom: -49px;
+  color: var(--errorColor);
+  font-size: var(--fontSize12);
+`;

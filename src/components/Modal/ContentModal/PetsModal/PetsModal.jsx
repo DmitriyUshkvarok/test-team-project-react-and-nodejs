@@ -26,6 +26,8 @@ import {
   BtnNextDone,
   BtnCancel,
   BtnBack,
+  ErrorMessageStyled,
+  ErrorMessageStyledRadioBtn,
 } from '../../Common.styled';
 
 import iconMale from '../../img/male.png';
@@ -48,6 +50,7 @@ const CustomRadioButtonStepTwo = ({
     <LabelStyled>
       <img width={width} height={height} src={iconSrc} alt="Icon" />
       <RadioButtonInput type="radio" {...props} />
+      <ErrorMessageStyledRadioBtn name="sex" component="div" />
       <TitleRadioBtn>{label}</TitleRadioBtn>
     </LabelStyled>
   );
@@ -94,9 +97,11 @@ const PetsModal = ({ handleClose }) => {
     }
   };
 
-  const handleBack = () => {
+  const handleBack = (formik) => {
     setShowFirstPart(true);
     setShowSecondPart(false);
+
+    formik.setErrors((errors) => ({ ...errors, comments: undefined }));
   };
 
   const handleRadioChange = (e) => {
@@ -104,15 +109,17 @@ const PetsModal = ({ handleClose }) => {
   };
 
   const handleSubmit = async (values, actions) => {
-    console.log(actions);
     const formData = new FormData();
+
     formData.append('imagePet', selectedImage);
     formData.append('name', values.name);
     formData.append('birthday', values.birthday);
     formData.append('breed', values.breed);
-    formData.append('comments', value);
+    formData.append('comments', values.comments);
     formData.append('location', values.location);
-    formData.append('price', values.price);
+    if (values.status === 'sell') {
+      formData.append('price', values.price);
+    }
     formData.append('sex', values.sex);
     formData.append('status', values.status);
     formData.append('title', values.title);
@@ -156,19 +163,48 @@ const PetsModal = ({ handleClose }) => {
 
           if (showFirstPart) {
             if (!values.title) {
-              errors.title = 'Required';
+              errors.title = 'title is required field';
+            } else if (values.title.length < 5) {
+              errors.title = `title should have at least 5 letters`;
             }
             if (!values.name) {
-              errors.name = 'Required';
+              errors.name = 'name is required field';
+            } else if (values.name.length < 2) {
+              errors.name = `name should have at least 2 letters`;
             }
             if (!values.birthday) {
-              errors.birthday = 'Required';
+              errors.birthday = 'birthday is required field';
+            } else if (!/^[\d./-]+$/i.test(values.birthday)) {
+              errors.birthday = 'birthday should consist of digits only';
             }
             if (!values.breed) {
-              errors.breed = 'Required';
+              errors.breed = 'breed is required field';
+            } else if (values.breed.length < 4) {
+              errors.breed = `breed should have at least 4 letters`;
             }
             if (!values.status) {
               errors.status = 'Required';
+            }
+          }
+          if (showSecondPart) {
+            if (!values.sex) {
+              errors.sex = 'sex is required field';
+            }
+            if (!values.comments) {
+              errors.comments = 'comments is required field';
+            } else if (values.comments.length < 10) {
+              errors.comments = `comments should have at least 10 letters`;
+            }
+
+            if (!values.location) {
+              errors.location = 'location is required field';
+            }
+            if (values.status === 'sell') {
+              if (!values.price) {
+                errors.price = 'price is required field';
+              } else if (!/^[\d./-]+$/i.test(values.price)) {
+                errors.price = 'birthday should consist of digits only';
+              }
             }
           }
 
@@ -211,7 +247,7 @@ const PetsModal = ({ handleClose }) => {
                     name="title"
                     placeholder="Type title"
                   />
-                  <ErrorMessage name="title" component="div" />
+                  <ErrorMessageStyled name="title" component="div" />
                 </LabelStyled>
                 <LabelStyled>
                   <FieldTitle>Name pet</FieldTitle>
@@ -219,9 +255,8 @@ const PetsModal = ({ handleClose }) => {
                     type="text"
                     name="name"
                     placeholder="Type name"
-                    // value={formik.values.name}
                   />
-                  <ErrorMessage name="name" component="div" />
+                  <ErrorMessageStyled name="name" component="div" />
                 </LabelStyled>
                 <LabelStyled>
                   <FieldTitle>Date of birth</FieldTitle>
@@ -230,7 +265,7 @@ const PetsModal = ({ handleClose }) => {
                     name="birthday"
                     placeholder="Type birthday"
                   />
-                  <ErrorMessage name="birthday" component="div" />
+                  <ErrorMessageStyled name="birthday" component="div" />
                 </LabelStyled>
                 <LabelStyled>
                   <FieldTitle>Breed</FieldTitle>
@@ -239,7 +274,7 @@ const PetsModal = ({ handleClose }) => {
                     name="breed"
                     placeholder="Type breed"
                   />
-                  <ErrorMessage name="breed" component="div" />
+                  <ErrorMessageStyled name="breed" component="div" />
                 </LabelStyled>
                 <BtnContainer>
                   <BtnNextDone
@@ -288,6 +323,7 @@ const PetsModal = ({ handleClose }) => {
                     name="location"
                     placeholder="Type location"
                   />
+                  <ErrorMessageStyled name="location" component="div" />
                 </LabelStyled>
                 <LabelStyled
                   style={{ display: selectValue === 'sell' ? 'block' : 'none' }}
@@ -298,6 +334,7 @@ const PetsModal = ({ handleClose }) => {
                     name="price"
                     placeholder="Type price"
                   />
+                  <ErrorMessageStyled name="price" component="div" />
                 </LabelStyled>
                 <FieldTitleImg>Load the pet's image</FieldTitleImg>
                 <FileInputContainer>
@@ -316,14 +353,13 @@ const PetsModal = ({ handleClose }) => {
                     type="text"
                     name="comments"
                     placeholder="Type comments"
-                    value={value}
-                    onChange={handleChange}
                     onInput={(e) => adjustTextareaHeight(e.target)}
                   />
+                  <ErrorMessageStyled name="comments" component="div" />
                 </LabelStyled>
                 <BtnContainer>
                   <BtnNextDone type="submit">Done</BtnNextDone>
-                  <BtnBack type="button" onClick={handleBack}>
+                  <BtnBack type="button" onClick={() => handleBack(formik)}>
                     Back
                   </BtnBack>
                 </BtnContainer>
