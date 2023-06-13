@@ -72,7 +72,6 @@ const ProfileInformation = () => {
     } catch (error) {
       console.log(error);
     }
-    // }
   };
 
   const handleUpdateUser = async (fieldName) => {

@@ -52,7 +52,7 @@ const refreshCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken = state.auth.user.token;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('error request');
