@@ -60,8 +60,7 @@ export const RadioButtonLabel = styled.label`
   justify-content: center;
   padding: 8px 28px;
   height: 35px;
-  background-color: ${(props) =>
-    props.checked ? 'var(--accentColor)' : 'var(--whiteColor)'};
+
   border: 2px solid var(--accentColor);
   border-radius: var(--borderRadiusInput);
   font-family: var(--manropeFont);
@@ -73,11 +72,6 @@ export const RadioButtonLabel = styled.label`
     props.checked ? 'var(--whiteColor)' : 'var(--blackColor)'};
   gap: 5px;
   cursor: pointer;
-
-  &:hover {
-    background-color: var(--accentColor);
-    color: var(--whiteColor);
-  }
 `;
 
 export const RadioButtonInput = styled(Field)`

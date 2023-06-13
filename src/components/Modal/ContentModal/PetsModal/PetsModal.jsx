@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import { TfiPlus } from 'react-icons/tfi';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import CustomRadioButton from './CustomRadioButton';
+import {
+  CustomRadioButton,
+  CustomRadioButtonStepTwo,
+} from './CustomRadioButton';
 import { useAddPetsMutation } from '../../../../redux/petsApi/petsApi';
 import {
   RadioButtonWrapper,
   TitleModal,
   Desc,
   Formstyled,
-  RadioButtonInput,
   FileInputContainer,
   RadioButtonWrapperSex,
   LabelStyled,
-  TitleRadioBtn,
   HiddenFileInput,
   UploadedImage,
   BtnContainer,
@@ -27,7 +28,6 @@ import {
   BtnCancel,
   BtnBack,
   ErrorMessageStyled,
-  ErrorMessageStyledRadioBtn,
 } from '../../Common.styled';
 
 import iconMale from '../../img/male.png';
@@ -39,34 +39,18 @@ const adjustTextareaHeight = (textarea) => {
   textarea.style.height = textarea.scrollHeight + 'px';
 };
 
-const CustomRadioButtonStepTwo = ({
-  width,
-  height,
-  iconSrc,
-  label,
-  ...props
-}) => {
-  return (
-    <LabelStyled>
-      <img width={width} height={height} src={iconSrc} alt="Icon" />
-      <RadioButtonInput type="radio" {...props} />
-      <ErrorMessageStyledRadioBtn name="sex" component="div" />
-      <TitleRadioBtn>{label}</TitleRadioBtn>
-    </LabelStyled>
-  );
-};
-
 const PetsModal = ({ handleClose }) => {
   const [showFirstPart, setShowFirstPart] = useState(true);
   const [showSecondPart, setShowSecondPart] = useState(false);
   const [selectedImageForSrc, setSelectedImageForSrc] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectValue, setSelectedValue] = useState('');
-  const [value, setValue] = useState('');
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  const options = [
+    { value: 'sell', label: 'sell' },
+    { value: 'lost/found', label: 'lost/found' },
+    { value: 'in good hands', label: 'in good hands' },
+  ];
 
   const [addPet, result] = useAddPetsMutation();
 
@@ -78,7 +62,7 @@ const PetsModal = ({ handleClose }) => {
   const handleCloseModal = (formik) => {
     formik.resetForm();
     setSelectedImageForSrc(null);
-    setValue('');
+    setSelectedValue('');
     handleClose();
   };
 
@@ -136,6 +120,7 @@ const PetsModal = ({ handleClose }) => {
     setShowFirstPart(true);
     setShowSecondPart(false);
     setSelectedImageForSrc(null);
+    setSelectedValue('');
     setValue('');
 
     actions.resetForm();
@@ -220,24 +205,25 @@ const PetsModal = ({ handleClose }) => {
                   love they deserve by adding them to our family today!
                 </Desc>
                 <RadioButtonWrapper>
-                  <CustomRadioButton
-                    handleRadioChange={handleRadioChange}
-                    value="sell"
-                    name="status"
-                    label="sell"
-                  />
-                  <CustomRadioButton
-                    handleRadioChange={handleRadioChange}
-                    value="lost/found"
-                    name="status"
-                    label="lost/found"
-                  />
-                  <CustomRadioButton
-                    handleRadioChange={handleRadioChange}
-                    value="in good hands"
-                    name="status"
-                    label="in good hands"
-                  />
+                  {options.map(({ value, label }) => (
+                    <CustomRadioButton
+                      key={value}
+                      actual={{
+                        backgroundColor:
+                          selectValue === value
+                            ? 'var(--accentColor)'
+                            : 'var(--whiteColor)',
+                        color:
+                          selectValue === value
+                            ? 'var(--whiteColor)'
+                            : 'var(--blackColor)',
+                      }}
+                      handleRadioChange={handleRadioChange}
+                      value={value}
+                      name="status"
+                      label={label}
+                    />
+                  ))}
                 </RadioButtonWrapper>
 
                 <LabelStyled>

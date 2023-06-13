@@ -1,10 +1,22 @@
-import { RadioButtonLabel, RadioButtonInput } from './PetsModal.styled';
+import {
+  RadioButtonLabel,
+  RadioButtonInput,
+  LabelStyled,
+  TitleRadioBtn,
+} from './PetsModal.styled';
+import { ErrorMessageStyledRadioBtn } from '../../Common.styled';
 
-const CustomRadioButton = ({ value, name, label, handleRadioChange }) => {
+export const CustomRadioButton = ({
+  value,
+  name,
+  label,
+  handleRadioChange,
+  actual,
+}) => {
   const isChecked = value === name;
 
   return (
-    <RadioButtonLabel checked={isChecked}>
+    <RadioButtonLabel style={{ ...actual }} checked={isChecked}>
       <RadioButtonInput
         onClick={(e) => handleRadioChange(e)}
         type="radio"
@@ -16,4 +28,19 @@ const CustomRadioButton = ({ value, name, label, handleRadioChange }) => {
   );
 };
 
-export default CustomRadioButton;
+export const CustomRadioButtonStepTwo = ({
+  width,
+  height,
+  iconSrc,
+  label,
+  ...props
+}) => {
+  return (
+    <LabelStyled>
+      <img width={width} height={height} src={iconSrc} alt="Icon" />
+      <RadioButtonInput type="radio" {...props} />
+      <ErrorMessageStyledRadioBtn name="sex" component="div" />
+      <TitleRadioBtn>{label}</TitleRadioBtn>
+    </LabelStyled>
+  );
+};
