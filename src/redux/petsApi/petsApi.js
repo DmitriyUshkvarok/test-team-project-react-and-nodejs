@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const userPetsApi = createApi({
-  reducerPath: 'userPetsApi',
+export const petsApi = createApi({
+  reducerPath: 'petsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-shelter-service.onrender.com/',
     prepareHeaders: (headers, { getState }) => {
@@ -15,28 +15,25 @@ export const userPetsApi = createApi({
   }),
   tagTypes: ['Posts'],
   endpoints: (builder) => ({
-    getUserPets: builder.query({
-      query: () => `api/userPets`,
+    getPets: builder.query({
+      query: () => `api/pets`,
     }),
-    addUserPets: builder.mutation({
+    addPets: builder.mutation({
       query: (formData) => ({
-        url: `api/userPets`,
+        url: `api/pets`,
         method: 'POST',
         body: formData,
       }),
       invalidatesTags: ['Posts'],
     }),
-    deleteUserPets: builder.mutation({
+    deletePets: builder.mutation({
       query: (petId) => ({
-        url: `api/userPets/${petId}`,
+        url: `api/pets${petId}`,
         method: 'DELETE',
       }),
     }),
   }),
 });
 
-export const {
-  useGetUserPetsQuery,
-  useAddUserPetsMutation,
-  useDeleteUserPetsMutation,
-} = userPetsApi;
+export const { useGetPetsQuery, useAddPetsMutation, useDeletePetsMutation } =
+  petsApi;

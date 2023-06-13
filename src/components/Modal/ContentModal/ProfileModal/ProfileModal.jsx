@@ -13,16 +13,17 @@ import {
   UploadedImage,
   InputCommentStyled,
   FormStyled,
+  FieldTitle,
 } from './ProfileModal.styled';
 
 import {
   TitleModal,
-  FieldTitle,
   InputStyled,
   BtnContainer,
   BtnNextDone,
-  BtnCancelBack,
+  BtnCancel,
   ErrorMessageStyled,
+  BtnBack,
 } from '../../Common.styled';
 
 const ProfileModal = ({ handleClose }) => {
@@ -44,6 +45,7 @@ const ProfileModal = ({ handleClose }) => {
 
   const handleBack = (formik) => {
     formik.setErrors((errors) => ({ ...errors, comments: undefined }));
+
     setIsStep1Complete(false);
   };
 
@@ -104,25 +106,33 @@ const ProfileModal = ({ handleClose }) => {
 
             if (!values.name) {
               errors.name = `name is required field`;
+            } else if (values.name.length < 2) {
+              errors.name = `name should have at least 2 letters`;
             }
 
             if (!values.birthday) {
               errors.birthday = `birthday is required field`;
+            } else if (!/^[\d./-]+$/i.test(values.birthday)) {
+              errors.birthday = 'birthday should consist of digits only';
             }
 
             if (!values.breed) {
               errors.breed = `breed is required field`;
+            } else if (values.breed.length < 4) {
+              errors.breed = `breed should have at least 4 letters`;
             }
 
             if (!values.comments && isStep1Complete) {
               errors.comments = `comments is required field`;
+            } else if (values.comments && values.comments.length < 10) {
+              errors.comments = `comments should have at least 10 letters`;
             }
 
             return errors;
           }}
         >
           {(formik) => (
-            <FormStyled state={isStep1Complete}>
+            <FormStyled state={isStep1Complete.toString()}>
               {!isStep1Complete && (
                 <>
                   <LabelStyled>
@@ -154,20 +164,18 @@ const ProfileModal = ({ handleClose }) => {
                   </LabelStyled>
                   <BtnContainer>
                     <BtnNextDone
-                      state={isStep1Complete}
                       type="button"
                       disabled={!formik.isValid || !formik.dirty}
                       onClick={handleClickNext}
                     >
                       Next
                     </BtnNextDone>
-                    <BtnCancelBack
-                      state={isStep1Complete}
+                    <BtnCancel
                       onClick={() => handleCloseModal(formik)}
                       type="button"
                     >
                       Cancel
-                    </BtnCancelBack>
+                    </BtnCancel>
                   </BtnContainer>
                 </>
               )}
@@ -196,12 +204,9 @@ const ProfileModal = ({ handleClose }) => {
                   </LabelStyled>
                   <BtnContainer>
                     <BtnNextDone type="submit">Done</BtnNextDone>
-                    <BtnCancelBack
-                      type="button"
-                      onClick={() => handleBack(formik)}
-                    >
+                    <BtnBack type="button" onClick={() => handleBack(formik)}>
                       Back
-                    </BtnCancelBack>
+                    </BtnBack>
                   </BtnContainer>
                 </>
               )}

@@ -5,6 +5,7 @@ export const FormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 28px;
   @media screen and (min-width: 768px) {
     margin-top: ${(props) => (props.state ? '20px' : '40px')};
   }
@@ -77,7 +78,6 @@ export const FileInputContainer = styled.label`
   background: #fdf7f2;
   border-radius: 20px;
 
-  padding: 16px;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
@@ -99,6 +99,10 @@ export const UploadedImage = styled.img`
   max-height: 208px;
   object-fit: cover;
   border-radius: 20px;
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+  }
 `;
 
 export const TitleStepTwo = styled.p`
@@ -115,5 +119,20 @@ export const TitleStepTwo = styled.p`
     font-weight: 500;
     font-size: 20px;
     line-height: 27px;
+  }
+`;
+
+export const FieldTitle = styled.p`
+  margin-bottom: 8px;
+
+  font-weight: var(--fontWeight500);
+  font-size: var(--fontSize18);
+  line-height: 26px;
+
+  color: var(--blackColor);
+
+  @media screen and (min-width: 768px) {
+    font-size: var(--fontSize24);
+    margin-bottom: 12px;
   }
 `;

@@ -30,16 +30,27 @@ export const Desc = styled.p`
 
 const SharedRadioBtn = `
  display: flex;
-   
-  flex-wrap: wrap;`;
+ flex-wrap: wrap;`;
 
 export const RadioButtonWrapper = styled.div`
   ${SharedRadioBtn}
   gap: 10px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    label:nth-child(2) {
+      margin-right: 100px;
+    }
+  }
 `;
 export const RadioButtonWrapperSex = styled.div`
   ${SharedRadioBtn}
   gap: 50px;
+  margin-bottom: 32px;
+  margin-top: 18px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: auto;
 `;
 
 export const RadioButtonLabel = styled.label`
@@ -78,36 +89,113 @@ export const RadioButtonInput = styled(Field)`
 `;
 
 export const Formstyled = styled(Form)`
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  margin-top: 28px;
+
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
 export const FileInputContainer = styled.label`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   margin: 20px 0;
   width: 118px;
   height: 118px;
   background: #fdf7f2;
   border-radius: 20px;
 
-  padding: 16px;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    width: 182px;
-    height: 182px;
+    width: 140px;
+    height: 140px;
     border-radius: 40px;
-    margin: 20px auto 40px;
+    margin-right: auto;
+  }
+`;
+
+export const iconStyledSex = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const FieldTitle = styled.p`
+  margin-bottom: 8px;
+
+  font-weight: var(--fontWeight500);
+  font-size: var(--fontSize18);
+  line-height: 26px;
+
+  color: var(--blackColor);
+
+  @media screen and (min-width: 768px) {
+    font-size: var(--fontSize24);
+    margin-bottom: 12px;
+    margin-right: auto;
+  }
+`;
+
+export const FieldTitleImg = styled.p`
+  margin-bottom: 8px;
+
+  font-weight: var(--fontWeight500);
+  font-size: var(--fontSize18);
+  line-height: 26px;
+
+  color: var(--blackColor);
+
+  @media screen and (min-width: 768px) {
+    font-size: var(--fontSize24);
+    margin-bottom: 12px;
+    margin-top: 28px;
+    margin-right: auto;
+  }
+`;
+
+export const InputCommentStyled = styled.textarea`
+  width: 240px;
+  height: 40px;
+  resize: none;
+  padding: 8px;
+
+  padding-top: 14px;
+
+  resize: none;
+  background: var(--fonColor);
+  border: 1px solid var(--borderColorInput);
+  border-radius: var(--borderRadius20);
+  padding-left: 14px;
+
+  ::placeholder {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    font-size: 16px;
+    color: gray;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+
+    font-family: var(--manropeFont);
+    font-size: var(--fontSize14);
+    line-height: 19px;
+
+    color: rgba(27, 27, 27, 0.6);
+  }
+  @media screen and (min-width: 768px) {
+    width: 394px;
+    height: 116px;
   }
 `;
 
 export const LabelStyled = styled.label`
   position: relative;
   display: block;
-  align-self: center;
+
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
   }
@@ -126,10 +214,25 @@ export const HiddenFileInput = styled.input`
 `;
 
 export const UploadedImage = styled.img`
-  width: 208px;
-  height: 208px;
+  width: 118px;
+  height: 118px;
 
-  max-height: 208px;
   object-fit: cover;
   border-radius: 20px;
+  @media screen and (min-width: 768px) {
+    width: 140px;
+    height: 140px;
+  }
+`;
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;

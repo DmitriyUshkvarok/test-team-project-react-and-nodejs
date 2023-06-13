@@ -19,6 +19,7 @@ export const TitleModal = styled.p`
 
 export const FieldTitle = styled.p`
   margin-bottom: 8px;
+  margin-top: 12px;
 
   font-weight: var(--fontWeight500);
   font-size: var(--fontSize18);
@@ -29,6 +30,7 @@ export const FieldTitle = styled.p`
   @media screen and (min-width: 768px) {
     font-size: var(--fontSize24);
     margin-bottom: 12px;
+    margin-top: 28px;
   }
 `;
 
@@ -93,7 +95,7 @@ export const BtnNextDone = styled.button`
   }
 `;
 
-export const BtnCancelBack = styled.button`
+export const BtnCancel = styled.button`
   ${SharedButtonStyles}
   padding-right: 90px;
   padding-left: 90px;
@@ -104,6 +106,20 @@ export const BtnCancelBack = styled.button`
   @media screen and (min-width: 768px) {
     padding-right: 48px;
     padding-left: 48px;
+  }
+`;
+
+export const BtnBack = styled.button`
+  ${SharedButtonStyles}
+  padding-right: 101px;
+  padding-left: 101px;
+  background: var(--whiteColor);
+  color: var(--blackColor);
+  border: 2px solid var(--accentColor);
+
+  @media screen and (min-width: 768px) {
+    padding-right: 68px;
+    padding-left: 68px;
   }
 `;
 

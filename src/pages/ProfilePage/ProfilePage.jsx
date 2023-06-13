@@ -15,12 +15,15 @@ const ProfilePage = () => {
 
   const handleClick = () => {
     setVisible((prev) => !prev);
+    document.body.classList.add('menu-open');
     setProfileModal(true);
   };
 
   const handleClose = () => {
     setVisible((prev) => !prev);
+    document.body.classList.remove('menu-open');
   };
+
   return (
     <Container>
       <ProfileInformationBox>

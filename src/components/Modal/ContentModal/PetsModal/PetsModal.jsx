@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { TfiPlus } from 'react-icons/tfi';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import CustomRadioButton from './CustomRadioButton';
+import { useAddPetsMutation } from '../../../../redux/petsApi/petsApi';
 import {
   RadioButtonWrapper,
   TitleModal,
@@ -14,17 +16,26 @@ import {
   TitleRadioBtn,
   HiddenFileInput,
   UploadedImage,
+  BtnContainer,
+  FieldTitle,
+  FieldTitleImg,
+  InputCommentStyled,
 } from './PetsModal.styled';
 import {
-  FieldTitle,
   InputStyled,
-  BtnContainer,
   BtnNextDone,
-  BtnCancelBack,
+  BtnCancel,
+  BtnBack,
 } from '../../Common.styled';
 
 import iconMale from '../../img/male.png';
 import iconFemale from '../../img/female.png';
+
+const adjustTextareaHeight = (textarea) => {
+  textarea.style.height = 'auto';
+
+  textarea.style.height = textarea.scrollHeight + 'px';
+};
 
 const CustomRadioButtonStepTwo = ({
   width,
@@ -48,6 +59,13 @@ const PetsModal = ({ handleClose }) => {
   const [selectedImageForSrc, setSelectedImageForSrc] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectValue, setSelectedValue] = useState('');
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const [addPet, result] = useAddPetsMutation();
 
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
@@ -57,6 +75,7 @@ const PetsModal = ({ handleClose }) => {
   const handleCloseModal = (formik) => {
     formik.resetForm();
     setSelectedImageForSrc(null);
+    setValue('');
     handleClose();
   };
 
@@ -84,13 +103,42 @@ const PetsModal = ({ handleClose }) => {
     setSelectedValue(e.target.value);
   };
 
+  const handleSubmit = async (values, actions) => {
+    console.log(actions);
+    const formData = new FormData();
+    formData.append('imagePet', selectedImage);
+    formData.append('name', values.name);
+    formData.append('birthday', values.birthday);
+    formData.append('breed', values.breed);
+    formData.append('comments', value);
+    formData.append('location', values.location);
+    formData.append('price', values.price);
+    formData.append('sex', values.sex);
+    formData.append('status', values.status);
+    formData.append('title', values.title);
+
+    const res = await addPet(formData);
+
+    if (res.error) {
+      return Notify.failure(res.error.data.message);
+    }
+    Notify.success('Succsess');
+
+    handleClose();
+
+    setShowFirstPart(true);
+    setShowSecondPart(false);
+    setSelectedImageForSrc(null);
+    setValue('');
+
+    actions.resetForm();
+  };
+
   return (
     <>
       <TitleModal>Add pet</TitleModal>
       <Formik
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
         initialValues={{
           title: '',
           status: '',
@@ -128,7 +176,7 @@ const PetsModal = ({ handleClose }) => {
         }}
       >
         {(formik) => (
-          <Formstyled state={showSecondPart}>
+          <Formstyled state={showSecondPart.toString()}>
             {showFirstPart && (
               <>
                 <Desc>
@@ -158,22 +206,39 @@ const PetsModal = ({ handleClose }) => {
 
                 <LabelStyled>
                   <FieldTitle>Title of ad</FieldTitle>
-                  <InputStyled type="text" name="title" />
+                  <InputStyled
+                    type="text"
+                    name="title"
+                    placeholder="Type title"
+                  />
                   <ErrorMessage name="title" component="div" />
                 </LabelStyled>
                 <LabelStyled>
                   <FieldTitle>Name pet</FieldTitle>
-                  <InputStyled type="text" name="name" />
+                  <InputStyled
+                    type="text"
+                    name="name"
+                    placeholder="Type name"
+                    // value={formik.values.name}
+                  />
                   <ErrorMessage name="name" component="div" />
                 </LabelStyled>
                 <LabelStyled>
                   <FieldTitle>Date of birth</FieldTitle>
-                  <InputStyled type="text" name="birthday" />
+                  <InputStyled
+                    type="text"
+                    name="birthday"
+                    placeholder="Type birthday"
+                  />
                   <ErrorMessage name="birthday" component="div" />
                 </LabelStyled>
                 <LabelStyled>
                   <FieldTitle>Breed</FieldTitle>
-                  <InputStyled type="text" name="breed" />
+                  <InputStyled
+                    type="text"
+                    name="breed"
+                    placeholder="Type breed"
+                  />
                   <ErrorMessage name="breed" component="div" />
                 </LabelStyled>
                 <BtnContainer>
@@ -184,18 +249,19 @@ const PetsModal = ({ handleClose }) => {
                   >
                     Next
                   </BtnNextDone>
-                  <BtnCancelBack
+                  <BtnCancel
                     onClick={() => handleCloseModal(formik)}
                     type="button"
                   >
                     Cancel
-                  </BtnCancelBack>
+                  </BtnCancel>
                 </BtnContainer>
               </>
             )}
 
             {showSecondPart && (
               <>
+                <FieldTitle>The sex:</FieldTitle>
                 <RadioButtonWrapperSex>
                   <CustomRadioButtonStepTwo
                     iconSrc={iconMale}
@@ -217,16 +283,23 @@ const PetsModal = ({ handleClose }) => {
 
                 <LabelStyled>
                   <FieldTitle>Location:</FieldTitle>
-                  <InputStyled type="text" name="location" />
+                  <InputStyled
+                    type="text"
+                    name="location"
+                    placeholder="Type location"
+                  />
                 </LabelStyled>
                 <LabelStyled
                   style={{ display: selectValue === 'sell' ? 'block' : 'none' }}
                 >
                   <FieldTitle>Price:</FieldTitle>
-                  <InputStyled type="text" name="price" />
+                  <InputStyled
+                    type="text"
+                    name="price"
+                    placeholder="Type price"
+                  />
                 </LabelStyled>
-
-                <FieldTitle>Load the pet's image</FieldTitle>
+                <FieldTitleImg>Load the pet's image</FieldTitleImg>
                 <FileInputContainer>
                   {selectedImageForSrc ? (
                     <UploadedImage src={selectedImageForSrc} alt="Uploaded" />
@@ -238,13 +311,21 @@ const PetsModal = ({ handleClose }) => {
 
                 <LabelStyled>
                   <FieldTitle>Comments</FieldTitle>
-                  <InputStyled type="text" name="comments" />
+                  <Field
+                    as={InputCommentStyled}
+                    type="text"
+                    name="comments"
+                    placeholder="Type comments"
+                    value={value}
+                    onChange={handleChange}
+                    onInput={(e) => adjustTextareaHeight(e.target)}
+                  />
                 </LabelStyled>
                 <BtnContainer>
                   <BtnNextDone type="submit">Done</BtnNextDone>
-                  <BtnCancelBack type="button" onClick={handleBack}>
+                  <BtnBack type="button" onClick={handleBack}>
                     Back
-                  </BtnCancelBack>
+                  </BtnBack>
                 </BtnContainer>
               </>
             )}
