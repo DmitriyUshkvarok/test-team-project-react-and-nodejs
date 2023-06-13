@@ -36,6 +36,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
+              <Route index element={<HomePage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="notices" element={<NoticesPage />} />
@@ -44,8 +45,8 @@ function App() {
               <Route path="login" element={<LoginPage />} />
               <Route path="user" element={<ProfilePage />} />
               <Route path="*" element={<HomePage />} />
+              <Route path="confirm-page" element={<ConfirmEmailPage />} />
             </Route>
-            <Route path="confirm-page" element={<ConfirmEmailPage />} />
           </Routes>
         </Container>
       </Suspense>
