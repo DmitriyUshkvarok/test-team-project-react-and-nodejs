@@ -10,7 +10,6 @@ import { persistor } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <BrowserRouter basename="/test-team-project-react-and-nodejs"> */}
     <HashRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -18,6 +17,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </PersistGate>
       </Provider>
     </HashRouter>
-    {/* </BrowserRouter> */}
   </React.StrictMode>
 );

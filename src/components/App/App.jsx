@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import authOperation from '../../redux/auth/authOperation';
 import SharedLayout from '../SharedLayout/SharedLayout';
 import Container from '../Container/Container';
+import PrivateRoute from '../PrivateRoute';
+import RestictedRoute from '../RestictedRoute';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('../../pages/NewsPage/NewsPage'));
@@ -41,9 +43,27 @@ function App() {
               <Route path="news" element={<NewsPage />} />
               <Route path="notices" element={<NoticesPage />} />
               <Route path="friends" element={<OurFriendsPage />} />
-              <Route path="register" element={<RegisterPage />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="user" element={<ProfilePage />} />
+              <Route
+                path="register"
+                element={
+                  <RestictedRoute redirectTo="/" component={<RegisterPage />} />
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <RestictedRoute redirectTo="/" component={<LoginPage />} />
+                }
+              />
+              <Route
+                path="user"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<ProfilePage />}
+                  />
+                }
+              ></Route>
               <Route path="*" element={<HomePage />} />
               <Route path="confirm-page" element={<ConfirmEmailPage />} />
             </Route>
