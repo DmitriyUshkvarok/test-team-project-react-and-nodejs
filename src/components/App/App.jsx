@@ -51,8 +51,8 @@ function App() {
               <Route path="login" element={<LoginPage />} />
               <Route path="user" element={<ProfilePage />} />
               <Route path="*" element={<HomePage />} />
+              <Route path="confirm-page" element={<ConfirmEmailPage />} />
             </Route>
-            <Route path="confirm-page" element={<ConfirmEmailPage />} />
           </Routes>
         </Container>
       </Suspense>
