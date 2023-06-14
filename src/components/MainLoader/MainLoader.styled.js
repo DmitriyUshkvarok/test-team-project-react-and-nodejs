@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TbDog } from 'react-icons/tb';
+// import { SiGnuicecat } from 'react-icons/si';
 
 export const LoaderWraper = styled.div`
   position: fixed;
@@ -10,15 +11,17 @@ export const LoaderWraper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--fonColor);
+  background-image: var(--gradientAccentColor);
 `;
 
 export const Spinner = styled(TbDog)`
   @media screen and (min-width: 320px) {
-    animation: rotate 1.5s infinite linear;
-    -webkit-animation: rotate 1.5s infinite linear;
+    animation: rotate 1s infinite linear;
+    -webkit-animation: rotate 1s infinite linear;
     display: block;
-    color: var(--accentColor);
+    color: #ffdf48;
+    /* color: var(--accentColor); */
+
     font-size: 150px;
 
     @keyframes rotate {
