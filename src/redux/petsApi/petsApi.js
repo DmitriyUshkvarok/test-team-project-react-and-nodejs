@@ -29,7 +29,7 @@ export const petsApi = createApi({
     }),
     deletePets: builder.mutation({
       query: (petId) => ({
-        url: `api/pets${petId}`,
+        url: `api/pets/${petId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Posts'],

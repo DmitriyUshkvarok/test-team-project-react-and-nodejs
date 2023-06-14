@@ -17,6 +17,13 @@ export const ListCardPet = styled.ul`
   }
 `;
 
+export const WrapAgeAndPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 52px;
+`;
+
 export const ItemCardPet = styled.li`
   width: 280px;
   background-color: var(--whiteColor);
@@ -25,6 +32,7 @@ export const ItemCardPet = styled.li`
 
   @media screen and (min-width: 768px) {
     width: 336px;
+    min-height: 641px;
   }
 
   @media screen and (min-width: 1280px) {

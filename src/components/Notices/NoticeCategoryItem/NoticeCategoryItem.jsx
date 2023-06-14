@@ -1,5 +1,9 @@
+import authSelector from '../../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 import { useGetPetsQuery } from '../../../redux/petsApi/petsApi';
+import { useDeletePetsMutation } from '../../../redux/petsApi/petsApi';
 import { HiTrash } from 'react-icons/hi';
+import { differenceInYears } from 'date-fns';
 import like from './img/symbol-defs.svg';
 import {
   WrapImg,
@@ -15,9 +19,30 @@ import {
   BtnLearnMore,
   BtnDelete,
   ImgPetCard,
+  WrapAgeAndPrice,
 } from './NoticeCategoryItem.styled';
+
+const getYearDifference = (date) => {
+  const currentDate = new Date();
+  const parsedDate = new Date(date);
+
+  const difference = differenceInYears(currentDate, parsedDate);
+
+  return `${difference} years`;
+};
+
 const NoticeCategoryItem = () => {
   const { data, isLoading, error } = useGetPetsQuery();
+
+  const [deletePet] = useDeletePetsMutation();
+
+  const isLoggetIn = useSelector(authSelector.getIsLoggedIn);
+
+  const userId = useSelector(authSelector.getid);
+
+  const handleDeleteCard = async (id) => {
+    const res = await deletePet(id);
+  };
 
   if (error) {
     return <p>{error.mesage}</p>;
@@ -53,15 +78,24 @@ const NoticeCategoryItem = () => {
                   <DescTitlePet>
                     Place: <span>{pet.location}</span>
                   </DescTitlePet>
-                  <DescTitlePet>
-                    Age: <span>{pet.birthday}</span>
-                  </DescTitlePet>
+                  <WrapAgeAndPrice>
+                    <DescTitlePet>
+                      Age: <span>{getYearDifference(pet.birthday)}</span>
+                    </DescTitlePet>
+                    {pet.price && (
+                      <DescTitlePet>
+                        Price: <span>{pet.price} $</span>
+                      </DescTitlePet>
+                    )}
+                  </WrapAgeAndPrice>
                 </WrapDescCardPet>
                 <WrapBtnDeleteAndLearnMore>
                   <BtnLearnMore>Learn more</BtnLearnMore>
-                  <BtnDelete>
-                    Delete <HiTrash color="#FF6101" size={16} />
-                  </BtnDelete>
+                  {isLoggetIn && userId === pet.owner && (
+                    <BtnDelete onClick={() => handleDeleteCard(pet._id)}>
+                      Delete <HiTrash color="#FF6101" size={16} />
+                    </BtnDelete>
+                  )}
                 </WrapBtnDeleteAndLearnMore>
               </WrapContentItemCard>
             </ItemCardPet>
