@@ -22,7 +22,7 @@ const store = configureStore({
     [servicesApi.reducerPath]: servicesApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
     [userPetsApi.reducerPath]: userPetsApi.reducer,
-    [petsApi.reducerPath]: userPetsApi.reducer,
+    [petsApi.reducerPath]: petsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
