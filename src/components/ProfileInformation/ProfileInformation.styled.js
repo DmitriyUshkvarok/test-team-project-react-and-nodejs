@@ -73,9 +73,9 @@ export const ProfileInfoWrapper = styled.div`
 export const ProfilePhotoBlock = styled.div`
   @media screen and (min-width: 320px) {
     position: relative;
-    width: 233px;
+    /* width: 233px;
     height: 233px;
-    border-radius: 50%;
+    border-radius: 50%; */
     margin-bottom: 70px;
     margin-left: auto;
     margin-right: auto;
@@ -89,8 +89,10 @@ export const ProfilePhotoBlock = styled.div`
 
 export const PhotoUser = styled.img`
   @media screen and (min-width: 320px) {
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    width: 233px;
+    height: 233px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center center;

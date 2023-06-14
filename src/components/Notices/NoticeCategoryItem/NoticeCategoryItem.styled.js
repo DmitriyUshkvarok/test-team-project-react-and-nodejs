@@ -110,12 +110,9 @@ export const TitleCardItem = styled.p`
 
   color: var(--blackColor);
 
-   @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     text-align: inherit;
-   
   }
-
-}
 `;
 
 export const WrapDescCardPet = styled.div`

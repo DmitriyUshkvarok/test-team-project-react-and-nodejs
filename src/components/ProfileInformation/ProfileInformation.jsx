@@ -53,11 +53,11 @@ const ProfileInformation = () => {
   const { data: currentUser } = useGetCurrentUserQuery();
   const [updateUser] = useUpdateUserMutation();
 
-  // const dateObj = new Date(editing.birthday);
-  // const day = dateObj.getDate();
-  // const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-  // const year = dateObj.getFullYear();
-  // const formattedDate = `${day}/${month}/${year}`;
+  const dateObj = new Date(currentUser?.birthday);
+  const day = dateObj.getDate();
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const year = dateObj.getFullYear();
+  const formattedDate = `${day}.${month}.${year}`;
 
   const dispatch = useDispatch();
 
@@ -220,7 +220,7 @@ const ProfileInformation = () => {
                       onChange={(e) => setInputValue(e.target.value)}
                     />
                   ) : (
-                    <SpanInfoUser>qwe</SpanInfoUser>
+                    <SpanInfoUser>{formattedDate}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
                 <IconInfoUserContainer>
