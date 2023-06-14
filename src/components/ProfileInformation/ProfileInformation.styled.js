@@ -79,6 +79,7 @@ export const ProfilePhotoBlock = styled.div`
     margin-bottom: 70px;
     margin-left: auto;
     margin-right: auto;
+    filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   }
 
   @media screen and (min-width: 768px) {
@@ -91,8 +92,8 @@ export const PhotoUser = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
     object-fit: cover;
+    object-position: center center;
   }
 `;
 

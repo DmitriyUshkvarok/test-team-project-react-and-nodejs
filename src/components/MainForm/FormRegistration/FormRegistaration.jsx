@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
+import handleAuthError from '../../../authError/authError';
 import {
   StyleSectionFormRegistration,
   StyleFormRegistration,
@@ -64,7 +65,7 @@ const RegistrationForm = () => {
         'A registration confirmation email has been sent to your email box! Check the spam section to see if the message is there'
       );
     } catch (error) {
-      // Обработка ошибки
+      handleAuthError();
     }
     setIsLoading(false);
   };

@@ -59,7 +59,7 @@ function App() {
                 path="user"
                 element={
                   <PrivateRoute
-                    redirectTo="/login"
+                    redirectTo="/user"
                     component={<ProfilePage />}
                   />
                 }
