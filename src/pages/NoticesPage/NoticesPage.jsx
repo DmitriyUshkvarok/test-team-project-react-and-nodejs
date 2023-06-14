@@ -2,13 +2,30 @@ import NoticesCategoriesList from '../../components/Notices/NoticesCategoriesLis
 import NoticesCategoriesNav from '../../components/FilterPanel/FilterPanel';
 import NoticesSearch from '../../components/Notices/NoticesSearch/NoticesSearch';
 import Backdrop from '../../components/Modal/Backdrop/Backdrop';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { ContainerNav, BtnAdd, WrapIcon } from './NoticesPage.styled';
+import {
+  ContainerNav,
+  BtnAdd,
+  WrapIcon,
+  TitleBtnMobile,
+} from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [visible, setVisible] = useState(false);
   const [petsModal, setPetsModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleClick = () => {
     setVisible((prev) => !prev);
@@ -24,9 +41,27 @@ const NoticesPage = () => {
       <NoticesSearch />
       <NoticesCategoriesNav />
       <BtnAdd onClick={handleClick}>
-        Add pet
+        <p
+          style={{
+            display: windowWidth >= 319 && windowWidth < 767 ? 'none' : 'block',
+          }}
+        >
+          Add pet
+        </p>
+
         <WrapIcon>
-          <AiOutlinePlus size={16} color="var(--whiteColor)" />
+          <AiOutlinePlus
+            size={windowWidth <= 320 ? '22px' : '16px'}
+            color="var(--whiteColor)"
+          />
+          <TitleBtnMobile
+            style={{
+              display:
+                windowWidth >= 319 && windowWidth < 767 ? 'block' : 'none',
+            }}
+          >
+            Add pet
+          </TitleBtnMobile>
         </WrapIcon>
       </BtnAdd>
       <NoticesCategoriesList />

@@ -1,10 +1,11 @@
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+import { WrapListCardPet } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
   return (
-    <div>
+    <WrapListCardPet>
       <NoticeCategoryItem />
-    </div>
+    </WrapListCardPet>
   );
 };
 

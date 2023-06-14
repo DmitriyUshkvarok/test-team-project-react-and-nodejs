@@ -115,15 +115,14 @@ const PetsModal = ({ handleClose }) => {
     }
     Notify.success('Succsess');
 
-    handleClose();
-
     setShowFirstPart(true);
     setShowSecondPart(false);
     setSelectedImageForSrc(null);
     setSelectedValue('');
-    setValue('');
 
     actions.resetForm();
+
+    handleClose();
   };
 
   return (
