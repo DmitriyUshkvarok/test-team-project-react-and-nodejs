@@ -8,6 +8,7 @@ import SharedLayout from '../SharedLayout/SharedLayout';
 import Container from '../Container/Container';
 import PrivateRoute from '../PrivateRoute';
 import RestictedRoute from '../RestictedRoute';
+import MainLoader from '../MainLoader/MainLoader';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('../../pages/NewsPage/NewsPage'));
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div>Loading subpage ....</div>}>
+      <Suspense fallback={<MainLoader />}>
         <Container>
           <Routes>
             <Route path="/" element={<SharedLayout />}>
