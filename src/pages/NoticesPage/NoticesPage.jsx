@@ -3,6 +3,8 @@ import NoticesCategoriesNav from '../../components/FilterPanel/FilterPanel';
 import NoticesSearch from '../../components/Notices/NoticesSearch/NoticesSearch';
 import Backdrop from '../../components/Modal/Backdrop/Backdrop';
 import { useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { ContainerNav, BtnAdd, WrapIcon } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [visible, setVisible] = useState(false);
@@ -17,11 +19,16 @@ const NoticesPage = () => {
     setVisible((prev) => !prev);
   };
   return (
-    <div>
+    <ContainerNav>
       <h2>Find your favorite pet</h2>
       <NoticesSearch />
       <NoticesCategoriesNav />
-      <button onClick={handleClick}>AddNoticeButton</button>
+      <BtnAdd onClick={handleClick}>
+        Add pet
+        <WrapIcon>
+          <AiOutlinePlus size={16} color="var(--whiteColor)" />
+        </WrapIcon>
+      </BtnAdd>
       <NoticesCategoriesList />
       <Backdrop
         handleClose={handleClose}
@@ -29,7 +36,7 @@ const NoticesPage = () => {
         petsModal={petsModal}
         visible={visible}
       />
-    </div>
+    </ContainerNav>
   );
 };
 

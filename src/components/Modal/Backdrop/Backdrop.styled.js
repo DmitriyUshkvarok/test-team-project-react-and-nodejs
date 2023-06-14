@@ -9,6 +9,7 @@ export const BackdropContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1000;
   opacity: 1;
+  overflow: auto;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -30,6 +31,7 @@ export const ModalContainer = styled.div`
     margin: 0 auto;
     margin-top: 40px;
     padding: 0 20px;
+    overflow: auto;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
       0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: var(--borderRadius20);
@@ -41,9 +43,9 @@ export const ModalContainer = styled.div`
     @media screen and (min-width: 768px) {
       position: absolute;
       width: 608px;
-      top: 50%;
+
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       padding: 0 80px;
     }
   }

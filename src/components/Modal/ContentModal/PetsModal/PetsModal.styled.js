@@ -201,6 +201,9 @@ export const TitleRadioBtn = styled.p`
   line-height: 26px;
 
   color: #000000;
+  &:hover {
+    color: var(--accentColor);
+  }
 `;
 
 export const HiddenFileInput = styled.input`
