@@ -25,6 +25,7 @@ export const ItemCardPet = styled.li`
 
   @media screen and (min-width: 768px) {
     width: 336px;
+    min-height: 611px;
   }
 
   @media screen and (min-width: 1280px) {
