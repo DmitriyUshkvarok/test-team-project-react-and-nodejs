@@ -1,6 +1,17 @@
-const HomePage = () => {
+import {
+  StyleSectionHomePage,
+  Title,
+  ContainerHomePage,
+} from './HomePage.styled';
 
-  return <div>HomePage</div>;
+const HomePage = () => {
+  return (
+    <StyleSectionHomePage>
+      <ContainerHomePage>
+        <Title>Take good care of your small pets</Title>
+      </ContainerHomePage>
+    </StyleSectionHomePage>
+  );
 };
 
 export default HomePage;
