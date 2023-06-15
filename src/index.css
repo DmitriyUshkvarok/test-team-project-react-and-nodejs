@@ -14,8 +14,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-:root {
-  /* color */
+body[data-theme='dark'] {
   --gradientAccentColor: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   --accentColor: #f59256;
   --fonColor: #fdf7f2;
@@ -29,23 +28,37 @@ body.menu-open {
   --colorMobileLink: #181c27;
   --placeholderColor: #535353;
   --borderColorInput: rgba(245, 146, 86, 0.5);
+  --boxShadowFormRegistr: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  --backgroundHoverBtn: rgba(245, 146, 86, 0.8);
+}
 
+body[data-theme='light'] {
+  --gradientAccentColor: linear-gradient(90deg, #2e3f4f 0%, #526b7e 105.44%);
+  --accentColor: #4e6478;
+  --fonColor: #1e252c;
+  --blackColor: #ffffff;
+  --grayColor: rgba(255, 255, 255, 0.6);
+  --skyColor: #426cbf;
+  --whiteColor: #111111;
+  --errorColor: #ff3b5a;
+  --successColor: #6cd979;
+  --colorNewsDesc: #f5f5f5;
+  --colorMobileLink: #dfe1e3;
+  --placeholderColor: #a1a1a1;
+  --borderColorInput: rgba(78, 100, 120, 0.5);
+  --boxShadowFormRegistr: 7px 4px 14px rgba(255, 255, 255, 0.11);
+  --backgroundHoverBtn: rgba(78, 100, 120, 0.8);
+}
+
+:root {
+  --gradientAccentColor: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   --transition: 0.4s;
-
-  --box-shadow-color: 0px 2px 8px rgba(0, 0, 0, 0.2);
-  /* fontFamily */
   --interFont: 'Inter';
   --manropeFont: 'Manrope';
   --montserratFont: 'Montserrat';
   --poppinsFont: 'Poppins';
-
   --borderRadiusInput: 40px;
   --borderRadius20: 20px;
-
-  --boxShadowFormRegistr: 7px 4px 14px rgba(0, 0, 0, 0.11);
-
-  --backgroundHoverBtn: rgba(245, 146, 86, 0.8);
-
   --fontSize12: 12px;
   --fontSize14: 14px;
   --fontSize16: 16px;
@@ -57,7 +70,6 @@ body.menu-open {
   --fontSize32: 32px;
   --fontSize48: 48px;
   --fontSize68: 68px;
-
   --fontWeight700: 700;
   --fontWeight500: 500;
 }

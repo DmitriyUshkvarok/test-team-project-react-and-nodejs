@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const ThemeIconWrapper = styled.div``;
+
 export const BoxNavigation = styled.div`
   @media screen and (min-width: 320px) {
     display: flex;
@@ -61,7 +63,6 @@ export const AuthNavWrapper = styled.div`
 `;
 
 export const BurgerWrapper = styled.div`
-
   @media screen and (min-width: 1280px) {
     display: none;
   }

@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { Field, Form } from 'formik';
 
+export const LoaderContainer = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+`;
+
 export const TitleModal = styled.p`
   padding-top: 40px;
 
@@ -51,6 +61,7 @@ export const RadioButtonWrapperSex = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-right: auto;
+  }
 `;
 
 export const RadioButtonLabel = styled.label`

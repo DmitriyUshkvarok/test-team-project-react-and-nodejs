@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persisteAuthReducer } from './auth/authSlice';
+import { persistedThemeReducer } from './theme/themeSlice.js';
 import { newsApi } from './newsApi/newsApi';
 import { servicesApi } from './serviceApi/serviceApi';
 import { profileApi } from './profileApi/profileApi';
@@ -18,6 +19,7 @@ import {
 const store = configureStore({
   reducer: {
     auth: persisteAuthReducer,
+    theme: persistedThemeReducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,

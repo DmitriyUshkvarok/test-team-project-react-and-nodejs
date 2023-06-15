@@ -1,4 +1,5 @@
 import authSelector from '../../../redux/auth/authSelectors';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useGetPetsQuery } from '../../../redux/petsApi/petsApi';
 import { useDeletePetsMutation } from '../../../redux/petsApi/petsApi';
@@ -6,6 +7,7 @@ import { HiTrash } from 'react-icons/hi';
 import { differenceInYears } from 'date-fns';
 import like from './img/symbol-defs.svg';
 import {
+  LoaderContainer,
   WrapImg,
   BtnFavorite,
   TitleStatus,
@@ -21,6 +23,7 @@ import {
   ImgPetCard,
   WrapAgeAndPrice,
 } from './NoticeCategoryItem.styled';
+import LoaderMini from '../../LoaderMini/LoaderMini';
 
 const getYearDifference = (date) => {
   const currentDate = new Date();
@@ -32,6 +35,8 @@ const getYearDifference = (date) => {
 };
 
 const NoticeCategoryItem = () => {
+  const [isPetDeleted, setIsPetDeleted] = useState(null);
+
   const { data, isLoading, error } = useGetPetsQuery();
 
   const [deletePet] = useDeletePetsMutation();
@@ -41,7 +46,8 @@ const NoticeCategoryItem = () => {
   const userId = useSelector(authSelector.getid);
 
   const handleDeleteCard = async (id) => {
-    const res = await deletePet(id);
+    await deletePet(id);
+    setIsPetDeleted(id);
   };
 
   if (error) {
@@ -50,7 +56,9 @@ const NoticeCategoryItem = () => {
   return (
     <ListCardPet>
       {isLoading ? (
-        <p>Loading...</p>
+        <LoaderContainer>
+          <LoaderMini />
+        </LoaderContainer>
       ) : (
         data?.map((pet) => {
           return (
@@ -93,7 +101,14 @@ const NoticeCategoryItem = () => {
                   <BtnLearnMore>Learn more</BtnLearnMore>
                   {isLoggetIn && userId === pet.owner && (
                     <BtnDelete onClick={() => handleDeleteCard(pet._id)}>
-                      Delete <HiTrash color="#FF6101" size={16} />
+                      {isPetDeleted === pet._id ? (
+                        'Deleted...'
+                      ) : (
+                        <>
+                          Delete
+                          <HiTrash style={{ color: '#FF6101' }} size={16} />
+                        </>
+                      )}
                     </BtnDelete>
                   )}
                 </WrapBtnDeleteAndLearnMore>

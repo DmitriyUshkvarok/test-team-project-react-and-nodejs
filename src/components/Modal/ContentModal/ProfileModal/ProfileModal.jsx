@@ -25,6 +25,7 @@ import {
   ErrorMessageStyled,
   BtnBack,
 } from '../../Common.styled';
+import PropTypes from 'prop-types';
 
 const ProfileModal = ({ handleClose }) => {
   const [isStep1Complete, setIsStep1Complete] = useState(false);
@@ -204,6 +205,10 @@ const ProfileModal = ({ handleClose }) => {
       )}
     </>
   );
+};
+
+ProfileModal.propTypes = {
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default ProfileModal;

@@ -5,6 +5,7 @@ import {
   BoxNavigation,
   LogoWrapper,
   NavWrapper,
+  ThemeIconWrapper,
   UserNavWrapper,
   AuthNavWrapper,
   BurgerWrapper,
@@ -13,6 +14,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Logo from '../Logo/Logo';
 import { useSelector } from 'react-redux';
 import authSelector from '../../redux/auth/authSelectors';
+import ToggleTheme from '../ToggleTheme/ToggleTheme';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
@@ -25,6 +27,9 @@ const Navigation = () => {
       <NavWrapper>
         <Nav />
       </NavWrapper>
+      <ThemeIconWrapper>
+        <ToggleTheme />
+      </ThemeIconWrapper>
       {isLoggedIn ? (
         <UserNavWrapper>
           <UserNav />

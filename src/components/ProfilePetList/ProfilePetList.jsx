@@ -2,6 +2,7 @@ import {
   useGetUserPetsQuery,
   useDeleteUserPetsMutation,
 } from '../../redux/usersPetsApi/usersPetsApi';
+import { useState } from 'react';
 import {
   LoaderContainer,
   ProfilePetListWrapper,
@@ -26,15 +27,18 @@ import {
   ErrorDesc,
 } from './ProfilePetList.styled';
 import LoaderMini from '../LoaderMini/LoaderMini';
+import PropTypes from 'prop-types';
 
 const ProfilePetList = ({ handleClick }) => {
+  const [isPetDeleted, setIsPetDeleted] = useState(null);
+
   const { data, error, isLoading } = useGetUserPetsQuery();
 
-  const [deletePet, { isLoading: isDeleted }] = useDeleteUserPetsMutation();
+  const [deletePet] = useDeleteUserPetsMutation();
 
   const handleDeletePet = (id) => {
     deletePet(id)
-      .then((data) => console.log(data))
+      .then(() => setIsPetDeleted(id))
       .catch((e) => console.log(e));
   };
   return (
@@ -74,7 +78,11 @@ const ProfilePetList = ({ handleClick }) => {
                   <ProfilePetName>
                     Name:<Span>{name}</Span>
                     <BtnDletePostPet onClick={() => handleDeletePet(_id)}>
-                      {isDeleted ? 'Deleted...' : <StyleRiDeleteBin5Fill />}
+                      {isPetDeleted === _id ? (
+                        'Deleted...'
+                      ) : (
+                        <StyleRiDeleteBin5Fill />
+                      )}
                     </BtnDletePostPet>
                   </ProfilePetName>
                   <ProfilePetbirth>
@@ -95,6 +103,10 @@ const ProfilePetList = ({ handleClick }) => {
       </ProfilePetListWrapper>
     </>
   );
+};
+
+ProfilePetList.propTypes = {
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default ProfilePetList;

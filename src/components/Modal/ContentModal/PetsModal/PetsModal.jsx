@@ -2,14 +2,16 @@ import { useState } from 'react';
 import { Formik, Field } from 'formik';
 import { TfiPlus } from 'react-icons/tfi';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import PropTypes from 'prop-types';
 import {
   CustomRadioButton,
   CustomRadioButtonStepTwo,
 } from './CustomRadioButton';
 import { useAddPetsMutation } from '../../../../redux/petsApi/petsApi';
-import MainLoader from '../../../MainLoader/MainLoader';
+import LoaderMini from '../../../LoaderMini/LoaderMini';
 import { adjustTextareaHeight } from '../../../auxiliaryFunc/adjustTextareaHeight';
 import {
+  LoaderContainer,
   RadioButtonWrapper,
   TitleModal,
   Desc,
@@ -129,7 +131,6 @@ const PetsModal = ({ handleClose }) => {
 
   return (
     <>
-      {isLoading && MainLoader()}
       <TitleModal>Add pet</TitleModal>
       <Formik
         onSubmit={handleSubmit}
@@ -203,8 +204,8 @@ const PetsModal = ({ handleClose }) => {
             {showFirstPart && (
               <>
                 <Desc>
-                  Don't wait any longer, give your furry friend the care and
-                  love they deserve by adding them to our family today!
+                  Dont wait any longer, give your furry friend the care and love
+                  they deserve by adding them to our family today!
                 </Desc>
                 <RadioButtonWrapper>
                   {options.map(({ value, label }) => (
@@ -324,7 +325,7 @@ const PetsModal = ({ handleClose }) => {
                   />
                   <ErrorMessageStyled name="price" component="div" />
                 </LabelStyled>
-                <FieldTitleImg>Load the pet's image</FieldTitleImg>
+                <FieldTitleImg>Load the pets image</FieldTitleImg>
                 <FileInputContainer>
                   {selectedImageForSrc ? (
                     <UploadedImage src={selectedImageForSrc} alt="Uploaded" />
@@ -356,8 +357,17 @@ const PetsModal = ({ handleClose }) => {
           </Formstyled>
         )}
       </Formik>
+      {isLoading && (
+        <LoaderContainer>
+          <LoaderMini />
+        </LoaderContainer>
+      )}
     </>
   );
+};
+
+PetsModal.propTypes = {
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default PetsModal;
