@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import handleAuthError from '../../../authError/authError';
+// import handleAuthError from '../../../authError/authError';
 import * as yup from 'yup';
 import {
   StyleSectionFormLogin,
@@ -51,9 +51,10 @@ const FormLogin = () => {
       await dispatch(authOperation.logIn(values));
       navigate('/user');
     } catch (error) {
-      handleAuthError(error);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
     setSubmitting(false);
   };
 

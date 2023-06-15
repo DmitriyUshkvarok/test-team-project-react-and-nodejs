@@ -1,18 +1,23 @@
 import { toast } from 'react-toastify';
 
-const handleAuthError = (errorMessage) => {
-  let errorText = 'An error occurred';
+const handleAuthError = (error) => {
+  let errorMessage = 'An error occurred.';
 
-  switch (errorMessage) {
-    case 'Email or password is wrong':
-      errorText = 'Email or password is wrong';
-      break;
-    // Другие возможные ошибки
-    default:
-      errorText = 'An error occurred';
+  if (error.response && error.response.data && error.response.data.message) {
+    switch (error.response.data.message) {
+      case 'Email or password is wrong':
+        errorMessage = 'Email or password is wrong';
+        break;
+      case 'Email is already in use':
+        errorMessage = 'Email is already in use';
+        break;
+
+      default:
+        errorMessage = 'An error occurred';
+    }
   }
 
-  toast.error(errorText);
+  toast.error(errorMessage);
 };
 
 export default handleAuthError;

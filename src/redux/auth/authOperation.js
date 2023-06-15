@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import handleAuthError from '../../authError/authError';
 
 axios.defaults.baseURL = 'https://pets-shelter-service.onrender.com/';
 
@@ -17,11 +17,7 @@ const register = createAsyncThunk('auth/register', async (credentials) => {
     const { data } = await axios.post('users/register', credentials);
     return data;
   } catch (error) {
-    if (error.response && error.response.status === 400) {
-      toast.error(
-        'Invalid email, name, or password( the password must be at least 10 characters long ! the username must be at least 4 characters long ! the email address must be valid ! try to enter your working email address, for example your google account address, and try again'
-      );
-    }
+    handleAuthError(error);
   }
 });
 
@@ -31,11 +27,7 @@ const logIn = createAsyncThunk('auth/login', async (credentials) => {
     setAuth(data.token);
     return data;
   } catch (error) {
-    if (error.response && error.response.status === 400) {
-      toast.error(
-        'Invalid email, name, or password( the password must be at least 10 characters long ! the username must be at least 4 characters long ! the email address must be valid ! try to enter your working email address, for example your google account address, and try again'
-      );
-    }
+    handleAuthError(error);
   }
 });
 

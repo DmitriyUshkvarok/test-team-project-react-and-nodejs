@@ -65,9 +65,10 @@ const RegistrationForm = () => {
         'A registration confirmation email has been sent to your email box! Check the spam section to see if the message is there'
       );
     } catch (error) {
-      handleAuthError();
+      handleAuthError(error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const handleBack = () => {

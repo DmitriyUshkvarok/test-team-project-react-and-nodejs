@@ -7,6 +7,7 @@ import {
   ProfileInfoWrapper,
   ProfilePhotoBlock,
   PhotoUser,
+  SpanErrorImg,
   LabelEditPhoto,
   InputEditPhoto,
   StyleMdAddAPhoto,
@@ -23,6 +24,7 @@ import {
   SpanInfoUser,
   StyleHiPencil,
   StyleHiCheck,
+  ErrorSpan,
   StyleTbLogout,
 } from './ProfileInformation.styled';
 import Notiflix from 'notiflix';
@@ -48,10 +50,10 @@ const ProfileInformation = () => {
   const [inputValue, setInputValue] = useState('');
   const [showSaveButton, setShowSaveButton] = useState(false);
 
-  const [updateAvatar, { isLoading: isAvatarLoading }] =
+  const [updateAvatar, { isLoading: isAvatarLoading, error: errorFormat }] =
     useChangeProfileAvatarMutation();
   const { data: currentUser } = useGetCurrentUserQuery();
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser, { error: errorBirthday }] = useUpdateUserMutation();
 
   const dateObj = new Date(currentUser?.birthday);
   const day = dateObj.getDate();
@@ -91,7 +93,6 @@ const ProfileInformation = () => {
         [fieldName]: false,
       }));
     } catch (error) {
-      // Обработка ошибки
       console.log(error);
     }
   };
@@ -133,6 +134,9 @@ const ProfileInformation = () => {
                 }
                 alt="photo user"
               ></PhotoUser>
+              {errorFormat && (
+                <SpanErrorImg>The image format must be jpg or png</SpanErrorImg>
+              )}
               <LabelEditPhoto htmlFor="inputFile">
                 <StyleMdAddAPhoto size={30} />
                 <SpanEditPhoto>Edit Photo</SpanEditPhoto>
@@ -223,6 +227,11 @@ const ProfileInformation = () => {
                     <SpanInfoUser>{formattedDate}</SpanInfoUser>
                   )}
                 </IputInfoContainer>
+                {errorBirthday && (
+                  <ErrorSpan>
+                    birthday must be in (yyy-mm-dd) date format
+                  </ErrorSpan>
+                )}
                 <IconInfoUserContainer>
                   {editing.birthday ? (
                     <StyleHiCheck
