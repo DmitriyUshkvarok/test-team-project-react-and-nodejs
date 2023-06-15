@@ -7,6 +7,8 @@ import {
   CustomRadioButtonStepTwo,
 } from './CustomRadioButton';
 import { useAddPetsMutation } from '../../../../redux/petsApi/petsApi';
+import MainLoader from '../../../MainLoader/MainLoader';
+import { adjustTextareaHeight } from '../../../auxiliaryFunc/adjustTextareaHeight';
 import {
   RadioButtonWrapper,
   TitleModal,
@@ -33,11 +35,11 @@ import {
 import iconMale from '../../img/male.png';
 import iconFemale from '../../img/female.png';
 
-const adjustTextareaHeight = (textarea) => {
-  textarea.style.height = 'auto';
+// const adjustTextareaHeight = (textarea) => {
+//   textarea.style.height = 'auto';
 
-  textarea.style.height = textarea.scrollHeight + 'px';
-};
+//   textarea.style.height = textarea.scrollHeight + 'px';
+// };
 
 const PetsModal = ({ handleClose }) => {
   const [showFirstPart, setShowFirstPart] = useState(true);
@@ -52,7 +54,7 @@ const PetsModal = ({ handleClose }) => {
     { value: 'in good hands', label: 'in good hands' },
   ];
 
-  const [addPet, result] = useAddPetsMutation();
+  const [addPet, { isLoading }] = useAddPetsMutation();
 
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
@@ -74,7 +76,7 @@ const PetsModal = ({ handleClose }) => {
       breed: true,
       status: true,
     });
-
+    console.log(formik);
     if (formik.isValid && formik.dirty) {
       setShowFirstPart(false);
       setShowSecondPart(true);
@@ -127,12 +129,13 @@ const PetsModal = ({ handleClose }) => {
 
   return (
     <>
+      {isLoading && MainLoader()}
       <TitleModal>Add pet</TitleModal>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
           title: '',
-          status: '',
+          status: 'sell',
           name: '',
           birthday: '',
           breed: '',
