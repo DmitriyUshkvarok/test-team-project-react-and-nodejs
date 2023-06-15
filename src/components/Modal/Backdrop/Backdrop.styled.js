@@ -7,7 +7,7 @@ export const BackdropContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 999;
   opacity: 1;
   overflow: auto;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
