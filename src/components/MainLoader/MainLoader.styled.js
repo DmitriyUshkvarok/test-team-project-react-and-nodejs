@@ -17,11 +17,10 @@ export const LoaderWraper = styled.div`
 
 export const Spinner = styled(TbDog)`
   @media screen and (min-width: 320px) {
-    animation: rotate 1s infinite linear;
-    -webkit-animation: rotate 1s infinite linear;
+    animation: rotate 3s infinite linear;
+    -webkit-animation: rotate 3s infinite linear;
     display: block;
     color: #ffdf48;
-    /* color: var(--accentColor); */
 
     font-size: 150px;
 

@@ -1,6 +1,7 @@
 import { useGetFetchServiceQuery } from '../../redux/serviceApi/serviceApi';
 import { useState } from 'react';
 import {
+  LoaderContainer,
   OurFriendsTitle,
   FriendsList,
   FriendsItem,
@@ -26,6 +27,7 @@ import {
   TimeListFrom,
   TimeListTo,
 } from './OurFriendsPage.styled';
+import LoaderMini from '../../components/LoaderMini/LoaderMini';
 
 const abbreviateDay = (day) => {
   const abbreviatedDays = {
@@ -55,7 +57,9 @@ const OurFriendsPage = () => {
       <OurFriendsTitle>Our friends</OurFriendsTitle>
       <FriendsList>
         {isLoading ? (
-          <p>Loading...</p>
+          <LoaderContainer>
+            <LoaderMini />
+          </LoaderContainer>
         ) : (
           data &&
           data.map(

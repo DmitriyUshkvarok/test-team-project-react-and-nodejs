@@ -23,6 +23,7 @@ import Container from '../../Container/Container';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import authOperation from '../../../redux/auth/authOperation';
+import MainLoader from '../../MainLoader/MainLoader';
 
 const initialValues = {
   email: '',
@@ -116,7 +117,7 @@ const RegistrationForm = () => {
 
   return (
     <StyleSectionFormRegistration state={step}>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <MainLoader />}
       <Container>
         <Formik
           initialValues={initialValues}

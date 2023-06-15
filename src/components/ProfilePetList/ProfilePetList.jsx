@@ -1,9 +1,9 @@
-import { Watch } from 'react-loader-spinner';
 import {
   useGetUserPetsQuery,
   useDeleteUserPetsMutation,
 } from '../../redux/usersPetsApi/usersPetsApi';
 import {
+  LoaderContainer,
   ProfilePetListWrapper,
   AddPanel,
   AddPanelTitle,
@@ -25,11 +25,12 @@ import {
   ErrorContent,
   ErrorDesc,
 } from './ProfilePetList.styled';
+import LoaderMini from '../LoaderMini/LoaderMini';
 
 const ProfilePetList = ({ handleClick }) => {
   const { data, error, isLoading } = useGetUserPetsQuery();
 
-  const [deletePet] = useDeleteUserPetsMutation();
+  const [deletePet, { isLoading: isDeleted }] = useDeleteUserPetsMutation();
 
   const handleDeletePet = (id) => {
     deletePet(id)
@@ -49,20 +50,9 @@ const ProfilePetList = ({ handleClick }) => {
           </AddedTextBtnWrap>
         </AddPanel>
         {isLoading ? (
-          <Watch
-            height="80"
-            width="80"
-            radius="48"
-            color="var(--accentColor)"
-            ariaLabel="watch-loading"
-            wrapperStyle={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '61px',
-            }}
-            wrapperClassName=""
-            visible={true}
-          />
+          <LoaderContainer>
+            <LoaderMini />
+          </LoaderContainer>
         ) : error || data?.length === 0 ? (
           <ErrorContent>
             <ErrorDesc>
@@ -74,14 +64,17 @@ const ProfilePetList = ({ handleClick }) => {
             {data?.map(({ _id, imagePet, name, birthday, breed, comments }) => (
               <ProfilePetItem key={_id}>
                 <ProfilePetImg
-                  src={`https://pets-shelter-service.onrender.com/${imagePet}`}
+                  src={
+                    imagePet &&
+                    `https://pets-shelter-service.onrender.com/${imagePet}`
+                  }
                   alt={name}
                 />
                 <PetInfoBox>
                   <ProfilePetName>
                     Name:<Span>{name}</Span>
                     <BtnDletePostPet onClick={() => handleDeletePet(_id)}>
-                      <StyleRiDeleteBin5Fill />
+                      {isDeleted ? 'Deleted...' : <StyleRiDeleteBin5Fill />}
                     </BtnDletePostPet>
                   </ProfilePetName>
                   <ProfilePetbirth>

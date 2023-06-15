@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { BsPlus } from 'react-icons/bs';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 
+export const LoaderContainer = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const ProfilePetListWrapper = styled.div`
   @media screen and (min-width: 320px) {
     width: 280px;

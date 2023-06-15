@@ -16,6 +16,7 @@ import {
   StyleDatePost,
   StyleReadMore,
 } from './NewsPage.styled';
+import LoaderMini from '../../components/LoaderMini/LoaderMini';
 
 const NewsPage = () => {
   const [showLoadMore, setShowLoadMore] = useState({});
@@ -70,7 +71,7 @@ const NewsPage = () => {
       <SearchBar onSearch={handleSearch} onClear={handleClear} />
       <NewsList>
         {isLoading ? (
-          <p>Loading...</p>
+          <LoaderMini />
         ) : (
           title &&
           title.map(({ data, desc, image, _id, title }) => {

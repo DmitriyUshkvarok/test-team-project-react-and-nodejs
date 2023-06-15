@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const LoaderContainer = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const OurFriendsTitle = styled.h2`
   @media screen and (min-width: 320px) {
     display: flex;

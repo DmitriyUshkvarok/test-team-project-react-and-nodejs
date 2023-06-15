@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Formik, Field } from 'formik';
 import { TfiPlus } from 'react-icons/tfi';
-import { Watch } from 'react-loader-spinner';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useAddUserPetsMutation } from '../../../../redux/usersPetsApi/usersPetsApi';
-import MainLoader from '../../../MainLoader/MainLoader';
+import LoaderMini from '../../../LoaderMini/LoaderMini';
 import {
+  LoaderContainer,
   LabelStyled,
   FileInputContainer,
   TitleStepTwo,
@@ -74,8 +74,7 @@ const ProfileModal = ({ handleClose }) => {
   };
 
   return (
-    <div>
-      {isLoading && MainLoader()}
+    <>
       <TitleModal>Add pet</TitleModal>
 
       <Formik
@@ -198,7 +197,12 @@ const ProfileModal = ({ handleClose }) => {
           </FormStyled>
         )}
       </Formik>
-    </div>
+      {isLoading && (
+        <LoaderContainer>
+          <LoaderMini />
+        </LoaderContainer>
+      )}
+    </>
   );
 };
 

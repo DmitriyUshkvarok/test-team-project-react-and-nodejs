@@ -1,6 +1,5 @@
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-// import handleAuthError from '../../../authError/authError';
 import * as yup from 'yup';
 import {
   StyleSectionFormLogin,
@@ -22,6 +21,7 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperation from '../../../redux/auth/authOperation';
+import MainLoader from '../../MainLoader/MainLoader';
 
 const initialValues = {
   email: '',
@@ -60,7 +60,7 @@ const FormLogin = () => {
 
   return (
     <StyleSectionFormLogin>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <MainLoader />}
       <Container>
         <Formik
           initialValues={initialValues}

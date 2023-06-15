@@ -1,5 +1,15 @@
 import styled from 'styled-components';
-import { Field, ErrorMessage, Form } from 'formik';
+import { Form } from 'formik';
+
+export const LoaderContainer = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+`;
 
 export const FormStyled = styled(Form)`
   display: flex;
