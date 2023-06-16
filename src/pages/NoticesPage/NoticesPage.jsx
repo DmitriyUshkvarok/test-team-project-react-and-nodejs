@@ -1,6 +1,5 @@
 import NoticesCategoriesList from '../../components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from '../../components/FilterPanel/FilterPanel';
-import NoticesSearch from '../../components/Notices/NoticesSearch/NoticesSearch';
 import Backdrop from '../../components/Modal/Backdrop/Backdrop';
 import { useState, useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -13,14 +12,23 @@ import {
 import { useGetPetsQuery } from '../../redux/petsApi/petsApi';
 import { useSelector } from 'react-redux';
 import authSelector from '../../redux/auth/authSelectors';
+import { useSearchPetsByTitleQuery } from '../../redux/searchPetsApi/searchPetsApi';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import { toast } from 'react-toastify';
 
 const NoticesPage = () => {
   const [visible, setVisible] = useState(false);
   const [petsModal, setPetsModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [selectedStatus, setSelectedStatus] = useState(null);
+  const [searchText, setSearchText] = useState('');
 
-  const { data: allCards } = useGetPetsQuery();
+  const { data: allCards } = useGetPetsQuery({
+    title: searchText,
+  });
+
+  const { data: titlePetsSearch } = useSearchPetsByTitleQuery(searchText);
+  console.log(titlePetsSearch);
 
   const userId = useSelector(authSelector.getid);
 
@@ -44,6 +52,21 @@ const NoticesPage = () => {
     setVisible((prev) => !prev);
   };
 
+  const handleSearch = (searchText) => {
+    setSearchText(searchText);
+
+    const hasMatch = filteredCards.some((card) =>
+      card.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+    if (!hasMatch) {
+      toast.info('No results found');
+    }
+  };
+
+  const handleClear = () => {
+    setSearchText('');
+  };
+
   const handleFilterChange = (statusName) => {
     setSelectedStatus(statusName);
   };
@@ -51,6 +74,11 @@ const NoticesPage = () => {
   if (!allCards) {
     return null;
   }
+
+  if (!titlePetsSearch) {
+    return null;
+  }
+
   const filteredCards = selectedStatus
     ? selectedStatus === 'my ads'
       ? allCards.filter((card) => card.owner === userId)
@@ -60,7 +88,7 @@ const NoticesPage = () => {
   return (
     <ContainerNav>
       <h2>Find your favorite pet</h2>
-      <NoticesSearch />
+      <SearchBar onSearch={handleSearch} onClear={handleClear} />
       <NoticesCategoriesNav
         onFilterChange={handleFilterChange}
         userId={userId}
@@ -89,7 +117,7 @@ const NoticesPage = () => {
           </TitleBtnMobile>
         </WrapIcon>
       </BtnAdd>
-      <NoticesCategoriesList cards={filteredCards} />
+      <NoticesCategoriesList cards={filteredCards} searchText={searchText} />
       <Backdrop
         handleClose={handleClose}
         handleClick={handleClick}

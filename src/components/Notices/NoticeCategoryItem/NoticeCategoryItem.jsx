@@ -35,7 +35,7 @@ const getYearDifference = (date) => {
   return `${difference} years`;
 };
 
-const NoticeCategoryItem = ({ cards }) => {
+const NoticeCategoryItem = ({ cards, searchText }) => {
   const [isPetDeleted, setIsPetDeleted] = useState(null);
 
   const { isLoading, error } = useGetPetsQuery();
@@ -45,6 +45,10 @@ const NoticeCategoryItem = ({ cards }) => {
   const isLoggetIn = useSelector(authSelector.getIsLoggedIn);
 
   const userId = useSelector(authSelector.getid);
+
+  const filteredCards = cards.filter((card) =>
+    card.title.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   const handleDeleteCard = async (id) => {
     await deletePet(id);
@@ -61,7 +65,7 @@ const NoticeCategoryItem = ({ cards }) => {
           <LoaderMini />
         </LoaderContainer>
       ) : (
-        cards?.map((pet) => {
+        filteredCards?.map((pet) => {
           return (
             <ItemCardPet key={pet._id}>
               <WrapImg>
@@ -124,6 +128,7 @@ const NoticeCategoryItem = ({ cards }) => {
 
 NoticeCategoryItem.propTypes = {
   cards: PropTypes.array,
+  searchText: PropTypes.string,
 };
 
 export default NoticeCategoryItem;
