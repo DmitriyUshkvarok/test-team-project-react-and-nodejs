@@ -1,14 +1,59 @@
 import styled from 'styled-components';
 
-export const ContainerNav = styled.div`
-  position: relative;
+export const ContainerNav = styled.section`
+  @media screen and (min-width: 320px) {
+    position: relative;
+
+    padding-top: 42px;
+    padding-bottom: 100px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 89px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 59px;
+    padding-bottom: 200px;
+  }
+`;
+
+export const Title = styled.h2`
+  @media screen and (min-width: 320px) {
+    margin-bottom: 28px;
+
+    font-family: var(--manropeFont);
+    font-weight: var(--fontWeight700);
+    font-size: var(--fontSize24);
+    line-height: 1.375;
+
+    text-align: center;
+
+    color: var(--blackColor);
+  }
+  @media screen and (min-width: 768px) {
+    font-size: var(--fontSize48);
+    margin-bottom: 40px;
+  }
+`;
+export const BoxCategoriesAddBtn = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    align-items: center;
+
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 export const BtnAdd = styled.button`
-  position: fixed;
-  z-index: 100;
-  right: 12px;
-  top: 350px;
   background-color: transparent;
   border: none;
   display: flex;
@@ -20,11 +65,17 @@ export const BtnAdd = styled.button`
   font-weight: var(--fontWeight500);
   font-size: var(--fontSize20);
   line-height: 27px;
+  @media screen and (max-width: 767px) {
+    position: fixed;
+    z-index: 100;
+    right: 12px;
+    bottom: 90px;
+  }
 
   color: var(--blackColor);
   @media screen and (min-width: 768px) {
-    position: absolute;
-    top: 110px;
+    /* position: absolute;
+    top: 110px; */
   }
 `;
 

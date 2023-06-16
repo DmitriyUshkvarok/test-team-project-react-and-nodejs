@@ -19,10 +19,12 @@ export const InfoUserTitle = styled.h3`
   @media screen and (min-width: 768px) {
     font-size: var(--fontSize28);
     margin-bottom: 40px;
+    margin-left: 32px;
   }
 
   @media screen and (min-width: 1280px) {
     margin-bottom: 24px;
+    margin-left: 17px;
   }
 `;
 
