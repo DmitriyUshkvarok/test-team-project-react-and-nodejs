@@ -48,19 +48,14 @@ const NoticesPage = () => {
     setSelectedStatus(statusName);
   };
 
-  // const filteredCards = selectedStatus
-  //   ? allCards.filter((card) => card.status === selectedStatus)
-  //   : allCards;
-  // console.log(allCards);
-
   if (!allCards) {
-    return null; // или другое решение, соответствующее вашей логике
+    return null;
   }
-  const filteredCards =
-    selectedStatus === 'my ads'
+  const filteredCards = selectedStatus
+    ? selectedStatus === 'my ads'
       ? allCards.filter((card) => card.owner === userId)
-      : allCards.filter((card) => card.status === selectedStatus);
-  console.log(allCards);
+      : allCards.filter((card) => card.status === selectedStatus)
+    : allCards;
 
   return (
     <ContainerNav>
