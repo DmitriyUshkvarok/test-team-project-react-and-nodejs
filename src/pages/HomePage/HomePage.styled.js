@@ -5,8 +5,6 @@ import backgroundImageDesktop from './image/group-d.png';
 
 export const StyleSectionHomePage = styled.section`
   @media screen and (min-width: 320px) {
-    width: 100vw;
-
     margin: 0 auto;
 
     background-color: var(--fonColor);
