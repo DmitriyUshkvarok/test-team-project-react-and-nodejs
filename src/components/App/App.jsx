@@ -1,5 +1,6 @@
 import { Suspense, useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import authSelector from '../../redux/auth/authSelectors';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +10,8 @@ import Container from '../Container/Container';
 import PrivateRoute from '../PrivateRoute';
 import RestictedRoute from '../RestictedRoute';
 import MainLoader from '../MainLoader/MainLoader';
+import LoaderMini from '../LoaderMini/LoaderMini';
+import { LoaderContainer } from './App.styled';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('../../pages/NewsPage/NewsPage'));
@@ -28,6 +31,7 @@ const ConfirmEmailPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(authSelector.getIsRefreshing);
 
   useEffect(() => {
     dispatch(authOperation.refreshCurrentUser());
@@ -35,42 +39,51 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<MainLoader />}>
-        <Container>
-          <Routes>
-            <Route path="/" element={<SharedLayout />}>
-              <Route index element={<HomePage />} />
-              <Route path="home" element={<HomePage />} />
-              <Route path="news" element={<NewsPage />} />
-              <Route path="notices" element={<NoticesPage />} />
-              <Route path="friends" element={<OurFriendsPage />} />
-              <Route
-                path="register"
-                element={
-                  <RestictedRoute redirectTo="/" component={<RegisterPage />} />
-                }
-              />
-              <Route
-                path="login"
-                element={
-                  <RestictedRoute redirectTo="/" component={<LoginPage />} />
-                }
-              />
-              <Route
-                path="user"
-                element={
-                  <PrivateRoute
-                    redirectTo="/user"
-                    component={<ProfilePage />}
-                  />
-                }
-              ></Route>
-              <Route path="*" element={<HomePage />} />
-            </Route>
-            <Route path="confirm-page" element={<ConfirmEmailPage />} />
-          </Routes>
-        </Container>
-      </Suspense>
+      {isRefreshing ? (
+        <LoaderContainer>
+          <LoaderMini />
+        </LoaderContainer>
+      ) : (
+        <Suspense fallback={<MainLoader />}>
+          <Container>
+            <Routes>
+              <Route path="/" element={<SharedLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="home" element={<HomePage />} />
+                <Route path="news" element={<NewsPage />} />
+                <Route path="notices" element={<NoticesPage />} />
+                <Route path="friends" element={<OurFriendsPage />} />
+                <Route
+                  path="register"
+                  element={
+                    <RestictedRoute
+                      redirectTo="/"
+                      component={<RegisterPage />}
+                    />
+                  }
+                />
+                <Route
+                  path="login"
+                  element={
+                    <RestictedRoute redirectTo="/" component={<LoginPage />} />
+                  }
+                />
+                <Route
+                  path="user"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/user"
+                      component={<ProfilePage />}
+                    />
+                  }
+                ></Route>
+                <Route path="*" element={<HomePage />} />
+              </Route>
+              <Route path="confirm-page" element={<ConfirmEmailPage />} />
+            </Routes>
+          </Container>
+        </Suspense>
+      )}
       <ToastContainer />
     </>
   );

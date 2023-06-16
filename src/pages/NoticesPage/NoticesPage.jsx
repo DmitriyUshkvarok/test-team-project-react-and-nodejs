@@ -28,7 +28,6 @@ const NoticesPage = () => {
   });
 
   const { data: titlePetsSearch } = useSearchPetsByTitleQuery(searchText);
-  console.log(titlePetsSearch);
 
   const userId = useSelector(authSelector.getid);
 

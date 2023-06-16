@@ -15,13 +15,14 @@ export const StyledLink = styled(NavLink)`
     font-size: 32px;
     line-height: 44px;
     letter-spacing: 0.04em;
-    color: #181c27;
+    color: var(--navColor);
     transition: var(--transition);
 
     @media screen and (min-width: 768px) {
       font-size: 48px;
       line-height: 1.375;
     }
+
     @media screen and (min-width: 1280px) {
       font-size: var(--fontSize20);
       line-height: 1.35;

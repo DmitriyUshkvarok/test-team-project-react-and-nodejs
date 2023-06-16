@@ -6,7 +6,6 @@ import backgroundImageDesktop from './image/group-d.png';
 export const StyleSectionHomePage = styled.section`
   @media screen and (min-width: 320px) {
     margin: 0 auto;
-
     background-color: var(--fonColor);
     background-image: url(${backgroundImageMobile});
     background-repeat: no-repeat;
@@ -40,9 +39,9 @@ export const Title = styled.h1`
     font-weight: var(--fontWeight700);
     font-size: var(--fontSize32);
     line-height: 1.38;
-
-    color: var(--blackColorHome);
+    color: var(--blackColor);
   }
+
   @media screen and (min-width: 768px) {
     width: 768px;
     font-size: var(--fontSize68);
@@ -51,6 +50,7 @@ export const Title = styled.h1`
     padding-top: 88px;
     padding-bottom: 0;
   }
+
   @media screen and (min-width: 1280px) {
     width: 611px;
     padding-left: 16px;

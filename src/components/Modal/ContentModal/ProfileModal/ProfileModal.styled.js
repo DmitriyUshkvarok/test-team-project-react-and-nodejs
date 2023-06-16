@@ -123,7 +123,7 @@ export const TitleStepTwo = styled.p`
   text-align: center;
   letter-spacing: -0.01em;
 
-  color: #000000;
+  color: var(--blackColor);
 
   @media screen and (min-width: 768px) {
     font-weight: 500;

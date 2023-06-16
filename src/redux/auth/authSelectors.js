@@ -8,9 +8,9 @@ const getEmail = (state) => state.auth.user.email;
 
 const selectToken = (state) => state.auth.token;
 
-const getLocation = (state) => state.auth.location;
+const getLocation = (state) => state.auth.user.location;
 
-const getPhone = (state) => state.auth.phone;
+const getPhone = (state) => state.auth.user.phone;
 
 const getid = (state) => state.auth.user.id;
 

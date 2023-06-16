@@ -59,7 +59,6 @@ export const ImgPetCard = styled.img`
   @media screen and (min-width: 1280px) {
     width: 288px;
     height: 288px;
-
     object-fit: cover;
   }
 `;
@@ -91,24 +90,19 @@ export const TitleStatus = styled.p`
   width: 158px;
   height: 28px;
   padding-left: 20px;
-
   display: flex;
-
   align-items: center;
-
   border-bottom-right-radius: 18px;
   border-top-right-radius: 18px;
   background-color: rgba(255, 255, 255, 0.6);
-
   font-family: var(--interFont);
   font-weight: var(--fontWeight500);
   font-size: var(--fontSize12);
   line-height: 15px;
-
   letter-spacing: 0.04em;
-
   color: var(--blackColor);
 `;
+
 export const WrapContentItemCard = styled.div`
   display: flex;
   flex-direction: column;
