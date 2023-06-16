@@ -24,6 +24,7 @@ import {
   WrapAgeAndPrice,
 } from './NoticeCategoryItem.styled';
 import LoaderMini from '../../LoaderMini/LoaderMini';
+import PropTypes from 'prop-types';
 
 const getYearDifference = (date) => {
   const currentDate = new Date();
@@ -34,10 +35,10 @@ const getYearDifference = (date) => {
   return `${difference} years`;
 };
 
-const NoticeCategoryItem = () => {
+const NoticeCategoryItem = ({ cards }) => {
   const [isPetDeleted, setIsPetDeleted] = useState(null);
 
-  const { data, isLoading, error } = useGetPetsQuery();
+  const { isLoading, error } = useGetPetsQuery();
 
   const [deletePet] = useDeletePetsMutation();
 
@@ -60,7 +61,7 @@ const NoticeCategoryItem = () => {
           <LoaderMini />
         </LoaderContainer>
       ) : (
-        data?.map((pet) => {
+        cards?.map((pet) => {
           return (
             <ItemCardPet key={pet._id}>
               <WrapImg>
@@ -119,6 +120,10 @@ const NoticeCategoryItem = () => {
       )}
     </ListCardPet>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  cards: PropTypes.array,
 };
 
 export default NoticeCategoryItem;

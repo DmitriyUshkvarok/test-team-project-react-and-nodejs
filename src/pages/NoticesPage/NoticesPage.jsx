@@ -10,11 +10,19 @@ import {
   WrapIcon,
   TitleBtnMobile,
 } from './NoticesPage.styled';
+import { useGetPetsQuery } from '../../redux/petsApi/petsApi';
+import { useSelector } from 'react-redux';
+import authSelector from '../../redux/auth/authSelectors';
 
 const NoticesPage = () => {
   const [visible, setVisible] = useState(false);
   const [petsModal, setPetsModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [selectedStatus, setSelectedStatus] = useState(null);
+
+  const { data: allCards } = useGetPetsQuery();
+
+  const userId = useSelector(authSelector.getid);
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,11 +43,33 @@ const NoticesPage = () => {
   const handleClose = () => {
     setVisible((prev) => !prev);
   };
+
+  const handleFilterChange = (statusName) => {
+    setSelectedStatus(statusName);
+  };
+
+  // const filteredCards = selectedStatus
+  //   ? allCards.filter((card) => card.status === selectedStatus)
+  //   : allCards;
+  // console.log(allCards);
+
+  if (!allCards) {
+    return null; // или другое решение, соответствующее вашей логике
+  }
+  const filteredCards =
+    selectedStatus === 'my ads'
+      ? allCards.filter((card) => card.owner === userId)
+      : allCards.filter((card) => card.status === selectedStatus);
+  console.log(allCards);
+
   return (
     <ContainerNav>
       <h2>Find your favorite pet</h2>
       <NoticesSearch />
-      <NoticesCategoriesNav />
+      <NoticesCategoriesNav
+        onFilterChange={handleFilterChange}
+        userId={userId}
+      />
       <BtnAdd onClick={handleClick}>
         <p
           style={{
@@ -64,7 +94,7 @@ const NoticesPage = () => {
           </TitleBtnMobile>
         </WrapIcon>
       </BtnAdd>
-      <NoticesCategoriesList />
+      <NoticesCategoriesList cards={filteredCards} />
       <Backdrop
         handleClose={handleClose}
         handleClick={handleClick}
