@@ -5,6 +5,7 @@ import { servicesApi } from './serviceApi/serviceApi';
 import { profileApi } from './profileApi/profileApi';
 import { userPetsApi } from './usersPetsApi/usersPetsApi';
 import { petsApi } from './petsApi/petsApi.js';
+import { searchPetsApi } from './searchPetsApi/searchPetsApi';
 import {
   persistStore,
   FLUSH,
@@ -23,6 +24,7 @@ const store = configureStore({
     [profileApi.reducerPath]: profileApi.reducer,
     [userPetsApi.reducerPath]: userPetsApi.reducer,
     [petsApi.reducerPath]: petsApi.reducer,
+    [searchPetsApi.reducerPath]: searchPetsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -34,7 +36,8 @@ const store = configureStore({
       servicesApi.middleware,
       profileApi.middleware,
       userPetsApi.middleware,
-      petsApi.middleware
+      petsApi.middleware,
+      searchPetsApi.middleware
     ),
 });
 

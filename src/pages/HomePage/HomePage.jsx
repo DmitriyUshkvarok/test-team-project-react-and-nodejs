@@ -1,15 +1,12 @@
-import {
-  StyleSectionHomePage,
-  Title,
-  ContainerHomePage,
-} from './HomePage.styled';
+import Container from '../../components/Container/Container';
+import { StyleSectionHomePage, Title } from './HomePage.styled';
 
 const HomePage = () => {
   return (
     <StyleSectionHomePage>
-      <ContainerHomePage>
+      <Container>
         <Title>Take good care of your small pets</Title>
-      </ContainerHomePage>
+      </Container>
     </StyleSectionHomePage>
   );
 };
