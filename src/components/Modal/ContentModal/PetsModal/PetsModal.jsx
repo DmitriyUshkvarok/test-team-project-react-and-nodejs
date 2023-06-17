@@ -37,12 +37,6 @@ import {
 import iconMale from '../../img/male.png';
 import iconFemale from '../../img/female.png';
 
-// const adjustTextareaHeight = (textarea) => {
-//   textarea.style.height = 'auto';
-
-//   textarea.style.height = textarea.scrollHeight + 'px';
-// };
-
 const PetsModal = ({ handleClose }) => {
   const [showFirstPart, setShowFirstPart] = useState(true);
   const [showSecondPart, setShowSecondPart] = useState(false);

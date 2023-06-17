@@ -13,11 +13,11 @@ export const petsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Posts'],
+  tagTypes: ['Pets'],
   endpoints: (builder) => ({
     getPets: builder.query({
       query: () => `api/pets`,
-      providesTags: ['Posts'],
+      providesTags: ['Pets'],
     }),
     addPets: builder.mutation({
       query: (formData) => ({
@@ -25,14 +25,14 @@ export const petsApi = createApi({
         method: 'POST',
         body: formData,
       }),
-      invalidatesTags: ['Posts'],
+      invalidatesTags: ['Pets'],
     }),
     deletePets: builder.mutation({
       query: (petId) => ({
         url: `api/pets/${petId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Posts'],
+      invalidatesTags: ['Pets'],
     }),
   }),
 });
