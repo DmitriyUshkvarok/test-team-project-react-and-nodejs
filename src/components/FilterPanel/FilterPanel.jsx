@@ -22,7 +22,7 @@ const NoticesCategoriesNav = ({ onFilterChange }) => {
           in good hands
         </StyledLink>
         {isLoggetIn && (
-          <StyledLink onClick={() => handleItemClick()}>
+          <StyledLink onClick={() => handleItemClick('favorite ads')}>
             favorite ads
           </StyledLink>
         )}

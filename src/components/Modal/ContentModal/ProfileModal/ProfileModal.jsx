@@ -33,9 +33,14 @@ const ProfileModal = ({ handleClose }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [addUserPet, { isLoading }] = useAddUserPetsMutation();
 
+  // const handleImageChange = (event) => {
+  //   setSelectedImage(event.target.files[0]);
+  //   setSelectedImageForSrc(URL.createObjectURL(event.target.files[0]));
+  // };
   const handleImageChange = (event) => {
-    setSelectedImage(event.target.files[0]);
-    setSelectedImageForSrc(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+    setSelectedImage(file);
+    setSelectedImageForSrc(URL.createObjectURL(file));
   };
 
   const handleCloseModal = (formik) => {

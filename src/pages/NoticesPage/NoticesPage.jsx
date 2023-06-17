@@ -25,6 +25,7 @@ const NoticesPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const [showFavorites, setShowFavorites] = useState(false);
 
   const { data: allCards } = useGetPetsQuery({
     title: searchText,
@@ -70,7 +71,12 @@ const NoticesPage = () => {
   };
 
   const handleFilterChange = (statusName) => {
-    setSelectedStatus(statusName);
+    if (statusName === 'favorite ads') {
+      setShowFavorites(true);
+    } else {
+      setSelectedStatus(statusName);
+      setShowFavorites(false);
+    }
   };
 
   if (!allCards) {
@@ -81,11 +87,22 @@ const NoticesPage = () => {
     return null;
   }
 
-  const filteredCards = selectedStatus
-    ? selectedStatus === 'my ads'
-      ? allCards.filter((card) => card.owner === userId)
-      : allCards.filter((card) => card.status === selectedStatus)
-    : allCards;
+  let filteredCards = allCards;
+
+  if (selectedStatus) {
+    filteredCards = filteredCards.filter((card) => {
+      if (selectedStatus === 'my ads' && card.owner !== userId) {
+        return false;
+      }
+      if (selectedStatus !== 'my ads' && card.status !== selectedStatus) {
+        return false;
+      }
+      if (showFavorites && (!card.favorite || card.owner !== userId)) {
+        return false;
+      }
+      return true;
+    });
+  }
 
   return (
     <ContainerNav>
