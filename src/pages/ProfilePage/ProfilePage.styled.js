@@ -6,14 +6,15 @@ export const ProfileInformationBox = styled.div`
     flex-direction: column;
     align-items: center;
   }
+  @media screen and (min-width: 768px) {
+    align-items: normal;
+  }
 
   @media screen and (min-width: 1280px) {
     width: 1264px;
     flex-direction: row;
     gap: 32px;
     align-items: baseline;
-    margin-left: auto;
-    margin-right: auto;
   }
 `;
 

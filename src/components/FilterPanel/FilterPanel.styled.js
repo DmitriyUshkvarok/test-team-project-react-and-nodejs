@@ -8,6 +8,16 @@ export const BoxCategories = styled.div`
   flex-direction: row;
   align-items: flex-start;
   gap: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media screen and (min-width: 768px) {
+    width: 480px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 810px;
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -37,7 +47,7 @@ export const StyledLink = styled(NavLink)`
     height: 47px;
   }
 
-  &.active,
+  &:active,
   &:hover {
     background: var(--accentColor);
     color: var(--whiteColor);

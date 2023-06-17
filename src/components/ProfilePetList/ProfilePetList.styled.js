@@ -88,6 +88,10 @@ export const AddBtn = styled.button`
     cursor: pointer;
     transition: var(--transition);
 
+    @media screen and (min-width: 1280px) {
+      margin-right: 16px;
+    }
+
     &:hover {
       background-color: var(--backgroundHoverBtn);
     }
@@ -153,7 +157,17 @@ export const ProfilePetImg = styled.img`
   }
 `;
 
-export const PetInfoBox = styled.div``;
+export const PetInfoBox = styled.div`
+  @media screen and (min-width: 320px) {
+    width: 240px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 471px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 580px;
+  }
+`;
 
 export const ProfilePetName = styled.p`
   @media screen and (min-width: 320px) {

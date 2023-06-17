@@ -285,6 +285,10 @@ export const TimeList = styled.ul`
     top: 95px;
     left: 135px;
   }
+  @media screen and (min-width: 1280px) {
+    top: 100px;
+    left: 175px;
+  }
 `;
 
 export const TimeListItem = styled.li`
