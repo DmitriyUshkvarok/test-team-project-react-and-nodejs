@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useGetPetsQuery } from '../../../redux/petsApi/petsApi';
 import { useDeletePetsMutation } from '../../../redux/petsApi/petsApi';
 import { HiTrash } from 'react-icons/hi';
-import { differenceInYears } from 'date-fns';
+import { getYearDifference } from '../../auxiliaryFunc/getYearDifference';
 import like from './img/symbol-defs.svg';
 import {
   LoaderContainer,
