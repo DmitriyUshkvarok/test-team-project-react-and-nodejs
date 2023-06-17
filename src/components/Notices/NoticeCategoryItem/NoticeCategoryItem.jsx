@@ -26,15 +26,6 @@ import {
 import LoaderMini from '../../LoaderMini/LoaderMini';
 import PropTypes from 'prop-types';
 
-const getYearDifference = (date) => {
-  const currentDate = new Date();
-  const parsedDate = new Date(date);
-
-  const difference = differenceInYears(currentDate, parsedDate);
-
-  return `${difference} years`;
-};
-
 const NoticeCategoryItem = ({ cards, searchText }) => {
   const [isPetDeleted, setIsPetDeleted] = useState(null);
 
