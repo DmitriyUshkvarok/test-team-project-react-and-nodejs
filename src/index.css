@@ -50,7 +50,9 @@ body[data-theme='dark'] {
   --fontSize48: 48px;
   --fontSize68: 68px;
   --fontWeight700: 700;
+  --fontWeight600: 600;
   --fontWeight500: 500;
+  --fontWeight400: 400;
 }
 
 body[data-theme='light'] {

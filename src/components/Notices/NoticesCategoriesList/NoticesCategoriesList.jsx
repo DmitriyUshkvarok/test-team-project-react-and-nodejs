@@ -2,10 +2,18 @@ import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import { WrapListCardPet } from './NoticesCategoriesList.styled';
 import PropTypes from 'prop-types';
 
-const NoticesCategoriesList = ({ cards, searchText }) => {
+const NoticesCategoriesList = ({
+  cards,
+  searchText,
+  handleClickModalLearnMore,
+}) => {
   return (
     <WrapListCardPet>
-      <NoticeCategoryItem cards={cards} searchText={searchText} />
+      <NoticeCategoryItem
+        cards={cards}
+        searchText={searchText}
+        handleClickModalLearnMore={handleClickModalLearnMore}
+      />
     </WrapListCardPet>
   );
 };

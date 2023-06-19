@@ -26,7 +26,11 @@ import {
 import LoaderMini from '../../LoaderMini/LoaderMini';
 import PropTypes from 'prop-types';
 
-const NoticeCategoryItem = ({ cards, searchText }) => {
+const NoticeCategoryItem = ({
+  cards,
+  searchText,
+  handleClickModalLearnMore,
+}) => {
   const [isPetDeleted, setIsPetDeleted] = useState(null);
 
   const { isLoading, error } = useGetPetsQuery();
@@ -94,7 +98,11 @@ const NoticeCategoryItem = ({ cards, searchText }) => {
                   </WrapAgeAndPrice>
                 </WrapDescCardPet>
                 <WrapBtnDeleteAndLearnMore>
-                  <BtnLearnMore>Learn more</BtnLearnMore>
+                  <BtnLearnMore
+                    onClick={() => handleClickModalLearnMore(pet._id)}
+                  >
+                    Learn more
+                  </BtnLearnMore>
                   {isLoggetIn && userId === pet.owner && (
                     <BtnDelete onClick={() => handleDeleteCard(pet._id)}>
                       {isPetDeleted === pet._id ? (

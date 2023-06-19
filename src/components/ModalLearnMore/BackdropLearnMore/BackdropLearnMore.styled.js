@@ -41,12 +41,12 @@ export const ModalContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     position: absolute;
-    width: 608px;
+    width: 704px;
 
     left: 50%;
     transform: translateX(-50%);
 
-    padding: 0 80px;
+    padding: 0 16px;
   }
 
   ${BackdropContainer}.is-hidden & {
