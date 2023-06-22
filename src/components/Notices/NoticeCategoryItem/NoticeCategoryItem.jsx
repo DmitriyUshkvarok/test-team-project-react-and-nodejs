@@ -6,6 +6,7 @@ import { useDeletePetsMutation } from '../../../redux/petsApi/petsApi';
 import { HiTrash } from 'react-icons/hi';
 import { getYearDifference } from '../../auxiliaryFunc/getYearDifference';
 import like from './img/symbol-defs.svg';
+import { useAddFavoritMutation } from '../../../redux/favotitApi/favoritApi';
 import {
   LoaderContainer,
   WrapImg,
@@ -31,15 +32,23 @@ const NoticeCategoryItem = ({
   searchText,
   handleClickModalLearnMore,
 }) => {
+  const isLoggetIn = useSelector(authSelector.getIsLoggedIn);
+
+  const userId = useSelector(authSelector.getid);
+
   const [isPetDeleted, setIsPetDeleted] = useState(null);
 
   const { isLoading, error } = useGetPetsQuery();
 
+  const [addedFavorit] = useAddFavoritMutation();
+
   const [deletePet] = useDeletePetsMutation();
 
-  const isLoggetIn = useSelector(authSelector.getIsLoggedIn);
+  const handleAddToFavorites = async (petId) => {
+    // const pet = cards.find((card) => card._id === petId);
 
-  const userId = useSelector(authSelector.getid);
+    await addedFavorit(userId, petId);
+  };
 
   const filteredCards = cards.filter((card) =>
     card.title.toLowerCase().includes(searchText.toLowerCase())
@@ -51,7 +60,7 @@ const NoticeCategoryItem = ({
   };
 
   if (error) {
-    return <p>{error.mesage}</p>;
+    return <p>{error.message}</p>;
   }
   return (
     <ListCardPet>
@@ -64,7 +73,7 @@ const NoticeCategoryItem = ({
           return (
             <ItemCardPet key={pet._id}>
               <WrapImg>
-                <BtnFavorite>
+                <BtnFavorite onClick={() => handleAddToFavorites(pet._id)}>
                   <svg width="24" height="22">
                     <use xlinkHref={`${like}#icon-like`} />
                   </svg>

@@ -55,6 +55,7 @@ const refreshCurrentUser = createAsyncThunk(
       const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
+      thunkAPI.dispatch(logOut());
       return thunkAPI.fulfillWithValue(error.message);
     }
   }
