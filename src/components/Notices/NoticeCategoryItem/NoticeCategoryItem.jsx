@@ -42,6 +42,7 @@ const NoticeCategoryItem = ({ cards, searchText }) => {
 
   const handleAddToFavorites = async (petId) => {
     // const pet = cards.find((card) => card._id === petId);
+    // test
 
     await addedFavorit(userId, petId);
   };
