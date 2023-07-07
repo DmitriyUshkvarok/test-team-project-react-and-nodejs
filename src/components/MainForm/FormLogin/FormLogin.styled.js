@@ -8,7 +8,6 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 
 export const StyleSectionFormLogin = styled.section`
   @media screen and (min-width: 320px) {
-    width: 100vw;
     padding-top: 44px;
     padding-bottom: 151px;
 

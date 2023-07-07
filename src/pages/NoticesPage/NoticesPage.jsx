@@ -18,10 +18,16 @@ import {
 import { useGetPetsQuery } from '../../redux/petsApi/petsApi';
 import authSelector from '../../redux/auth/authSelectors';
 import { useSearchPetsByTitleQuery } from '../../redux/searchPetsApi/searchPetsApi';
+import BackdropLearnMore from '../../components/ModalLearnMore/BackdropLearnMore/BackdropLearnMore';
 
 const NoticesPage = () => {
   const [visible, setVisible] = useState(false);
   const [petsModal, setPetsModal] = useState(false);
+
+  const [visibleMore, setVisibleMore] = useState(false);
+  const [modalLearnMore, setModalLearnMore] = useState(false);
+  const [cardFind, setCardFind] = useState([]);
+
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [searchText, setSearchText] = useState('');
@@ -45,6 +51,7 @@ const NoticesPage = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  //
 
   const handleClick = () => {
     setVisible((prev) => !prev);
@@ -53,6 +60,17 @@ const NoticesPage = () => {
 
   const handleClose = () => {
     setVisible((prev) => !prev);
+  };
+
+  const handleClickModalLearnMore = (id) => {
+    setVisibleMore((prev) => !prev);
+    setModalLearnMore(true);
+    const res = allCards.find(({ _id }) => _id === id);
+    setCardFind(res);
+  };
+
+  const handleMoreClose = () => {
+    setVisibleMore((prev) => !prev);
   };
 
   const handleSearch = (searchText) => {
@@ -140,12 +158,24 @@ const NoticesPage = () => {
           </WrapIcon>
         </BtnAdd>
       </BoxCategoriesAddBtn>
-      <NoticesCategoriesList cards={filteredCards} searchText={searchText} />
+      <NoticesCategoriesList
+        cards={filteredCards}
+        searchText={searchText}
+        handleClickModalLearnMore={handleClickModalLearnMore}
+      />
       <Backdrop
         handleClose={handleClose}
         handleClick={handleClick}
+        // modalLearnMore={modalLearnMore}
+        // cardFind={cardFind}
         petsModal={petsModal}
         visible={visible}
+      />
+      <BackdropLearnMore
+        handleMoreClose={handleMoreClose}
+        modalLearnMore={modalLearnMore}
+        cardFind={cardFind}
+        visibleMore={visibleMore}
       />
     </ContainerNav>
   );

@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 
 export const StyleSectionFormRegistration = styled.section`
   @media screen and (min-width: 320px) {
-    width: 100vw;
-
     padding-top: 42px;
 
     padding-bottom: ${(props) => (props.state === 1 ? `87px` : `47px`)};
