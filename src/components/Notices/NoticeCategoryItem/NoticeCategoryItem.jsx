@@ -27,11 +27,7 @@ import {
 import LoaderMini from '../../LoaderMini/LoaderMini';
 import PropTypes from 'prop-types';
 
-const NoticeCategoryItem = ({
-  cards,
-  searchText,
-  handleClickModalLearnMore,
-}) => {
+const NoticeCategoryItem = ({ cards, searchText }) => {
   const isLoggetIn = useSelector(authSelector.getIsLoggedIn);
 
   const userId = useSelector(authSelector.getid);
@@ -45,8 +41,7 @@ const NoticeCategoryItem = ({
   const [deletePet] = useDeletePetsMutation();
 
   const handleAddToFavorites = async (petId) => {
-    // const pet = cards.find((card) => card._id === petId);
-    // test
+    const pet = cards.find((card) => card._id === petId);
 
     await addedFavorit(userId, petId);
   };
@@ -108,11 +103,7 @@ const NoticeCategoryItem = ({
                   </WrapAgeAndPrice>
                 </WrapDescCardPet>
                 <WrapBtnDeleteAndLearnMore>
-                  <BtnLearnMore
-                    onClick={() => handleClickModalLearnMore(pet._id)}
-                  >
-                    Learn more
-                  </BtnLearnMore>
+                  <BtnLearnMore>Learn more</BtnLearnMore>
                   {isLoggetIn && userId === pet.owner && (
                     <BtnDelete onClick={() => handleDeleteCard(pet._id)}>
                       {isPetDeleted === pet._id ? (

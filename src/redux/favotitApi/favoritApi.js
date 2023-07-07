@@ -25,4 +25,4 @@ export const favoritApi = createApi({
   }),
 });
 
-export const { useAddFavoritMutation, useGetFavoritesQuery } = favoritApi;
+export const { useAddFavoritMutation } = favoritApi;
