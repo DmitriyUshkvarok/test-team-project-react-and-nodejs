@@ -4,7 +4,7 @@ import {
   ModalContainer,
   BtnClose,
 } from '../BackdropLearnMore/BackdropLearnMore.styled';
-import ModalLearnMore from '../ModalLearnMore/modalLearnMore';
+import ModalLearnMore from '../../ModalLearnMore/ModalLearnMore/ModalLearnMore';
 
 const ModalMore = ({ modalLearnMore, handleMoreClose, cardFind }) => {
   return (
